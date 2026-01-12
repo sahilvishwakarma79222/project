@@ -1,622 +1,1799 @@
-// app/products/page.jsx
+// // 'use client';
+
+// // import { useState, useEffect } from 'react';
+// // import './products-styles.css';
+
+// // // Star icon component
+// // const StarIcon = ({ filled }) => (
+// //   <svg 
+// //     width="14" 
+// //     height="14" 
+// //     viewBox="0 0 24 24" 
+// //     fill={filled ? "#ffa41c" : "none"} 
+// //     stroke="#ffa41c"
+// //     strokeWidth="2"
+// //   >
+// //     <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+// //   </svg>
+// // );
+
+// // const categories = [
+// //   { id: '1', name: 'woodenDoor', displayName: 'Wooden Doors', count: 70 },
+// //   { id: '2', name: 'woodenFrame', displayName: 'Wooden Frames', count: 21 },
+// //   { id: '3', name: 'safetyDoors', displayName: 'Safety Doors', count: 39 },
+// //   { id: '4', name: 'woodenBed', displayName: 'Wooden Beds', count: 31 },
+// //   { id: '5', name: 'woodenMandir', displayName: 'Wooden Temples', count: 27 },
+// //   { id: '6', name: 'woodenWindow', displayName: 'Wooden Windows', count: 2 },
+// //   { id: '7', name: 'woodenArt', displayName: 'Wooden Art', count: 9 },
+// //   { id: '8', name: 'sofaChair', displayName: 'Sofa & Chairs', count: 28 }
+// // ];
+
+// // export default function ProductsPage() {
+// //   const [activeCategory, setActiveCategory] = useState('woodenDoor');
+// //   const [currentPage, setCurrentPage] = useState(1);
+// //   const [products, setProducts] = useState([]);
+// //   const [loading, setLoading] = useState(true);
+
+// //   const productsPerPage = 12;
+
+// //   // Generate sample products with rating
+// //   const generateSampleProducts = (category, count) => {
+// //     return Array.from({ length: count }, (_, i) => {
+// //       const rating = (4 + Math.random() * 1).toFixed(1);
+// //       const productTypes = ['Design', 'Model', 'Style', 'Pattern', 'Type'];
+// //       return {
+// //         id: `${category}_product${i + 1}`,
+// //         name: `${categories.find(c => c.name === category)?.displayName} ${productTypes[i % 5]} ${i + 1}`,
+// //         price: `₹${(12999 + (i * 799)).toLocaleString()}`,
+// //         rating: rating,
+// //       };
+// //     });
+// //   };
+
+// //   useEffect(() => {
+// //     setLoading(true);
+// //     setTimeout(() => {
+// //       const categoryCount = categories.find(c => c.name === activeCategory)?.count || 12;
+// //       const categoryProducts = generateSampleProducts(activeCategory, categoryCount);
+// //       setProducts(categoryProducts);
+// //       setLoading(false);
+// //       setCurrentPage(1);
+// //     }, 300);
+// //   }, [activeCategory]);
+
+// //   const indexOfLastProduct = currentPage * productsPerPage;
+// //   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+// //   const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
+// //   const totalPages = Math.ceil(products.length / productsPerPage);
+
+// //   const handlePageChange = (pageNumber) => {
+// //     setCurrentPage(pageNumber);
+// //     window.scrollTo({ top: 380, behavior: 'smooth' });
+// //   };
+
+// //   // Render star rating
+// //   const renderStars = (rating) => {
+// //     const stars = [];
+// //     const fullStars = Math.floor(rating);
+// //     const hasHalfStar = rating % 1 >= 0.5;
+    
+// //     for (let i = 0; i < 5; i++) {
+// //       if (i < fullStars) {
+// //         stars.push(<StarIcon key={i} filled={true} />);
+// //       } else if (i === fullStars && hasHalfStar) {
+// //         stars.push(<StarIcon key={i} filled={true} />);
+// //       } else {
+// //         stars.push(<StarIcon key={i} filled={false} />);
+// //       }
+// //     }
+    
+// //     return (
+// //       <div className="wood-rating-badge">
+// //         <div className="wood-rating-stars">{stars}</div>
+// //         <span style={{ marginLeft: '6px' }}>{rating}</span>
+// //       </div>
+// //     );
+// //   };
+
+// //   const activeCategoryData = categories.find(cat => cat.name === activeCategory);
+
+// //   return (
+// //     <div className="wood-products-page">
+// //       {/* Hero Banner */}
+// //       <div className="wood-hero-section">
+// //         <div className="wood-container">
+// //           <h1 className="wood-hero-title">Premium Wooden Products</h1>
+// //           <p className="wood-hero-subtitle">
+// //             Handcrafted with precision | 100% Quality Assurance | Free Installation Support
+// //           </p>
+// //         </div>
+// //       </div>
+
+// //       {/* Main Content */}
+// //       <div className="wood-container wood-main-container">
+// //         <div className="wood-layout-wrapper">
+// //           {/* ========== PROFESSIONAL SIDEBAR ========== */}
+// //           <div className="wood-sidebar">
+// //             <div className="wood-sidebar-card">
+// //               <h2 className="wood-sidebar-title">All Categories</h2>
+// //               <div className="wood-categories-list">
+// //                 {categories.map((category) => (
+// //                   <button
+// //                     key={category.id}
+// //                     onClick={() => setActiveCategory(category.name)}
+// //                     className={`wood-category-btn ${activeCategory === category.name ? 'active' : ''}`}
+// //                   >
+// //                     <span>{category.displayName}</span>
+// //                     <span className="wood-category-count">{category.count}</span>
+// //                   </button>
+// //                 ))}
+// //               </div>
+              
+// //               {/* WhatsApp Help Section */}
+// //               <div className="wood-whatsapp-help">
+// //                 <h3>Need Assistance?</h3>
+// //                 <p>Our experts are available 10AM - 7PM to help you choose the perfect product</p>
+// //                 <a
+// //                   href="https://wa.me/919876543210?text=Hello, I need help choosing wooden products"
+// //                   target="_blank"
+// //                   rel="noopener noreferrer"
+// //                   className="wood-whatsapp-btn"
+// //                 >
+// //                   <span>💬 Chat on WhatsApp</span>
+// //                 </a>
+// //               </div>
+// //             </div>
+// //           </div>
+
+// //           {/* ========== MAIN PRODUCTS AREA ========== */}
+// //           <div className="wood-main-content-area">
+// //             {/* Category Header */}
+// //             <div className="wood-category-header">
+// //               <div className="wood-header-content">
+// //                 <div>
+// //                   <h2 className="wood-category-title">{activeCategoryData?.displayName}</h2>
+// //                   <p className="wood-product-count">
+// //                     {products.length} products • Page {currentPage} of {totalPages}
+// //                   </p>
+// //                 </div>
+// //                 <div className="wood-page-indicator">
+// //                   <span>Showing:</span>
+// //                   <span className="wood-current-page">
+// //                     {indexOfFirstProduct + 1}-{Math.min(indexOfLastProduct, products.length)}
+// //                   </span>
+// //                 </div>
+// //               </div>
+// //             </div>
+
+// //             {/* Products Grid */}
+// //             {loading ? (
+// //               <div className="wood-products-grid wood-loading-grid">
+// //                 {[...Array(12)].map((_, i) => (
+// //                   <div key={i} className="wood-product-card wood-loading-card">
+// //                     <div className="wood-product-image wood-loading-image"></div>
+// //                     <div className="wood-product-info">
+// //                       <div className="wood-loading-line"></div>
+// //                       <div className="wood-loading-line short"></div>
+// //                       <div className="wood-loading-line" style={{ width: '40%' }}></div>
+// //                     </div>
+// //                   </div>
+// //                 ))}
+// //               </div>
+// //             ) : currentProducts.length > 0 ? (
+// //               <>
+// //                 <div className="wood-products-grid">
+// //                   {currentProducts.map((product) => (
+// //                     <div key={product.id} className="wood-product-card">
+// //                       <div className="wood-product-image">
+// //                         <div className="wood-image-placeholder">
+// //                           <div className="wood-icon">🚪</div>
+// //                           <p className="wood-image-text">Click to view details</p>
+// //                         </div>
+// //                         {/* Rating Badge */}
+// //                         {renderStars(parseFloat(product.rating))}
+// //                       </div>
+                      
+// //                       <div className="wood-product-info">
+// //                         <h3 className="wood-product-title">{product.name}</h3>
+                        
+// //                         <div className="wood-price-section">
+// //                           <div className="wood-product-price">
+// //                             <span className="wood-price-superscript">₹</span>
+// //                             {product.price.replace('₹', '')}
+// //                           </div>
+                          
+// //                           <a
+// //                             href={`https://wa.me/919876543210?text=Hello, I want to buy: ${encodeURIComponent(product.name)} for ${encodeURIComponent(product.price)}`}
+// //                             target="_blank"
+// //                             rel="noopener noreferrer"
+// //                             className="wood-buy-button"
+// //                           >
+// //                             <span>Buy Now</span>
+// //                           </a>
+// //                         </div>
+// //                       </div>
+// //                     </div>
+// //                   ))}
+// //                 </div>
+
+// //                 {/* Pagination */}
+// //                 {totalPages > 1 && (
+// //                   <div className="wood-pagination">
+// //                     <button
+// //                       onClick={() => handlePageChange(currentPage - 1)}
+// //                       disabled={currentPage === 1}
+// //                       className="wood-pagination-btn wood-prev-btn"
+// //                     >
+// //                       <span>‹</span> Previous
+// //                     </button>
+
+// //                     {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
+// //                       let pageNumber;
+// //                       if (totalPages <= 5) {
+// //                         pageNumber = i + 1;
+// //                       } else if (currentPage <= 3) {
+// //                         pageNumber = i + 1;
+// //                       } else if (currentPage >= totalPages - 2) {
+// //                         pageNumber = totalPages - 4 + i;
+// //                       } else {
+// //                         pageNumber = currentPage - 2 + i;
+// //                       }
+
+// //                       return (
+// //                         <button
+// //                           key={pageNumber}
+// //                           onClick={() => handlePageChange(pageNumber)}
+// //                           className={`wood-page-number ${currentPage === pageNumber ? 'active' : ''}`}
+// //                         >
+// //                           {pageNumber}
+// //                         </button>
+// //                       );
+// //                     })}
+
+// //                     <button
+// //                       onClick={() => handlePageChange(currentPage + 1)}
+// //                       disabled={currentPage === totalPages}
+// //                       className="wood-pagination-btn wood-next-btn"
+// //                     >
+// //                       Next <span>›</span>
+// //                     </button>
+// //                   </div>
+// //                 )}
+// //               </>
+// //             ) : (
+// //               <div className="wood-empty-state">
+// //                 <div className="wood-empty-icon">🚪</div>
+// //                 <h3>No products available</h3>
+// //                 <p>We're updating our inventory. Please check back soon.</p>
+// //               </div>
+// //             )}
+// //           </div>
+// //         </div>
+// //       </div>
+// //     </div>
+// //   );
+// // }
+
+
+// 'use client';
+
+// import { useState, useEffect } from 'react';
+// import Image from 'next/image';
+// import './products-styles.css';
+// import { categories, getProductsByCategory } from '@/utils/productData';
+
+// // Star icon component
+// const StarIcon = ({ filled }) => (
+//   <svg 
+//     width="14" 
+//     height="14" 
+//     viewBox="0 0 24 24" 
+//     fill={filled ? "#ffa41c" : "none"} 
+//     stroke="#ffa41c"
+//     strokeWidth="2"
+//   >
+//     <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+//   </svg>
+// );
+
+// export default function ProductsPage() {
+//   const [activeCategory, setActiveCategory] = useState('woodenDoor');
+//   const [currentPage, setCurrentPage] = useState(1);
+//   const [products, setProducts] = useState([]);
+//   const [loading, setLoading] = useState(true);
+
+//   const productsPerPage = 12;
+
+//   useEffect(() => {
+//     const loadProducts = async () => {
+//       setLoading(true);
+//       try {
+//         const categoryProducts = await getProductsByCategory(activeCategory);
+//         setProducts(categoryProducts);
+//       } catch (error) {
+//         console.error('Error loading products:', error);
+//         setProducts([]);
+//       } finally {
+//         setLoading(false);
+//         setCurrentPage(1);
+//       }
+//     };
+
+//     loadProducts();
+//   }, [activeCategory]);
+
+//   const indexOfLastProduct = currentPage * productsPerPage;
+//   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+//   const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
+//   const totalPages = Math.ceil(products.length / productsPerPage);
+
+//   const handlePageChange = (pageNumber) => {
+//     setCurrentPage(pageNumber);
+//     window.scrollTo({ top: 380, behavior: 'smooth' });
+//   };
+
+//   // Render star rating
+//   const renderStars = (rating) => {
+//     const stars = [];
+//     const fullStars = Math.floor(rating);
+//     const hasHalfStar = rating % 1 >= 0.5;
+    
+//     for (let i = 0; i < 5; i++) {
+//       if (i < fullStars) {
+//         stars.push(<StarIcon key={i} filled={true} />);
+//       } else if (i === fullStars && hasHalfStar) {
+//         stars.push(<StarIcon key={i} filled={true} />);
+//       } else {
+//         stars.push(<StarIcon key={i} filled={false} />);
+//       }
+//     }
+    
+//     return (
+//       <div className="wood-rating-badge">
+//         <div className="wood-rating-stars">{stars}</div>
+//         <span style={{ marginLeft: '6px' }}>{rating}</span>
+//       </div>
+//     );
+//   };
+
+//   const activeCategoryData = categories.find(cat => cat.name === activeCategory);
+
+//   return (
+//     <div className="wood-products-page">
+//       {/* Hero Banner */}
+//       <div className="wood-hero-section">
+//         <div className="wood-container">
+//           <h1 className="wood-hero-title">Premium Wooden Products</h1>
+//           <p className="wood-hero-subtitle">
+//             Handcrafted with precision | 100% Quality Assurance | Free Installation Support
+//           </p>
+//         </div>
+//       </div>
+
+//       {/* Main Content */}
+//       <div className="wood-container wood-main-container">
+//         <div className="wood-layout-wrapper">
+//           {/* ========== PROFESSIONAL SIDEBAR ========== */}
+//           <div className="wood-sidebar">
+//             <div className="wood-sidebar-card">
+//               <h2 className="wood-sidebar-title">All Categories</h2>
+//               <div className="wood-categories-list">
+//                 {categories.map((category) => (
+//                   <button
+//                     key={category.id}
+//                     onClick={() => setActiveCategory(category.name)}
+//                     className={`wood-category-btn ${activeCategory === category.name ? 'active' : ''}`}
+//                   >
+//                     <span>{category.displayName}</span>
+//                     <span className="wood-category-count">{category.count}</span>
+//                   </button>
+//                 ))}
+//               </div>
+              
+//               {/* WhatsApp Help Section */}
+//               <div className="wood-whatsapp-help">
+//                 <h3>Need Assistance?</h3>
+//                 <p>Our experts are available 10AM - 7PM to help you choose the perfect product</p>
+//                 <a
+//                   href="https://wa.me/919876543210?text=Hello, I need help choosing wooden products"
+//                   target="_blank"
+//                   rel="noopener noreferrer"
+//                   className="wood-whatsapp-btn"
+//                 >
+//                   <span>💬 Chat on WhatsApp</span>
+//                 </a>
+//               </div>
+//             </div>
+//           </div>
+
+//           {/* ========== MAIN PRODUCTS AREA ========== */}
+//           <div className="wood-main-content-area">
+//             {/* Category Header */}
+//             <div className="wood-category-header">
+//               <div className="wood-header-content">
+//                 <div>
+//                   <h2 className="wood-category-title">{activeCategoryData?.displayName}</h2>
+//                   <p className="wood-product-count">
+//                     {products.length} products • Page {currentPage} of {totalPages}
+//                   </p>
+//                 </div>
+//                 <div className="wood-page-indicator">
+//                   <span>Showing:</span>
+//                   <span className="wood-current-page">
+//                     {indexOfFirstProduct + 1}-{Math.min(indexOfLastProduct, products.length)}
+//                   </span>
+//                 </div>
+//               </div>
+//             </div>
+
+//             {/* Products Grid */}
+//             {loading ? (
+//               <div className="wood-products-grid wood-loading-grid">
+//                 {[...Array(12)].map((_, i) => (
+//                   <div key={i} className="wood-product-card wood-loading-card">
+//                     <div className="wood-product-image wood-loading-image"></div>
+//                     <div className="wood-product-info">
+//                       <div className="wood-loading-line"></div>
+//                       <div className="wood-loading-line short"></div>
+//                       <div className="wood-loading-line" style={{ width: '40%' }}></div>
+//                     </div>
+//                   </div>
+//                 ))}
+//               </div>
+//             ) : currentProducts.length > 0 ? (
+//               <>
+//                 <div className="wood-products-grid">
+//                   {currentProducts.map((product) => (
+//                     <div key={product.id} className="wood-product-card">
+//                       <div className="wood-product-image">
+//                         {/* Product Image - First image from product folder */}
+//                         <div className="image-container" style={{ width: '100%', height: '100%', position: 'relative' }}>
+//                           <div className="wood-image-placeholder">
+//                             {/* Placeholder for actual image */}
+//                             <div className="wood-icon">🚪</div>
+//                             <p className="wood-image-text">Click to view 4 angles</p>
+//                           </div>
+                          
+//                           {/* For actual images, use this: */}
+//                           {/* 
+//                           <Image
+//                             src={product.images[0]}
+//                             alt={product.name}
+//                             fill
+//                             className="object-cover"
+//                             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+//                             priority={i < 4}
+//                           />
+//                           */}
+//                         </div>
+                        
+//                         {/* Rating Badge */}
+//                         {renderStars(parseFloat(product.rating))}
+//                       </div>
+                      
+//                       <div className="wood-product-info">
+//                         <h3 className="wood-product-title">{product.name}</h3>
+                        
+//                         {/* Quick Specs */}
+//                         <div style={{ marginBottom: '10px', fontSize: '13px', color: '#565959' }}>
+//                           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
+//                             <span style={{ fontWeight: '500' }}>Wood:</span>
+//                             <span>{product.woodtype}</span>
+//                           </div>
+//                           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+//                             <span style={{ fontWeight: '500' }}>Size:</span>
+//                             <span>{product.size}</span>
+//                           </div>
+//                         </div>
+                        
+//                         <div className="wood-price-section">
+//                           <div className="wood-product-price">
+//                             <span className="wood-price-superscript">₹</span>
+//                             {product.price.replace('₹', '')}
+//                           </div>
+                          
+//                           <a
+//                             href={`https://wa.me/919876543210?text=Hello, I want to buy: ${encodeURIComponent(product.name)}%0A%0APrice: ${encodeURIComponent(product.price)}%0AWood Type: ${encodeURIComponent(product.woodtype)}%0ASize: ${encodeURIComponent(product.size)}%0A%0APlease provide more details.`}
+//                             target="_blank"
+//                             rel="noopener noreferrer"
+//                             className="wood-buy-button"
+//                           >
+//                             <span>Buy on WhatsApp</span>
+//                           </a>
+//                         </div>
+//                       </div>
+//                     </div>
+//                   ))}
+//                 </div>
+
+//                 {/* Pagination */}
+//                 {totalPages > 1 && (
+//                   <div className="wood-pagination">
+//                     <button
+//                       onClick={() => handlePageChange(currentPage - 1)}
+//                       disabled={currentPage === 1}
+//                       className="wood-pagination-btn wood-prev-btn"
+//                     >
+//                       <span>‹</span> Previous
+//                     </button>
+
+//                     {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
+//                       let pageNumber;
+//                       if (totalPages <= 5) {
+//                         pageNumber = i + 1;
+//                       } else if (currentPage <= 3) {
+//                         pageNumber = i + 1;
+//                       } else if (currentPage >= totalPages - 2) {
+//                         pageNumber = totalPages - 4 + i;
+//                       } else {
+//                         pageNumber = currentPage - 2 + i;
+//                       }
+
+//                       return (
+//                         <button
+//                           key={pageNumber}
+//                           onClick={() => handlePageChange(pageNumber)}
+//                           className={`wood-page-number ${currentPage === pageNumber ? 'active' : ''}`}
+//                         >
+//                           {pageNumber}
+//                         </button>
+//                       );
+//                     })}
+
+//                     <button
+//                       onClick={() => handlePageChange(currentPage + 1)}
+//                       disabled={currentPage === totalPages}
+//                       className="wood-pagination-btn wood-next-btn"
+//                     >
+//                       Next <span>›</span>
+//                     </button>
+//                   </div>
+//                 )}
+//               </>
+//             ) : (
+//               <div className="wood-empty-state">
+//                 <div className="wood-empty-icon">🚪</div>
+//                 <h3>No products available</h3>
+//                 <p>We're updating our inventory. Please check back soon.</p>
+//               </div>
+//             )}
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
+
+// products/page.js
+
+
+
+// 'use client';
+
+// import { useState, useEffect } from 'react';
+// import Image from 'next/image';
+// import './products-styles.css';
+// import { categories, getProductsByCategory } from '@/utils/productData';
+
+// // Star icon component
+// const StarIcon = ({ filled }) => (
+//   <svg 
+//     width="14" 
+//     height="14" 
+//     viewBox="0 0 24 24" 
+//     fill={filled ? "#ffa41c" : "none"} 
+//     stroke="#ffa41c"
+//     strokeWidth="2"
+//   >
+//     <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+//   </svg>
+// );
+
+// export default function ProductsPage() {
+//   const [activeCategory, setActiveCategory] = useState('woodenDoor');
+//   const [currentPage, setCurrentPage] = useState(1);
+//   const [products, setProducts] = useState([]);
+//   const [loading, setLoading] = useState(true);
+//   const [categoryCounts, setCategoryCounts] = useState({});
+
+//   const productsPerPage = 12;
+
+//   // Load category counts on component mount
+//   useEffect(() => {
+//     const loadCategoryCounts = async () => {
+//       const counts = {};
+//       for (const category of categories) {
+//         try {
+//           const response = await fetch(`/api/products/count?category=${category.name}`);
+//           const data = await response.json();
+//           counts[category.name] = data.count || 0;
+//         } catch (error) {
+//           console.error(`Error loading count for ${category.name}:`, error);
+//           counts[category.name] = 0;
+//         }
+//       }
+//       setCategoryCounts(counts);
+//     };
+    
+//     loadCategoryCounts();
+//   }, []);
+
+//   // Load products when category changes
+//   useEffect(() => {
+//     const loadProducts = async () => {
+//       setLoading(true);
+//       try {
+//         const categoryProducts = await getProductsByCategory(activeCategory);
+//         setProducts(categoryProducts);
+//       } catch (error) {
+//         console.error('Error loading products:', error);
+//         setProducts([]);
+//       } finally {
+//         setLoading(false);
+//         setCurrentPage(1);
+//       }
+//     };
+
+//     loadProducts();
+//   }, [activeCategory]);
+
+//   const indexOfLastProduct = currentPage * productsPerPage;
+//   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+//   const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
+//   const totalPages = Math.ceil(products.length / productsPerPage);
+
+//   const handlePageChange = (pageNumber) => {
+//     setCurrentPage(pageNumber);
+//     window.scrollTo({ top: 380, behavior: 'smooth' });
+//   };
+
+//   // Render star rating
+//   const renderStars = (rating) => {
+//     const stars = [];
+//     const fullStars = Math.floor(rating);
+//     const hasHalfStar = rating % 1 >= 0.5;
+    
+//     for (let i = 0; i < 5; i++) {
+//       if (i < fullStars) {
+//         stars.push(<StarIcon key={i} filled={true} />);
+//       } else if (i === fullStars && hasHalfStar) {
+//         stars.push(<StarIcon key={i} filled={true} />);
+//       } else {
+//         stars.push(<StarIcon key={i} filled={false} />);
+//       }
+//     }
+    
+//     return (
+//       <div className="wood-rating-badge">
+//         <div className="wood-rating-stars">{stars}</div>
+//         <span style={{ marginLeft: '6px' }}>{rating}</span>
+//       </div>
+//     );
+//   };
+
+//   const activeCategoryData = categories.find(cat => cat.name === activeCategory);
+
+//   return (
+//     <div className="wood-products-page">
+//       {/* Hero Banner */}
+//       <div className="wood-hero-section">
+//         <div className="wood-container">
+//           <h1 className="wood-hero-title">Premium Wooden Products</h1>
+//           <p className="wood-hero-subtitle">
+//             Handcrafted with precision | 100% Quality Assurance | Free Installation Support
+//           </p>
+//         </div>
+//       </div>
+
+//       {/* Main Content */}
+//       <div className="wood-container wood-main-container">
+//         <div className="wood-layout-wrapper">
+//           {/* Sidebar */}
+//           <div className="wood-sidebar">
+//             <div className="wood-sidebar-card">
+//               <h2 className="wood-sidebar-title">All Categories</h2>
+//               <div className="wood-categories-list">
+//                 {categories.map((category) => (
+//                   <button
+//                     key={category.id}
+//                     onClick={() => setActiveCategory(category.name)}
+//                     className={`wood-category-btn ${activeCategory === category.name ? 'active' : ''}`}
+//                   >
+//                     <span>{category.displayName}</span>
+//                     <span className="wood-category-count">
+//                       {categoryCounts[category.name] || 0}
+//                     </span>
+//                   </button>
+//                 ))}
+//               </div>
+              
+//               {/* WhatsApp Help Section */}
+//               <div className="wood-whatsapp-help">
+//                 <h3>Need Assistance?</h3>
+//                 <p>Our experts are available 10AM - 7PM to help you choose the perfect product</p>
+//                 <a
+//                   href="https://wa.me/919876543210?text=Hello, I need help choosing wooden products"
+//                   target="_blank"
+//                   rel="noopener noreferrer"
+//                   className="wood-whatsapp-btn"
+//                 >
+//                   <span>💬 Chat on WhatsApp</span>
+//                 </a>
+//               </div>
+//             </div>
+//           </div>
+
+//           {/* Main Products Area */}
+//           <div className="wood-main-content-area">
+//             {/* Category Header */}
+//             <div className="wood-category-header">
+//               <div className="wood-header-content">
+//                 <div>
+//                   <h2 className="wood-category-title">{activeCategoryData?.displayName}</h2>
+//                   <p className="wood-product-count">
+//                     {products.length} products • Page {currentPage} of {totalPages}
+//                   </p>
+//                 </div>
+//                 <div className="wood-page-indicator">
+//                   <span>Showing:</span>
+//                   <span className="wood-current-page">
+//                     {indexOfFirstProduct + 1}-{Math.min(indexOfLastProduct, products.length)}
+//                   </span>
+//                 </div>
+//               </div>
+//             </div>
+
+//             {/* Products Grid */}
+//             {loading ? (
+//               <div className="wood-products-grid wood-loading-grid">
+//                 {[...Array(12)].map((_, i) => (
+//                   <div key={i} className="wood-product-card wood-loading-card">
+//                     <div className="wood-product-image wood-loading-image"></div>
+//                     <div className="wood-product-info">
+//                       <div className="wood-loading-line"></div>
+//                       <div className="wood-loading-line short"></div>
+//                       <div className="wood-loading-line" style={{ width: '40%' }}></div>
+//                     </div>
+//                   </div>
+//                 ))}
+//               </div>
+//             ) : currentProducts.length > 0 ? (
+//               <>
+//                 <div className="wood-products-grid">
+//                   {currentProducts.map((product) => (
+//                     <div key={product.id} className="wood-product-card">
+//                       <div className="wood-product-image">
+//                         <div className="image-container">
+//                           {product.images && product.images.length > 0 ? (
+//                             <Image
+//                               src={product.images[0]}
+//                               alt={product.name}
+//                               fill
+//                               style={{ objectFit: 'cover' }}
+//                               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+//                               onError={(e) => {
+//                                 // Show placeholder if image fails to load
+//                                 const placeholder = e.target.parentNode.querySelector('.wood-image-placeholder');
+//                                 if (placeholder) {
+//                                   e.target.style.display = 'none';
+//                                   placeholder.style.display = 'flex';
+//                                 }
+//                               }}
+//                             />
+//                           ) : null}
+                          
+//                           <div className="wood-image-placeholder" style={{ 
+//                             display: !product.images || product.images.length === 0 ? 'flex' : 'none' 
+//                           }}>
+//                             <div className="wood-icon">🚪</div>
+//                             <p className="wood-image-text">No Image</p>
+//                           </div>
+                          
+//                           {/* Rating Badge */}
+//                           {renderStars(parseFloat(product.rating))}
+//                         </div>
+//                       </div>
+                      
+//                       <div className="wood-product-info">
+//                         <h3 className="wood-product-title">{product.name}</h3>
+                        
+//                         <div className="wood-price-section">
+//                           <div className="wood-product-price">
+//                             <span className="wood-price-superscript">₹</span>
+//                             {product.price.replace('₹', '')}
+//                           </div>
+                          
+//                           <a
+//                             href={`https://wa.me/919876543210?text=Hello, I want to buy: ${encodeURIComponent(product.name)}%0APrice: ${encodeURIComponent(product.price)}`}
+//                             target="_blank"
+//                             rel="noopener noreferrer"
+//                             className="wood-buy-button"
+//                           >
+//                             <span>Buy Now</span>
+//                           </a>
+//                         </div>
+//                       </div>
+//                     </div>
+//                   ))}
+//                 </div>
+
+//                 {/* Pagination */}
+//                 {totalPages > 1 && (
+//                   <div className="wood-pagination">
+//                     <button
+//                       onClick={() => handlePageChange(currentPage - 1)}
+//                       disabled={currentPage === 1}
+//                       className="wood-pagination-btn wood-prev-btn"
+//                     >
+//                       <span>‹</span> Previous
+//                     </button>
+
+//                     {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
+//                       let pageNumber;
+//                       if (totalPages <= 5) {
+//                         pageNumber = i + 1;
+//                       } else if (currentPage <= 3) {
+//                         pageNumber = i + 1;
+//                       } else if (currentPage >= totalPages - 2) {
+//                         pageNumber = totalPages - 4 + i;
+//                       } else {
+//                         pageNumber = currentPage - 2 + i;
+//                       }
+
+//                       return (
+//                         <button
+//                           key={pageNumber}
+//                           onClick={() => handlePageChange(pageNumber)}
+//                           className={`wood-page-number ${currentPage === pageNumber ? 'active' : ''}`}
+//                         >
+//                           {pageNumber}
+//                         </button>
+//                       );
+//                     })}
+
+//                     <button
+//                       onClick={() => handlePageChange(currentPage + 1)}
+//                       disabled={currentPage === totalPages}
+//                       className="wood-pagination-btn wood-next-btn"
+//                     >
+//                       Next <span>›</span>
+//                     </button>
+//                   </div>
+//                 )}
+//               </>
+//             ) : (
+//               <div className="wood-empty-state">
+//                 <div className="wood-empty-icon">🚪</div>
+//                 <h3>No products available</h3>
+//                 <p>We're updating our inventory. Please check back soon.</p>
+//               </div>
+//             )}
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
+
+
+
+
+
+// app/products/wooden-doors/page.js
+// 'use client';
+
+// import { useState, useEffect } from 'react';
+// import Image from 'next/image';
+// import './products-styles.css'; // Correct path
+// import { categories, getProductsByCategory } from '@/utils/productData';
+
+// // Star icon component
+// const StarIcon = ({ filled }) => (
+//   <svg 
+//     width="14" 
+//     height="14" 
+//     viewBox="0 0 24 24" 
+//     fill={filled ? "#ffa41c" : "none"} 
+//     stroke="#ffa41c"
+//     strokeWidth="2"
+//   >
+//     <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+//   </svg>
+// );
+
+// // MAIN EXPORT FUNCTION
+// export default function WoodenDoorsPage() {
+//   const [activeCategory, setActiveCategory] = useState('woodenDoor');
+//   const [currentPage, setCurrentPage] = useState(1);
+//   const [products, setProducts] = useState([]);
+//   const [loading, setLoading] = useState(true);
+//   const [categoryCounts, setCategoryCounts] = useState({});
+
+//   const productsPerPage = 12;
+
+//   // Load category counts on component mount
+//   useEffect(() => {
+//     const loadCategoryCounts = async () => {
+//       const counts = {};
+//       for (const category of categories) {
+//         try {
+//           const response = await fetch(`/api/products/count?category=${category.name}`);
+//           const data = await response.json();
+//           counts[category.name] = data.count || 0;
+//         } catch (error) {
+//           console.error(`Error loading count for ${category.name}:`, error);
+//           counts[category.name] = 0;
+//         }
+//       }
+//       setCategoryCounts(counts);
+//     };
+    
+//     loadCategoryCounts();
+//   }, []);
+
+//   // Load products when category changes
+//   useEffect(() => {
+//     const loadProducts = async () => {
+//       setLoading(true);
+//       try {
+//         const categoryProducts = await getProductsByCategory(activeCategory);
+//         setProducts(categoryProducts);
+//       } catch (error) {
+//         console.error('Error loading products:', error);
+//         setProducts([]);
+//       } finally {
+//         setLoading(false);
+//         setCurrentPage(1);
+//       }
+//     };
+
+//     loadProducts();
+//   }, [activeCategory]);
+
+//   const indexOfLastProduct = currentPage * productsPerPage;
+//   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+//   const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
+//   const totalPages = Math.ceil(products.length / productsPerPage);
+
+//   const handlePageChange = (pageNumber) => {
+//     setCurrentPage(pageNumber);
+//     window.scrollTo({ top: 380, behavior: 'smooth' });
+//   };
+
+//   // Render star rating
+//   const renderStars = (rating) => {
+//     const stars = [];
+//     const fullStars = Math.floor(rating);
+//     const hasHalfStar = rating % 1 >= 0.5;
+    
+//     for (let i = 0; i < 5; i++) {
+//       if (i < fullStars) {
+//         stars.push(<StarIcon key={i} filled={true} />);
+//       } else if (i === fullStars && hasHalfStar) {
+//         stars.push(<StarIcon key={i} filled={true} />);
+//       } else {
+//         stars.push(<StarIcon key={i} filled={false} />);
+//       }
+//     }
+    
+//     return (
+//       <div className="wood-rating-badge">
+//         <div className="wood-rating-stars">{stars}</div>
+//         <span style={{ marginLeft: '6px' }}>{rating}</span>
+//       </div>
+//     );
+//   };
+
+//   const activeCategoryData = categories.find(cat => cat.name === activeCategory);
+
+//   return (
+//     <div className="wood-products-page">
+//       {/* Hero Banner */}
+//       <div className="wood-hero-section">
+//         <div className="wood-container">
+//           <h1 className="wood-hero-title">Premium Wooden Products</h1>
+//           <p className="wood-hero-subtitle">
+//             Handcrafted with precision | 100% Quality Assurance | Free Installation Support
+//           </p>
+//         </div>
+//       </div>
+
+//       {/* Main Content */}
+//       <div className="wood-container wood-main-container">
+//         <div className="wood-layout-wrapper">
+//           {/* Sidebar */}
+//           <div className="wood-sidebar">
+//             <div className="wood-sidebar-card">
+//               <h2 className="wood-sidebar-title">All Categories</h2>
+//               <div className="wood-categories-list">
+//                 {categories.map((category) => (
+//                   <button
+//                     key={category.id}
+//                     onClick={() => setActiveCategory(category.name)}
+//                     className={`wood-category-btn ${activeCategory === category.name ? 'active' : ''}`}
+//                   >
+//                     <span>{category.displayName}</span>
+//                     <span className="wood-category-count">
+//                       {categoryCounts[category.name] || 0}
+//                     </span>
+//                   </button>
+//                 ))}
+//               </div>
+              
+//               {/* WhatsApp Help Section */}
+//               <div className="wood-whatsapp-help">
+//                 <h3>Need Assistance?</h3>
+//                 <p>Our experts are available 10AM - 7PM to help you choose the perfect product</p>
+//                 <a
+//                   href="https://wa.me/919876543210?text=Hello, I need help choosing wooden products"
+//                   target="_blank"
+//                   rel="noopener noreferrer"
+//                   className="wood-whatsapp-btn"
+//                 >
+//                   <span>💬 Chat on WhatsApp</span>
+//                 </a>
+//               </div>
+//             </div>
+//           </div>
+
+//           {/* Main Products Area */}
+//           <div className="wood-main-content-area">
+//             {/* Category Header */}
+//             <div className="wood-category-header">
+//               <div className="wood-header-content">
+//                 <div>
+//                   <h2 className="wood-category-title">{activeCategoryData?.displayName}</h2>
+//                   <p className="wood-product-count">
+//                     {products.length} products • Page {currentPage} of {totalPages}
+//                   </p>
+//                 </div>
+//                 <div className="wood-page-indicator">
+//                   <span>Showing:</span>
+//                   <span className="wood-current-page">
+//                     {indexOfFirstProduct + 1}-{Math.min(indexOfLastProduct, products.length)}
+//                   </span>
+//                 </div>
+//               </div>
+//             </div>
+
+//             {/* Products Grid */}
+//             {loading ? (
+//               <div className="wood-products-grid wood-loading-grid">
+//                 {[...Array(12)].map((_, i) => (
+//                   <div key={i} className="wood-product-card wood-loading-card">
+//                     <div className="wood-product-image wood-loading-image"></div>
+//                     <div className="wood-product-info">
+//                       <div className="wood-loading-line"></div>
+//                       <div className="wood-loading-line short"></div>
+//                       <div className="wood-loading-line" style={{ width: '40%' }}></div>
+//                     </div>
+//                   </div>
+//                 ))}
+//               </div>
+//             ) : currentProducts.length > 0 ? (
+//               <>
+//                 <div className="wood-products-grid">
+//                   {currentProducts.map((product) => (
+//                     <div key={product.id} className="wood-product-card">
+//                       <div className="wood-product-image">
+//                         <div className="image-container">
+//                           {product.images && product.images.length > 0 ? (
+//                             <Image
+//                               src={product.images[0]}
+//                               alt={product.name}
+//                               fill
+//                               style={{ objectFit: 'cover' }}
+//                               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+//                               onError={(e) => {
+//                                 // Show placeholder if image fails to load
+//                                 const placeholder = e.target.parentNode.querySelector('.wood-image-placeholder');
+//                                 if (placeholder) {
+//                                   e.target.style.display = 'none';
+//                                   placeholder.style.display = 'flex';
+//                                 }
+//                               }}
+//                             />
+//                           ) : null}
+                          
+//                           <div className="wood-image-placeholder" style={{ 
+//                             display: !product.images || product.images.length === 0 ? 'flex' : 'none' 
+//                           }}>
+//                             <div className="wood-icon">🚪</div>
+//                             <p className="wood-image-text">No Image</p>
+//                           </div>
+                          
+//                           {/* Rating Badge */}
+//                           {renderStars(parseFloat(product.rating))}
+//                         </div>
+//                       </div>
+                      
+//                       <div className="wood-product-info">
+//                         <h3 className="wood-product-title">{product.name}</h3>
+                        
+//                         <div className="wood-price-section">
+//                           <div className="wood-product-price">
+//                             <span className="wood-price-superscript">₹</span>
+//                             {product.price.replace('₹', '')}
+//                           </div>
+                          
+//                           <a
+//                             href={`https://wa.me/919876543210?text=Hello, I want to buy: ${encodeURIComponent(product.name)}%0APrice: ${encodeURIComponent(product.price)}`}
+//                             target="_blank"
+//                             rel="noopener noreferrer"
+//                             className="wood-buy-button"
+//                           >
+//                             <span>Buy Now</span>
+//                           </a>
+//                         </div>
+//                       </div>
+//                     </div>
+//                   ))}
+//                 </div>
+
+//                 {/* Pagination */}
+//                 {totalPages > 1 && (
+//                   <div className="wood-pagination">
+//                     <button
+//                       onClick={() => handlePageChange(currentPage - 1)}
+//                       disabled={currentPage === 1}
+//                       className="wood-pagination-btn wood-prev-btn"
+//                     >
+//                       <span>‹</span> Previous
+//                     </button>
+
+//                     {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
+//                       let pageNumber;
+//                       if (totalPages <= 5) {
+//                         pageNumber = i + 1;
+//                       } else if (currentPage <= 3) {
+//                         pageNumber = i + 1;
+//                       } else if (currentPage >= totalPages - 2) {
+//                         pageNumber = totalPages - 4 + i;
+//                       } else {
+//                         pageNumber = currentPage - 2 + i;
+//                       }
+
+//                       return (
+//                         <button
+//                           key={pageNumber}
+//                           onClick={() => handlePageChange(pageNumber)}
+//                           className={`wood-page-number ${currentPage === pageNumber ? 'active' : ''}`}
+//                         >
+//                           {pageNumber}
+//                         </button>
+//                       );
+//                     })}
+
+//                     <button
+//                       onClick={() => handlePageChange(currentPage + 1)}
+//                       disabled={currentPage === totalPages}
+//                       className="wood-pagination-btn wood-next-btn"
+//                     >
+//                       Next <span>›</span>
+//                     </button>
+//                   </div>
+//                 )}
+//               </>
+//             ) : (
+//               <div className="wood-empty-state">
+//                 <div className="wood-empty-icon">🚪</div>
+//                 <h3>No products available</h3>
+//                 <p>We're updating our inventory. Please check back soon.</p>
+//               </div>
+//             )}
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
+
+
+// app/products/wooden-doors/page.js
+// 'use client';
+
+// import { useState, useEffect } from 'react';
+// import Image from 'next/image';
+// import './products-styles.css';
+// import { categories, getProductsByCategory } from '@/utils/productData';
+
+// const StarIcon = ({ filled }) => (
+//   <svg width="14" height="14" viewBox="0 0 24 24" fill={filled ? "#ffa41c" : "none"} stroke="#ffa41c" strokeWidth="2">
+//     <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+//   </svg>
+// );
+
+// export default function ProductsPage() {
+//   const [activeCategory, setActiveCategory] = useState('woodenDoor');
+//   const [currentPage, setCurrentPage] = useState(1);
+//   const [products, setProducts] = useState([]);
+//   const [loading, setLoading] = useState(false);
+//   const [categoryCounts, setCategoryCounts] = useState({});
+
+//   const productsPerPage = 12;
+
+//   // Initialize with sample data
+//   useEffect(() => {
+//     const initData = async () => {
+//       setLoading(true);
+//       try {
+//         // Load products for active category
+//         const loadedProducts = await getProductsByCategory(activeCategory);
+//         setProducts(loadedProducts);
+        
+//         // Set category counts
+//         const counts = {};
+//         for (const cat of categories) {
+//           const count = await getActualProductCount(cat.name);
+//           counts[cat.name] = count;
+//         }
+//         setCategoryCounts(counts);
+//       } catch (error) {
+//         console.error('Error initializing:', error);
+//       } finally {
+//         setLoading(false);
+//       }
+//     };
+    
+//     initData();
+//   }, [activeCategory]);
+
+//   const indexOfLastProduct = currentPage * productsPerPage;
+//   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+//   const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
+//   const totalPages = Math.ceil(products.length / productsPerPage);
+
+//   const handlePageChange = (pageNumber) => {
+//     setCurrentPage(pageNumber);
+//     window.scrollTo({ top: 380, behavior: 'smooth' });
+//   };
+
+//   const renderStars = (rating) => {
+//     const stars = [];
+//     const fullStars = Math.floor(rating);
+//     const hasHalfStar = rating % 1 >= 0.5;
+    
+//     for (let i = 0; i < 5; i++) {
+//       stars.push(<StarIcon key={i} filled={i < fullStars || (i === fullStars && hasHalfStar)} />);
+//     }
+    
+//     return (
+//       <div className="wood-rating-badge">
+//         <div className="wood-rating-stars">{stars}</div>
+//         <span style={{ marginLeft: '6px' }}>{rating}</span>
+//       </div>
+//     );
+//   };
+
+//   const activeCategoryData = categories.find(cat => cat.name === activeCategory);
+
+//   // Function to handle category change
+//   const handleCategoryChange = async (categoryName) => {
+//     setActiveCategory(categoryName);
+//     setCurrentPage(1);
+//     setLoading(true);
+    
+//     try {
+//       const loadedProducts = await getProductsByCategory(categoryName);
+//       setProducts(loadedProducts);
+//     } catch (error) {
+//       console.error('Error loading products:', error);
+//       setProducts([]);
+//     } finally {
+//       setLoading(false);
+//     }
+//   };
+
+//   return (
+//     <div className="wood-products-page">
+//       {/* Hero Banner */}
+//       <div className="wood-hero-section">
+//         <div className="wood-container">
+//           <h1 className="wood-hero-title">Premium Wooden Products</h1>
+//           <p className="wood-hero-subtitle">
+//             Handcrafted with precision | 100% Quality Assurance | Free Installation Support
+//           </p>
+//         </div>
+//       </div>
+
+//       {/* Main Content */}
+//       <div className="wood-container wood-main-container">
+//         <div className="wood-layout-wrapper">
+//           {/* Sidebar */}
+//           <div className="wood-sidebar">
+//             <div className="wood-sidebar-card">
+//               <h2 className="wood-sidebar-title">All Categories</h2>
+//               <div className="wood-categories-list">
+//                 {categories.map((category) => (
+//                   <button
+//                     key={category.id}
+//                     onClick={() => handleCategoryChange(category.name)}
+//                     className={`wood-category-btn ${activeCategory === category.name ? 'active' : ''}`}
+//                   >
+//                     <span>{category.displayName}</span>
+//                     <span className="wood-category-count">
+//                       {categoryCounts[category.name] || 0}
+//                     </span>
+//                   </button>
+//                 ))}
+//               </div>
+              
+//               <div className="wood-whatsapp-help">
+//                 <h3>Need Assistance?</h3>
+//                 <p>Our experts are available 10AM - 7PM to help you choose the perfect product</p>
+//                 <a
+//                   href="https://wa.me/919876543210?text=Hello, I need help choosing wooden products"
+//                   target="_blank"
+//                   rel="noopener noreferrer"
+//                   className="wood-whatsapp-btn"
+//                 >
+//                   <span>💬 Chat on WhatsApp</span>
+//                 </a>
+//               </div>
+//             </div>
+//           </div>
+
+//           {/* Main Products Area */}
+//           <div className="wood-main-content-area">
+//             {/* Category Header */}
+//             <div className="wood-category-header">
+//               <div className="wood-header-content">
+//                 <div>
+//                   <h2 className="wood-category-title">{activeCategoryData?.displayName}</h2>
+//                   <p className="wood-product-count">
+//                     {products.length} products • Page {currentPage} of {totalPages}
+//                   </p>
+//                 </div>
+//                 <div className="wood-page-indicator">
+//                   <span>Showing:</span>
+//                   <span className="wood-current-page">
+//                     {indexOfFirstProduct + 1}-{Math.min(indexOfLastProduct, products.length)}
+//                   </span>
+//                 </div>
+//               </div>
+//             </div>
+
+//             {/* Products Grid */}
+//             {loading ? (
+//               <div className="wood-products-grid">
+//                 {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((i) => (
+//                   <div key={i} className="wood-product-card" style={{ opacity: 0.5 }}>
+//                     <div className="wood-product-image" style={{ background: '#f0f0f0' }}>
+//                       <div className="wood-image-placeholder">
+//                         <div className="wood-icon">⌛</div>
+//                         <p className="wood-image-text">Loading...</p>
+//                       </div>
+//                     </div>
+//                     <div className="wood-product-info">
+//                       <div style={{ height: '20px', background: '#f0f0f0', marginBottom: '10px' }}></div>
+//                       <div style={{ height: '15px', background: '#f0f0f0', width: '60%' }}></div>
+//                     </div>
+//                   </div>
+//                 ))}
+//               </div>
+//             ) : products.length > 0 ? (
+//               <>
+//                 <div className="wood-products-grid">
+//                   {currentProducts.map((product) => (
+//                     <div key={product.id} className="wood-product-card">
+//                       <div className="wood-product-image">
+//                         {product.images && product.images[0] ? (
+//                           <div style={{ width: '100%', height: '100%', position: 'relative' }}>
+//                             <Image
+//                               src={product.images[0]}
+//                               alt={product.name}
+//                               fill
+//                               style={{ objectFit: 'cover' }}
+//                               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+//                               onError={(e) => {
+//                                 console.error('Image failed to load:', product.images[0]);
+//                                 e.target.style.display = 'none';
+//                               }}
+//                             />
+//                             {renderStars(parseFloat(product.rating))}
+//                           </div>
+//                         ) : (
+//                           <div className="wood-image-placeholder">
+//                             <div className="wood-icon">🚪</div>
+//                             <p className="wood-image-text">Product Image</p>
+//                             {renderStars(parseFloat(product.rating))}
+//                           </div>
+//                         )}
+//                       </div>
+                      
+//                       <div className="wood-product-info">
+//                         <h3 className="wood-product-title">{product.name}</h3>
+//                         <div style={{ marginBottom: '10px', fontSize: '13px', color: '#565959' }}>
+//                           <div>Wood: {product.woodtype}</div>
+//                           <div>Size: {product.size}</div>
+//                         </div>
+                        
+//                         <div className="wood-price-section">
+//                           <div className="wood-product-price">
+//                             <span className="wood-price-superscript">₹</span>
+//                             {product.price.replace('₹', '')}
+//                           </div>
+                          
+//                           <a
+//                             href={`https://wa.me/919876543210?text=Hello, I want to buy: ${encodeURIComponent(product.name)} - ${encodeURIComponent(product.price)}`}
+//                             target="_blank"
+//                             rel="noopener noreferrer"
+//                             className="wood-buy-button"
+//                           >
+//                             <span>Buy Now</span>
+//                           </a>
+//                         </div>
+//                       </div>
+//                     </div>
+//                   ))}
+//                 </div>
+
+//                 {totalPages > 1 && (
+//                   <div className="wood-pagination">
+//                     <button
+//                       onClick={() => handlePageChange(currentPage - 1)}
+//                       disabled={currentPage === 1}
+//                       className="wood-pagination-btn wood-prev-btn"
+//                     >
+//                       <span>‹</span> Previous
+//                     </button>
+
+//                     {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
+//                       let pageNumber;
+//                       if (totalPages <= 5) pageNumber = i + 1;
+//                       else if (currentPage <= 3) pageNumber = i + 1;
+//                       else if (currentPage >= totalPages - 2) pageNumber = totalPages - 4 + i;
+//                       else pageNumber = currentPage - 2 + i;
+
+//                       return (
+//                         <button
+//                           key={pageNumber}
+//                           onClick={() => handlePageChange(pageNumber)}
+//                           className={`wood-page-number ${currentPage === pageNumber ? 'active' : ''}`}
+//                         >
+//                           {pageNumber}
+//                         </button>
+//                       );
+//                     })}
+
+//                     <button
+//                       onClick={() => handlePageChange(currentPage + 1)}
+//                       disabled={currentPage === totalPages}
+//                       className="wood-pagination-btn wood-next-btn"
+//                     >
+//                       Next <span>›</span>
+//                     </button>
+//                   </div>
+//                 )}
+//               </>
+//             ) : (
+//               <div className="wood-empty-state">
+//                 <div className="wood-empty-icon">🚪</div>
+//                 <h3>No products available</h3>
+//                 <p>We're updating our inventory. Please check back soon.</p>
+//               </div>
+//             )}
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
+
+
+
+
+// app/products/wooden-doors/page.js
 'use client';
+
 import { useState, useEffect } from 'react';
-import Sidebar from '@/components/Sidebar';
-import ProductCard from '@/components/ProductCard';
-import { FiGrid, FiList, FiFilter, FiSearch, FiChevronDown } from 'react-icons/fi';
+import Image from 'next/image';
+import './products-styles.css';
+import { categories, getProductsByCategory } from '@/utils/productData';
+
+const StarIcon = ({ filled }) => (
+  <svg width="14" height="14" viewBox="0 0 24 24" fill={filled ? "#ffa41c" : "none"} stroke="#ffa41c" strokeWidth="2">
+    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+  </svg>
+);
+
+// Custom Image Component with fallback
+const ProductImage = ({ images, alt, productNumber }) => {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [error, setError] = useState(false);
+  
+  if (!images || images.length === 0 || error) {
+    return (
+      <div className="wood-image-placeholder">
+        <div className="wood-icon">🚪</div>
+        <p className="wood-image-text">Product {productNumber}</p>
+      </div>
+    );
+  }
+  
+  const currentImage = images[currentImageIndex];
+  
+  return (
+    <div style={{ width: '100%', height: '100%', position: 'relative' }}>
+      <Image
+        src={currentImage}
+        alt={alt}
+        fill
+        style={{ objectFit: 'cover' }}
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        onError={() => {
+          if (currentImageIndex < images.length - 1) {
+            // Try next image
+            setCurrentImageIndex(currentImageIndex + 1);
+          } else {
+            // All images failed
+            setError(true);
+          }
+        }}
+        onLoad={() => {
+          console.log('Image loaded successfully:', currentImage);
+        }}
+      />
+    </div>
+  );
+};
 
 export default function ProductsPage() {
-  const [viewMode, setViewMode] = useState('grid');
-  const [sortBy, setSortBy] = useState('featured');
-  const [showFilters, setShowFilters] = useState(false);
+  const [activeCategory, setActiveCategory] = useState('woodenDoor');
   const [currentPage, setCurrentPage] = useState(1);
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const itemsPerPage = 8;
+  const [categoryCounts, setCategoryCounts] = useState({});
 
-  // Sample product data - In real app, fetch from API
-  const sampleProducts = [
-    {
-      id: 1,
-      title: "Teak Wood Premium Door",
-      subtitle: "Handcrafted Traditional Design",
-      price: 15234,
-      originalPrice: 20000,
-      discountPercentage: 24,
-      rating: 4.5,
-      reviewCount: 1234,
-      material: "Premium Teak Wood",
-      dimensions: "50 x 30 inches",
-      finish: "Polished Finish",
-      image: "teak-door.jpg",
-      badge: "Best Seller",
-      inStock: true
-    },
-    {
-      id: 2,
-      title: "Modern Wooden Bed Frame",
-      subtitle: "King Size with Storage",
-      price: 25000,
-      originalPrice: 30000,
-      discountPercentage: 17,
-      rating: 4.3,
-      reviewCount: 800,
-      material: "Sheesham Wood",
-      dimensions: "78 x 60 inches",
-      finish: "Matte Finish",
-      image: "modern-bed.png",
-      badge: "New",
-      inStock: true
-    },
-    {
-      id: 3,
-      title: "Safety Door with Grill",
-      subtitle: "Extra Security Design",
-      price: 12500,
-      originalPrice: 15000,
-      discountPercentage: 17,
-      rating: 4.7,
-      reviewCount: 567,
-      material: "Hardwood with Steel",
-      dimensions: "36 x 84 inches",
-      finish: "Powder Coated",
-      image: "safety-door.jpeg",
-      inStock: true
-    },
-    {
-      id: 4,
-      title: "Wooden Window Frame",
-      subtitle: "Traditional Jharokha Style",
-      price: 8500,
-      originalPrice: 10000,
-      discountPercentage: 15,
-      rating: 4.2,
-      reviewCount: 342,
-      material: "Pine Wood",
-      dimensions: "48 x 36 inches",
-      finish: "Varnished",
-      image: "window-frame.jpg",
-      inStock: true
-    },
-    {
-      id: 5,
-      title: "Wooden Mandir for Home",
-      subtitle: "Hand Carved Temple",
-      price: 32000,
-      originalPrice: 40000,
-      discountPercentage: 20,
-      rating: 4.8,
-      reviewCount: 456,
-      material: "Rosewood",
-      dimensions: "60 x 48 x 24 inches",
-      finish: "Antique Finish",
-      image: "wooden-mandir.png",
-      badge: "Premium",
-      inStock: true
-    },
-    {
-      id: 6,
-      title: "Solid Wood Sofa Set",
-      subtitle: "3+2+1 Seater",
-      price: 75000,
-      originalPrice: 95000,
-      discountPercentage: 21,
-      rating: 4.6,
-      reviewCount: 789,
-      material: "Solid Wood with Fabric",
-      dimensions: "Complete Set",
-      finish: "Upholstered",
-      image: "sofa-set.jpeg",
-      inStock: true
-    },
-    {
-      id: 7,
-      title: "Wooden Art Frame",
-      subtitle: "Hand Painted Wall Art",
-      price: 5500,
-      originalPrice: 7000,
-      discountPercentage: 21,
-      rating: 4.4,
-      reviewCount: 234,
-      material: "MDF with Wood Frame",
-      dimensions: "36 x 24 inches",
-      finish: "Glossy",
-      image: "art-frame.jpg",
-      inStock: true
-    },
-    {
-      id: 8,
-      title: "Wooden Study Table",
-      subtitle: "With Bookshelf",
-      price: 18500,
-      originalPrice: 22000,
-      discountPercentage: 16,
-      rating: 4.5,
-      reviewCount: 321,
-      material: "Engineered Wood",
-      dimensions: "60 x 30 x 48 inches",
-      finish: "Walnut Finish",
-      image: "study-table.png",
-      inStock: true
-    }
-  ];
+  const productsPerPage = 12;
 
   useEffect(() => {
-    // Simulate API call
-    setTimeout(() => {
-      setProducts(sampleProducts);
+    const initData = async () => {
+      setLoading(true);
+      try {
+        // Load products for active category
+        const loadedProducts = await getProductsByCategory(activeCategory);
+        console.log('Loaded products:', loadedProducts.length);
+        console.log('First product images:', loadedProducts[0]?.images);
+        
+        setProducts(loadedProducts);
+        
+        // Set category counts
+        const counts = {};
+        for (const cat of categories) {
+          const count = await getActualProductCount(cat.name);
+          counts[cat.name] = count;
+        }
+        setCategoryCounts(counts);
+      } catch (error) {
+        console.error('Error initializing:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    initData();
+  }, [activeCategory]);
+
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
+  const totalPages = Math.ceil(products.length / productsPerPage);
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+    window.scrollTo({ top: 380, behavior: 'smooth' });
+  };
+
+  const renderStars = (rating) => {
+    const stars = [];
+    const fullStars = Math.floor(rating);
+    const hasHalfStar = rating % 1 >= 0.5;
+    
+    for (let i = 0; i < 5; i++) {
+      stars.push(<StarIcon key={i} filled={i < fullStars || (i === fullStars && hasHalfStar)} />);
+    }
+    
+    return (
+      <div className="wood-rating-badge">
+        <div className="wood-rating-stars">{stars}</div>
+        <span style={{ marginLeft: '6px' }}>{rating}</span>
+      </div>
+    );
+  };
+
+  const handleCategoryChange = async (categoryName) => {
+    setActiveCategory(categoryName);
+    setCurrentPage(1);
+    setLoading(true);
+    
+    try {
+      const loadedProducts = await getProductsByCategory(categoryName);
+      setProducts(loadedProducts);
+    } catch (error) {
+      console.error('Error loading products:', error);
+      setProducts([]);
+    } finally {
       setLoading(false);
-    }, 500);
-  }, []);
+    }
+  };
 
-  const sortOptions = [
-    { value: 'featured', label: 'Featured' },
-    { value: 'price-low', label: 'Price: Low to High' },
-    { value: 'price-high', label: 'Price: High to Low' },
-    { value: 'rating', label: 'Customer Rating' },
-    { value: 'newest', label: 'Newest Arrivals' },
-    { value: 'discount', label: 'Best Discount' }
-  ];
-
-  const totalPages = Math.ceil(products.length / itemsPerPage);
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const displayedProducts = products.slice(startIndex, startIndex + itemsPerPage);
+  const activeCategoryData = categories.find(cat => cat.name === activeCategory);
 
   return (
-    <>
-      <style jsx>{`
-        .products-page {
-          min-height: 100vh;
-          background: linear-gradient(135deg, #f9f7f3 0%, #f5efe6 100%);
-          padding-left: 320px;
-        }
+    <div className="wood-products-page">
+      <div className="wood-hero-section">
+        <div className="wood-container">
+          <h1 className="wood-hero-title">Premium Wooden Products</h1>
+          <p className="wood-hero-subtitle">
+            Handcrafted with precision | 100% Quality Assurance | Free Installation Support
+          </p>
+        </div>
+      </div>
 
-        .collapsed-sidebar {
-          padding-left: 100px;
-        }
-
-        .main-content {
-          padding: 30px;
-        }
-
-        .header-section {
-          background: white;
-          border-radius: 16px;
-          padding: 25px;
-          margin-bottom: 30px;
-          box-shadow: 0 8px 25px rgba(139, 90, 43, 0.1);
-          border: 1px solid #e9e5de;
-        }
-
-        .page-title {
-          font-size: 32px;
-          font-weight: 700;
-          color: #2c1810;
-          margin-bottom: 10px;
-          display: flex;
-          align-items: center;
-          gap: 15px;
-        }
-
-        .page-title span {
-          color: #8b5a2b;
-        }
-
-        .product-count {
-          font-size: 16px;
-          color: #666;
-          margin-bottom: 25px;
-          padding-bottom: 20px;
-          border-bottom: 2px solid #f5efe6;
-        }
-
-        .controls-bar {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          flex-wrap: wrap;
-          gap: 20px;
-        }
-
-        .search-box {
-          flex: 1;
-          max-width: 400px;
-          position: relative;
-        }
-
-        .search-input {
-          width: 100%;
-          padding: 14px 20px 14px 50px;
-          border: 2px solid #e9e5de;
-          border-radius: 12px;
-          font-size: 16px;
-          background: white;
-          transition: all 0.3s ease;
-        }
-
-        .search-input:focus {
-          outline: none;
-          border-color: #8b5a2b;
-          box-shadow: 0 0 0 3px rgba(139, 90, 43, 0.1);
-        }
-
-        .search-icon {
-          position: absolute;
-          left: 20px;
-          top: 50%;
-          transform: translateY(-50%);
-          color: #8b5a2b;
-          font-size: 20px;
-        }
-
-        .view-controls {
-          display: flex;
-          gap: 10px;
-          background: white;
-          border-radius: 12px;
-          padding: 5px;
-          border: 2px solid #e9e5de;
-        }
-
-        .view-btn {
-          padding: 10px 20px;
-          border: none;
-          background: none;
-          border-radius: 8px;
-          cursor: pointer;
-          font-size: 18px;
-          color: #666;
-          transition: all 0.3s ease;
-          display: flex;
-          align-items: center;
-          gap: 8px;
-        }
-
-        .view-btn.active {
-          background: #8b5a2b;
-          color: white;
-        }
-
-        .sort-filter-container {
-          display: flex;
-          gap: 15px;
-          flex-wrap: wrap;
-        }
-
-        .select-wrapper {
-          position: relative;
-          min-width: 200px;
-        }
-
-        .sort-select {
-          width: 100%;
-          padding: 14px 20px;
-          border: 2px solid #e9e5de;
-          border-radius: 12px;
-          font-size: 16px;
-          background: white;
-          appearance: none;
-          cursor: pointer;
-          transition: all 0.3s ease;
-        }
-
-        .sort-select:focus {
-          outline: none;
-          border-color: #8b5a2b;
-          box-shadow: 0 0 0 3px rgba(139, 90, 43, 0.1);
-        }
-
-        .select-arrow {
-          position: absolute;
-          right: 20px;
-          top: 50%;
-          transform: translateY(-50%);
-          color: #8b5a2b;
-          pointer-events: none;
-        }
-
-        .filter-btn {
-          display: flex;
-          align-items: center;
-          gap: 10px;
-          padding: 14px 25px;
-          background: #8b5a2b;
-          color: white;
-          border: none;
-          border-radius: 12px;
-          font-size: 16px;
-          font-weight: 600;
-          cursor: pointer;
-          transition: all 0.3s ease;
-        }
-
-        .filter-btn:hover {
-          background: #5c4033;
-          transform: translateY(-2px);
-          box-shadow: 0 6px 20px rgba(139, 90, 43, 0.3);
-        }
-
-        .products-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-          gap: 30px;
-          margin-bottom: 40px;
-        }
-
-        .products-list {
-          display: flex;
-          flex-direction: column;
-          gap: 20px;
-        }
-
-        .loading-container {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          min-height: 400px;
-          flex-direction: column;
-          gap: 20px;
-        }
-
-        .loading-spinner {
-          width: 50px;
-          height: 50px;
-          border: 4px solid #f3f3f3;
-          border-top: 4px solid #8b5a2b;
-          border-radius: 50%;
-          animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-          0% { transform: rotate(0deg); }
-          100% { transform: rotate(360deg); }
-        }
-
-        .pagination {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          gap: 10px;
-          margin-top: 40px;
-          flex-wrap: wrap;
-        }
-
-        .page-btn {
-          width: 45px;
-          height: 45px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          border: 2px solid #e9e5de;
-          background: white;
-          border-radius: 10px;
-          font-size: 16px;
-          font-weight: 600;
-          color: #2c1810;
-          cursor: pointer;
-          transition: all 0.3s ease;
-        }
-
-        .page-btn:hover {
-          border-color: #8b5a2b;
-          color: #8b5a2b;
-        }
-
-        .page-btn.active {
-          background: #8b5a2b;
-          color: white;
-          border-color: #8b5a2b;
-        }
-
-        .page-btn.disabled {
-          opacity: 0.5;
-          cursor: not-allowed;
-        }
-
-        .results-info {
-          text-align: center;
-          color: #666;
-          margin-top: 20px;
-          font-size: 14px;
-        }
-
-        .empty-state {
-          text-align: center;
-          padding: 60px 20px;
-          background: white;
-          border-radius: 16px;
-          box-shadow: 0 8px 25px rgba(139, 90, 43, 0.1);
-          border: 1px solid #e9e5de;
-        }
-
-        .empty-icon {
-          font-size: 64px;
-          margin-bottom: 20px;
-          opacity: 0.5;
-        }
-
-        @media (max-width: 1200px) {
-          .products-page {
-            padding-left: 100px;
-          }
-        }
-
-        @media (max-width: 992px) {
-          .products-page {
-            padding-left: 0;
-            padding-top: 80px;
-          }
-          
-          .controls-bar {
-            flex-direction: column;
-            align-items: stretch;
-          }
-          
-          .search-box {
-            max-width: 100%;
-          }
-          
-          .sort-filter-container {
-            width: 100%;
-            justify-content: space-between;
-          }
-        }
-
-        @media (max-width: 768px) {
-          .main-content {
-            padding: 20px;
-          }
-          
-          .page-title {
-            font-size: 24px;
-          }
-          
-          .products-grid {
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
-          }
-          
-          .select-wrapper {
-            min-width: 150px;
-          }
-        }
-
-        @media (max-width: 480px) {
-          .products-grid {
-            grid-template-columns: 1fr;
-          }
-          
-          .sort-filter-container {
-            flex-direction: column;
-          }
-          
-          .select-wrapper, .filter-btn {
-            width: 100%;
-          }
-        }
-      `}</style>
-
-      <Sidebar />
-      
-      <div className={`products-page`}>
-        <div className="main-content">
-          <div className="header-section">
-            <h1 className="page-title">
-              🪵 Wooden <span>Door</span>
-            </h1>
-            
-            <div className="product-count">
-              Showing {displayedProducts.length} of 70 products in "Wooden Door" category
-            </div>
-            
-            <div className="controls-bar">
-              <div className="search-box">
-                <FiSearch className="search-icon" />
-                <input
-                  type="text"
-                  placeholder="Search doors by name, material, or type..."
-                  className="search-input"
-                />
-              </div>
-              
-              <div className="view-controls">
-                <button
-                  className={`view-btn ${viewMode === 'grid' ? 'active' : ''}`}
-                  onClick={() => setViewMode('grid')}
-                >
-                  <FiGrid /> Grid
-                </button>
-                <button
-                  className={`view-btn ${viewMode === 'list' ? 'active' : ''}`}
-                  onClick={() => setViewMode('list')}
-                >
-                  <FiList /> List
-                </button>
-              </div>
-              
-              <div className="sort-filter-container">
-                <div className="select-wrapper">
-                  <select
-                    className="sort-select"
-                    value={sortBy}
-                    onChange={(e) => setSortBy(e.target.value)}
+      <div className="wood-container wood-main-container">
+        <div className="wood-layout-wrapper">
+          <div className="wood-sidebar">
+            <div className="wood-sidebar-card">
+              <h2 className="wood-sidebar-title">All Categories</h2>
+              <div className="wood-categories-list">
+                {categories.map((category) => (
+                  <button
+                    key={category.id}
+                    onClick={() => handleCategoryChange(category.name)}
+                    className={`wood-category-btn ${activeCategory === category.name ? 'active' : ''}`}
                   >
-                    {sortOptions.map((option) => (
-                      <option key={option.value} value={option.value}>
-                        {option.label}
-                      </option>
-                    ))}
-                  </select>
-                  <FiChevronDown className="select-arrow" />
-                </div>
-                
-                <button className="filter-btn" onClick={() => setShowFilters(!showFilters)}>
-                  <FiFilter /> Filters
-                </button>
+                    <span>{category.displayName}</span>
+                    <span className="wood-category-count">
+                      {categoryCounts[category.name] || 0}
+                    </span>
+                  </button>
+                ))}
+              </div>
+              
+              <div className="wood-whatsapp-help">
+                <h3>Need Assistance?</h3>
+                <p>Our experts are available 10AM - 7PM to help you choose the perfect product</p>
+                <a
+                  href="https://wa.me/919876543210?text=Hello, I need help choosing wooden products"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="wood-whatsapp-btn"
+                >
+                  <span>💬 Chat on WhatsApp</span>
+                </a>
               </div>
             </div>
           </div>
 
-          {loading ? (
-            <div className="loading-container">
-              <div className="loading-spinner"></div>
-              <div>Loading products...</div>
+          <div className="wood-main-content-area">
+            <div className="wood-category-header">
+              <div className="wood-header-content">
+                <div>
+                  <h2 className="wood-category-title">{activeCategoryData?.displayName}</h2>
+                  <p className="wood-product-count">
+                    {products.length} products • Page {currentPage} of {totalPages}
+                  </p>
+                </div>
+                <div className="wood-page-indicator">
+                  <span>Showing:</span>
+                  <span className="wood-current-page">
+                    {indexOfFirstProduct + 1}-{Math.min(indexOfLastProduct, products.length)}
+                  </span>
+                </div>
+              </div>
             </div>
-          ) : (
-            <>
-              {displayedProducts.length > 0 ? (
-                <div className={viewMode === 'grid' ? 'products-grid' : 'products-list'}>
-                  {displayedProducts.map((product) => (
-                    <ProductCard key={product.id} product={product} />
+
+            {loading ? (
+              <div className="wood-products-grid">
+                {[...Array(12)].map((_, i) => (
+                  <div key={i} className="wood-product-card">
+                    <div className="wood-product-image" style={{ background: '#f5f5f5' }}>
+                      <div className="wood-image-placeholder">
+                        <div className="wood-icon">⏳</div>
+                        <p className="wood-image-text">Loading...</p>
+                      </div>
+                    </div>
+                    <div className="wood-product-info">
+                      <div className="wood-loading-line"></div>
+                      <div className="wood-loading-line short"></div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : products.length > 0 ? (
+              <>
+                <div className="wood-products-grid">
+                  {currentProducts.map((product) => (
+                    <div key={product.id} className="wood-product-card">
+                      <div className="wood-product-image">
+                        <ProductImage 
+                          images={product.images} 
+                          alt={product.name}
+                          productNumber={product.productNumber}
+                        />
+                        {renderStars(parseFloat(product.rating))}
+                      </div>
+                      
+                      <div className="wood-product-info">
+                        <h3 className="wood-product-title">{product.name}</h3>
+                        <div style={{ margin: '10px 0', fontSize: '13px', color: '#565959' }}>
+                          <div style={{ marginBottom: '4px' }}>
+                            <strong>Wood:</strong> {product.woodtype}
+                          </div>
+                          <div>
+                            <strong>Size:</strong> {product.size}
+                          </div>
+                        </div>
+                        
+                        <div className="wood-price-section">
+                          <div className="wood-product-price">
+                            <span className="wood-price-superscript">₹</span>
+                            {product.price.replace('₹', '')}
+                          </div>
+                          
+                          <a
+                            href={`https://wa.me/919876543210?text=Hello, I want to buy: ${encodeURIComponent(product.name)}%0AWood: ${encodeURIComponent(product.woodtype)}%0ASize: ${encodeURIComponent(product.size)}%0APrice: ${encodeURIComponent(product.price)}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="wood-buy-button"
+                          >
+                            <span>Buy on WhatsApp</span>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
                   ))}
                 </div>
-              ) : (
-                <div className="empty-state">
-                  <div className="empty-icon">🔍</div>
-                  <h3>No products found</h3>
-                  <p>Try adjusting your filters or search term</p>
-                </div>
-              )}
 
-              {products.length > itemsPerPage && (
-                <>
-                  <div className="pagination">
+                {totalPages > 1 && (
+                  <div className="wood-pagination">
                     <button
-                      className={`page-btn ${currentPage === 1 ? 'disabled' : ''}`}
-                      onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                      onClick={() => handlePageChange(currentPage - 1)}
                       disabled={currentPage === 1}
+                      className="wood-pagination-btn wood-prev-btn"
                     >
-                      ←
+                      <span>‹</span> Previous
                     </button>
-                    
-                    {[...Array(totalPages)].map((_, index) => (
-                      <button
-                        key={index}
-                        className={`page-btn ${currentPage === index + 1 ? 'active' : ''}`}
-                        onClick={() => setCurrentPage(index + 1)}
-                      >
-                        {index + 1}
-                      </button>
-                    ))}
-                    
+
+                    {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
+                      let pageNumber;
+                      if (totalPages <= 5) pageNumber = i + 1;
+                      else if (currentPage <= 3) pageNumber = i + 1;
+                      else if (currentPage >= totalPages - 2) pageNumber = totalPages - 4 + i;
+                      else pageNumber = currentPage - 2 + i;
+
+                      return (
+                        <button
+                          key={pageNumber}
+                          onClick={() => handlePageChange(pageNumber)}
+                          className={`wood-page-number ${currentPage === pageNumber ? 'active' : ''}`}
+                        >
+                          {pageNumber}
+                        </button>
+                      );
+                    })}
+
                     <button
-                      className={`page-btn ${currentPage === totalPages ? 'disabled' : ''}`}
-                      onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                      onClick={() => handlePageChange(currentPage + 1)}
                       disabled={currentPage === totalPages}
+                      className="wood-pagination-btn wood-next-btn"
                     >
-                      →
+                      Next <span>›</span>
                     </button>
                   </div>
-                  
-                  <div className="results-info">
-                    Page {currentPage} of {totalPages} • {products.length} products total
-                  </div>
-                </>
-              )}
-            </>
-          )}
+                )}
+              </>
+            ) : (
+              <div className="wood-empty-state">
+                <div className="wood-empty-icon">🚪</div>
+                <h3>No products available</h3>
+                <p>Check if images exist in public/images/category/ folder</p>
+              </div>
+            )}
+          </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

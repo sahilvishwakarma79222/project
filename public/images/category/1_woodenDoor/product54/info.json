@@ -1,8 +1,9 @@
 {
-  "name": "Teak Wood Door",
-  "price": "₹15,000",
-  "desc": "Premium quality teak wood door with carvings",
+  "name": "name1 Wood Doors",
+  "price": 1000,
+  "desc": "this is good wood",
   "woodtype": "Teak Wood",
   "size": "50 x 30",
-  "rating": "4.5"
+  "rating": 4.5,
+  "sales": 30
 }
