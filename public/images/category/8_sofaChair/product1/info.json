@@ -1,9 +1,29 @@
 {
-  "name": sahil Wood Doors",
-  "price": 1000,
-  "desc": "this is good wood",
-  "woodtype": "Teak Wood",
-  "size": "50 x 30",
+  "name": "Solid Teak Wood Door",
+  "price": 15000,
+  "originalPrice": 18000,
+  "discount": "16%",
+  "woodtype": "Solid Teak Wood",
+  "size": "7ft x 3ft",
+  "color": "Natural Wood Finish",
+  "material": "Solid Wood",
+  "finish": "Premium Polish",
+  "weight": "25-30 kg",
+  "dimensions": "84\" x 36\" x 2\"",
+  "desc": "Premium quality solid teak wood door with intricate carvings. Handcrafted by skilled artisans using traditional techniques.",
   "rating": 4.5,
-  "sales": 30
+  "sales": 150,
+  "priceNote": "Inclusive of all taxes • Free installation support",
+  "features": [
+    "100% Solid Teak Wood",
+    "Hand Carved Design",
+    "Premium Polish Finish",
+    "Termite Resistant",
+    "Weather Proof"
+  ],
+  "deliveryTime": "Delivery in 5-7 working days",
+  "deliveryInfo": "Free delivery within city • Installation included",
+  "warranty": "2-year warranty on material and workmanship",
+  "installation": "Professional installation included",
+  "notes": "Custom sizes available on request"
 }

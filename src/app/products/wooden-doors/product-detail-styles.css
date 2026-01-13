@@ -1,14 +1,10 @@
-/* PRODUCT DETAIL PAGE - PROFESSIONAL AMAZON/FLIPKART STYLE */
+/* product-view-flipkart.css - UPDATED BALANCED LAYOUT */
 
-/* ========== BASE RESET ========== */
+/* ==================== MAIN LAYOUT ==================== */
 .product-detail-page {
+  background-color: #f1f3f6;
   min-height: 100vh;
-  background: #ffffff;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  line-height: 1.5;
-  color: #0f1111;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding-bottom: 40px;
 }
 
 .product-detail-container {
@@ -17,870 +13,1129 @@
   padding: 0 16px;
 }
 
-/* ========== BREADCRUMB - AMAZON STYLE ========== */
-.product-breadcrumb {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 12px;
-  color: #565959;
-  padding: 16px 0 20px;
-  margin-bottom: 4px;
-  flex-wrap: wrap;
-}
-
-.breadcrumb-link {
-  color: #007185;
-  text-decoration: none;
-  transition: color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
-  font-size: 12px;
-}
-
-.breadcrumb-link:hover {
-  color: #c7511f;
-  text-decoration: underline;
-}
-
-.breadcrumb-separator {
-  color: #c7c7c7;
-  font-size: 10px;
-}
-
-.breadcrumb-current {
-  color: #0f1111;
-  font-weight: 500;
-  font-size: 12px;
-}
-
-/* ========== DEBUG BANNER ========== */
-.debug-banner {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  padding: 8px 16px;
-  font-size: 11px;
-  color: white;
-  text-align: center;
-  letter-spacing: 0.3px;
-  font-weight: 500;
-}
-
-/* ========== MAIN LAYOUT - AMAZON GRID ========== */
 .product-detail-layout {
-  display: grid;
-  grid-template-columns: 55% 45%;
-  gap: 32px;
-  margin-top: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 16px;
 }
 
-@media (max-width: 992px) {
-  .product-detail-layout {
-    grid-template-columns: 1fr;
-    gap: 24px;
+/* Left Column - Image Gallery (52%) - REDUCED */
+.product-detail-layout > div:first-child {
+  flex: 0 0 52%;
+  min-width: 300px;
+}
+
+/* Right Column - Product Info (46%) - INCREASED */
+.product-detail-layout > div:last-child {
+  flex: 0 0 44%;
+  min-width: 300px;
+}
+
+@media (max-width: 1024px) {
+  .product-detail-layout > div:first-child,
+  .product-detail-layout > div:last-child {
+    flex: 0 0 100%;
   }
 }
 
-/* ========== IMAGE GALLERY - PROFESSIONAL ========== */
-.image-gallery-section {
-  background: #ffffff;
-  border: 1px solid #e7e7e7;
-  border-radius: 8px;
-  padding: 20px;
+/* ==================== DEBUG BANNER ==================== */
+.debug-banner {
+  background: linear-gradient(90deg, #ff9800, #ff5722);
+  color: white;
+  padding: 10px 16px;
+  font-size: 13px;
+  text-align: center;
+  border-bottom: 1px solid #e65100;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+
+.debug-banner strong {
+  margin: 0 8px;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+
+/* ==================== BREADCRUMB ==================== */
+.product-breadcrumb {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 16px 0;
+  font-size: 13px;
+  color: #565656;
+  background: white;
+  padding: 12px 16px;
+  border-radius: 4px;
+  margin-bottom: 10px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-  transition: box-shadow 0.2s ease;
 }
 
-.image-gallery-section:hover {
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+.breadcrumb-link {
+  color: #2874f0;
+  text-decoration: none;
+  transition: all 0.2s;
+  padding: 4px 6px;
+  border-radius: 3px;
 }
 
-.gallery-title {
-  font-size: 16px;
-  font-weight: 600;
-  margin-bottom: 16px;
-  color: #0f1111;
-  padding-bottom: 12px;
-  border-bottom: 1px solid #f0f2f2;
-  letter-spacing: -0.2px;
+.breadcrumb-link:hover {
+  color: #fb641b;
+  background: #f5f5f5;
 }
 
-/* Main Image - Amazon Style */
-.main-image-container {
+.breadcrumb-separator {
+  color: #999;
+  font-size: 12px;
+}
+
+.breadcrumb-current {
+  color: #212121;
+  font-weight: 500;
+}
+
+/* ==================== IMAGE GALLERY SECTION ==================== */
+.image-gallery-section {
+  background-color: white;
+  border-radius: 4px;
+  padding: 16px; /* Reduced from 20px */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  margin-bottom: 20px;
   position: relative;
-  height: 420px;
-  margin-bottom: 16px;
+  overflow: hidden;
+}
+
+/* ==================== IMAGE GALLERY LAYOUT ==================== */
+.image-gallery-container {
+  display: flex;
+  gap: 12px; /* Reduced from 15px */
+  padding: 0;
+  width: 100%;
+}
+
+/* Sub Images - Left Side (FIXED WIDTH) */
+.image-gallery-sidebar {
+  width: 80px; /* Reduced from 90px */
+  display: flex;
+  flex-direction: column;
+  gap: 8px; /* Reduced from 10px */
+  flex-shrink: 0;
+}
+
+/* Main Image Container (TAKES REMAINING SPACE) */
+.main-image-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px; /* Reduced from 16px */
+  min-width: 0;
+}
+
+/* ==================== SUB IMAGES (LEFT SIDE) ==================== */
+.sub-image-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px; /* Reduced from 8px */
+  width: 100%;
+}
+
+.sub-image-item {
+  position: relative;
+  width: 80px; /* Reduced from 90px */
+  height: 80px; /* Reduced from 90px */
+  border: 2px solid #f0f0f0;
   border-radius: 6px;
   overflow: hidden;
-  background: linear-gradient(135deg, #f8f8f8 0%, #f0f0f0 100%);
-  border: 1px solid #e7e7e7;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  background: white;
+  transition: all 0.3s;
+  flex-shrink: 0;
 }
 
-.main-image-container:hover {
-  border-color: #c7c7c7;
+.sub-image-item:hover {
+  border-color: #2874f0;
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(40, 116, 240, 0.15);
 }
 
-/* Navigation Arrows - Minimal */
+.sub-image-item.active {
+  border-color: #2874f0;
+  border-width: 3px;
+  box-shadow: 0 0 0 2px rgba(40, 116, 240, 0.2);
+}
+
+.sub-image-number {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  font-size: 10px; /* Smaller */
+  width: 16px; /* Smaller */
+  height: 16px; /* Smaller */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  z-index: 2;
+}
+
+/* Image Count Info */
+.image-count-info {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 10px; /* Smaller */
+  color: #666;
+  padding: 5px;
+  background: #f9f9f9;
+  border-radius: 4px;
+  border: 1px solid #f0f0f0;
+}
+
+/* ==================== MAIN IMAGE CONTAINER ==================== */
+.main-image-container {
+  position: relative;
+  width: 100%;
+  height: 450px; /* Reduced from 500px */
+  border: 1px solid #f0f0f0;
+  border-radius: 8px;
+  overflow: hidden;
+  background: white;
+  cursor: crosshair;
+}
+
+/* Zoom Instructions Overlay */
+.zoom-instruction {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 6px 10px; /* Smaller */
+  border-radius: 20px;
+  font-size: 11px; /* Smaller */
+  font-weight: 500;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.zoom-instruction span {
+  font-size: 12px; /* Smaller */
+}
+
+/* Image Navigation Arrows */
 .nav-arrow {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
+  width: 40px; /* Smaller */
+  height: 40px; /* Smaller */
   background: rgba(255, 255, 255, 0.95);
-  border: 1px solid #d5d9d9;
+  border: 1px solid #d4d5d9;
   border-radius: 50%;
-  width: 36px;
-  height: 36px;
+  font-size: 18px; /* Smaller */
+  color: #212121;
+  cursor: pointer;
+  z-index: 10;
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
-  font-size: 18px;
-  color: #0f1111;
-  z-index: 10;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  opacity: 0;
-}
-
-.main-image-container:hover .nav-arrow {
-  opacity: 1;
+  transition: all 0.3s;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
 }
 
 .nav-arrow:hover {
   background: white;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-  transform: translateY(-50%) scale(1.05);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  transform: translateY(-50%) scale(1.1);
 }
 
 .nav-arrow.prev {
-  left: 12px;
+  left: 15px; /* Adjusted */
 }
 
 .nav-arrow.next {
-  right: 12px;
+  right: 15px; /* Adjusted */
 }
 
-/* Image Counter - Subtle */
+/* Image Counter */
 .image-counter {
   position: absolute;
-  bottom: 12px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(0, 0, 0, 0.75);
+  top: 12px;
+  left: 12px;
+  background: rgba(0, 0, 0, 0.8);
   color: white;
-  padding: 4px 10px;
-  border-radius: 12px;
-  font-size: 11px;
-  font-weight: 500;
+  padding: 5px 10px; /* Smaller */
+  border-radius: 20px;
+  font-size: 11px; /* Smaller */
+  font-weight: 600;
   z-index: 10;
   backdrop-filter: blur(4px);
-  letter-spacing: 0.5px;
+  border: 1px solid rgba(255,255,255,0.1);
 }
 
-/* Thumbnails - Grid Style */
-.thumbnail-strip {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
-  gap: 10px;
-  margin-top: 12px;
-}
-
-.thumbnail-button {
-  width: 100%;
-  height: 70px;
-  border: 2px solid #e7e7e7;
-  border-radius: 6px;
-  overflow: hidden;
-  background: #f8f8f8;
-  cursor: pointer;
-  padding: 0;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.thumbnail-button:hover {
-  border-color: #ffa41c;
-  transform: translateY(-2px);
-  box-shadow: 0 2px 6px rgba(255, 164, 28, 0.2);
-}
-
-.thumbnail-button.active {
-  border: 2px solid #ffa41c;
-  box-shadow: 0 0 0 1px #ffa41c;
-}
-
-.thumbnail-image {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  border-radius: 4px;
-  overflow: hidden;
-}
-
-/* Image Number Badge */
-.image-number-badge {
-  position: absolute;
-  bottom: 4px;
-  right: 4px;
-  background: rgba(0, 0, 0, 0.7);
-  color: white;
-  font-size: 9px;
-  padding: 1px 5px;
-  border-radius: 8px;
-  font-weight: 500;
-}
-
-/* Image Description */
-.image-description {
-  margin-top: 16px;
-  text-align: center;
-  font-size: 12px;
-  color: #767676;
-  line-height: 1.4;
-}
-
-/* Image Details */
-.image-details {
-  margin-top: 20px;
-  padding-top: 16px;
-  border-top: 1px solid #f0f2f2;
-}
-
-.details-row {
+/* ==================== ACTION BUTTONS BELOW IMAGE ==================== */
+.image-actions-container {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 13px;
-  color: #565959;
+  gap: 10px; /* Reduced from 12px */
+  padding: 16px 0 0; /* Reduced */
+  flex-wrap: wrap;
+  border-top: 1px solid #f0f0f0;
+  margin-top: 16px; /* Reduced */
+  padding-top: 16px; /* Reduced */
 }
 
-.image-count-badge {
-  background: linear-gradient(135deg, #ffa41c 0%, #ff8f00 100%);
-  color: white;
-  padding: 6px 10px;
-  border-radius: 12px;
-  font-size: 11px;
+.image-action-btn {
+  flex: 1;
+  min-width: 180px; /* Smaller */
+  height: 45px; /* Smaller */
+  border: none;
+  border-radius: 6px;
+  font-size: 15px; /* Smaller */
   font-weight: 600;
-  letter-spacing: 0.3px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.3s;
+  text-decoration: none;
+  text-align: center;
 }
 
-/* ========== PRODUCT INFO - AMAZON STYLE ========== */
+.btn-primary {
+  background: linear-gradient(135deg, #ff9f00, #ff8c00);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #ff8c00, #ff7b00);
+  box-shadow: 0 4px 15px rgba(255, 159, 0, 0.4);
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background: white;
+  color: #2874f0;
+  border: 2px solid #2874f0;
+}
+
+.btn-secondary:hover {
+  background: #2874f0;
+  color: white;
+  box-shadow: 0 4px 15px rgba(40, 116, 240, 0.3);
+  transform: translateY(-2px);
+}
+
+/* ==================== PRODUCT INFO SECTION (RIGHT SIDE) ==================== */
 .product-info-section {
-  background: #ffffff;
-  border: 1px solid #e7e7e7;
+  background-color: white;
   border-radius: 8px;
-  padding: 24px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-  transition: box-shadow 0.2s ease;
+  padding: 20px; /* Reduced from 24px */
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  height: fit-content;
+  position: sticky;
+  top: 20px;
+  width: 100%;
+  min-height: 500px; /* Added min-height */
+  display: flex;
+  flex-direction: column;
 }
 
-.product-info-section:hover {
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-}
-
-/* Product Title - Amazon */
+/* Product Title */
 .product-title {
-  font-size: 22px;
-  font-weight: 400;
-  color: #0f1111;
-  margin-bottom: 12px;
-  line-height: 1.3;
-  letter-spacing: -0.2px;
+  font-size: 19px; /* Slightly smaller */
+  font-weight: 600;
+  color: #212121;
+  margin-bottom: 14px; /* Reduced */
+  line-height: 1.4;
+  padding-bottom: 14px; /* Reduced */
+  border-bottom: 1px solid #f0f0f0;
+  max-height: 70px; /* Limit height */
+  overflow: hidden;
 }
 
-/* Rating - Amazon Style */
+/* Rating Section */
 .rating-section {
   display: flex;
   align-items: center;
-  gap: 8px;
-  margin-bottom: 16px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid #f0f2f2;
+  gap: 10px; /* Reduced */
+  margin-bottom: 16px; /* Reduced */
+  flex-wrap: wrap;
 }
 
 .rating-badge {
-  background: linear-gradient(135deg, #ffa41c 0%, #ff8f00 100%);
-  color: white;
-  padding: 3px 8px;
-  border-radius: 12px;
-  font-size: 13px;
-  font-weight: 600;
   display: flex;
   align-items: center;
-  gap: 4px;
-  letter-spacing: 0.3px;
+  gap: 5px;
+  background: linear-gradient(135deg, #388e3c, #4caf50);
+  color: white;
+  padding: 5px 10px; /* Smaller */
+  border-radius: 20px;
+  font-size: 13px; /* Smaller */
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.rating-badge span:first-child {
+  font-size: 13px; /* Smaller */
 }
 
 .sales-count {
-  font-size: 13px;
-  color: #565959;
+  color: #565656;
+  font-size: 12px; /* Smaller */
+  font-weight: 500;
+  background: #f5f5f5;
+  padding: 4px 8px; /* Smaller */
+  border-radius: 12px;
   display: flex;
   align-items: center;
   gap: 4px;
-  font-weight: 500;
+  flex-shrink: 0;
 }
 
-/* Price Section - Amazon */
+/* Price Section */
 .price-section {
-  padding: 16px;
-  background: linear-gradient(135deg, #fafafa 0%, #f5f5f5 100%);
-  border-radius: 6px;
-  margin-bottom: 20px;
-  border: 1px solid #e7e7e7;
+  margin-bottom: 18px; /* Reduced */
+  padding: 14px; /* Reduced */
+  background: linear-gradient(135deg, #f8f9ff, #f0f5ff);
+  border-radius: 8px;
+  border: 1px solid #e3e8ff;
+  flex: 0 0 auto; /* Don't grow */
 }
 
 .price-amount {
   display: flex;
   align-items: baseline;
-  margin-bottom: 4px;
+  gap: 4px;
+  margin-bottom: 6px; /* Reduced */
 }
 
 .price-symbol {
-  font-size: 14px;
-  margin-right: 2px;
-  color: #565959;
-  font-weight: 500;
+  font-size: 16px;
+  font-weight: 700;
+  color: #212121;
 }
 
 .price-value {
   font-size: 28px;
-  font-weight: 700;
-  color: #0f1111;
+  font-weight: 800;
+  color: #212121;
   letter-spacing: -0.5px;
 }
 
+.price-discount {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Reduced */
+  margin-top: 4px; /* Reduced */
+  flex-wrap: wrap;
+}
+
+.original-price {
+  font-size: 14px; /* Smaller */
+  color: #878787;
+  text-decoration: line-through;
+}
+
+.discount-badge {
+  background: #ff6161;
+  color: white;
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-size: 11px; /* Smaller */
+  font-weight: 600;
+}
+
 .price-note {
-  font-size: 13px;
-  color: #565959;
+  font-size: 12px; /* Smaller */
+  color: #388e3c;
+  margin-top: 6px; /* Reduced */
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Specifications Section */
+.specifications-section {
+  margin-bottom: 16px; /* Reduced */
+  flex: 1; /* Takes available space */
+  max-height: 200px; /* Limit height */
+  overflow-y: auto; /* Scroll if needed */
+}
+
+.section-title {
+  font-size: 15px; /* Smaller */
+  font-weight: 600;
+  color: #212121;
+  margin-bottom: 12px; /* Reduced */
   display: flex;
   align-items: center;
   gap: 6px;
 }
 
-.price-note::before {
-  content: "✓";
-  color: #067d62;
-  font-weight: bold;
-}
-
-/* Specifications - Grid */
-.specifications-section {
-  margin-bottom: 20px;
-}
-
-.section-title {
-  font-size: 18px;
-  font-weight: 600;
-  margin-bottom: 12px;
-  color: #0f1111;
-  padding-bottom: 8px;
-  border-bottom: 2px solid #ffa41c;
-  letter-spacing: -0.3px;
+.section-title::before {
+  content: "•";
+  color: #2874f0;
+  font-size: 16px; /* Smaller */
 }
 
 .specs-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 12px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px; /* Reduced */
 }
 
 .spec-item {
-  padding: 10px 12px;
-  background: #fafafa;
+  display: flex;
+  flex-direction: column;
+  gap: 3px; /* Reduced */
+  padding: 8px; /* Reduced */
+  background: #f9f9f9;
   border-radius: 6px;
   border: 1px solid #f0f0f0;
-  transition: all 0.2s ease;
+  transition: all 0.2s;
+  min-height: 55px; /* Slightly smaller */
 }
 
 .spec-item:hover {
   background: #f5f5f5;
-  border-color: #e7e7e7;
+  border-color: #2874f0;
 }
 
 .spec-label {
-  font-size: 12px;
-  color: #767676;
-  margin-bottom: 4px;
+  font-size: 11px; /* Smaller */
+  color: #666;
   font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.3px;
 }
 
 .spec-value {
-  font-size: 14px;
-  font-weight: 500;
-  color: #0f1111;
-  line-height: 1.4;
+  font-size: 13px; /* Smaller */
+  font-weight: 600;
+  color: #212121;
 }
 
-/* Description */
+/* Description Section */
 .description-section {
-  margin-bottom: 20px;
+  margin-bottom: 16px; /* Reduced */
+  flex: 0 0 auto; /* Don't grow */
+  max-height: 120px; /* Limit height */
+  overflow-y: auto; /* Scroll if needed */
 }
 
 .description-content {
-  font-size: 14px;
-  color: #0f1111;
+  font-size: 13px; /* Smaller */
   line-height: 1.6;
-  white-space: pre-line;
-  padding: 12px;
-  background: #fafafa;
+  color: #212121;
+  background: #f9f9f9;
+  padding: 12px; /* Reduced */
   border-radius: 6px;
   border: 1px solid #f0f0f0;
 }
 
-/* ========== ACTION BUTTONS - PROFESSIONAL ========== */
-.action-buttons {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-top: 24px;
+/* Offers Section */
+.offers-section {
+  margin-bottom: 16px; /* Reduced */
+  flex: 0 0 auto; /* Don't grow */
+  max-height: 140px; /* Limit height */
+  overflow-y: auto; /* Scroll if needed */
 }
 
-/* WhatsApp Button - Modern */
-.whatsapp-button {
-  /* background: linear-gradient(135deg, #25D366 0%, #128C7E 100%); */
-  background: #fb641b;
-  color: white;
-  padding: 14px 20px;
-  border-radius: 8px;
-  text-decoration: none;
-  text-align: center;
-  font-size: 15px;
-  font-weight: 600;
+.offers-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.offer-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px; /* Reduced */
+  padding: 8px; /* Reduced */
+  border-bottom: 1px solid #f0f0f0;
+  transition: all 0.2s;
+}
+
+.offer-item:last-child {
+  border-bottom: none;
+}
+
+.offer-item:hover {
+  background: #f9f9f9;
+}
+
+.offer-icon {
+  color: #388e3c;
+  font-size: 13px; /* Smaller */
+  margin-top: 2px;
+  background: #e8f5e9;
+  width: 20px; /* Smaller */
+  height: 20px; /* Smaller */
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  border: none;
-  cursor: pointer;
-  letter-spacing: 0.3px;
-  box-shadow: 0 2px 4px rgba(37, 211, 102, 0.2);
+  flex-shrink: 0;
 }
 
-.whatsapp-button:hover {
-  transform: translateY(-2px);
-  /* box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3); */
-  background: #fb641b;
+.offer-content {
+  flex: 1;
+  min-width: 0;
 }
 
-.whatsapp-button:active {
-  transform: translateY(0);
-  box-shadow: 0 1px 2px rgba(245, 255, 45, 0.2);
-}
-
-/* Back Button - Professional */
-.back-button {
-  background: linear-gradient(135deg, #ffffff 0%, #f8f8f8 100%);
-  color: #0f1111;
-  padding: 14px 20px;
-  border-radius: 8px;
-  text-decoration: none;
-  text-align: center;
-  font-size: 15px;
+.offer-title {
   font-weight: 600;
-  border: 1px solid #d5d9d9;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  cursor: pointer;
-  display: block;
-  letter-spacing: 0.3px;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  color: #212121;
+  margin-bottom: 2px; /* Reduced */
+  font-size: 12px; /* Smaller */
 }
 
-.back-button:hover {
-  background: linear-gradient(135deg, #f8f8f8 0%, #f0f0f0 100%);
-  border-color: #a2a6ac;
-  transform: translateY(-1px);
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+.offer-description {
+  font-size: 11px; /* Smaller */
+  color: #565656;
+  line-height: 1.4;
 }
 
-/* ========== ADDITIONAL INFO ========== */
-.additional-info {
-  margin-top: 24px;
-  padding-top: 16px;
-  border-top: 1px solid #f0f2f2;
-  font-size: 12px;
-  color: #565959;
-  background: #fafafa;
-  border-radius: 6px;
-  padding: 16px;
+/* Delivery Info */
+.delivery-info {
+  background: #f0f8ff;
+  border: 1px solid #d1e7ff;
+  border-radius: 8px;
+  padding: 12px; /* Reduced */
+  margin-top: 12px; /* Reduced */
+  flex: 0 0 auto; /* Don't grow */
 }
 
-.info-item {
-  margin-bottom: 6px;
+.delivery-header {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 4px 0;
+  gap: 6px; /* Reduced */
+  margin-bottom: 8px; /* Reduced */
 }
 
-.info-item::before {
-  content: "•";
-  color: #ffa41c;
-  font-weight: bold;
+.delivery-icon {
+  color: #2874f0;
+  font-size: 16px; /* Smaller */
 }
 
-/* ========== LOADING & ERROR STATES ========== */
-.loading-state {
-  padding: 40px 20px;
-  text-align: center;
+.delivery-title {
+  font-size: 13px; /* Smaller */
+  font-weight: 600;
+  color: #212121;
 }
 
-.loading-icon {
-  font-size: 40px;
-  margin-bottom: 16px;
-  color: #ffa41c;
-  animation: pulse 1.5s ease-in-out infinite;
+.delivery-date {
+  font-size: 12px; /* Smaller */
+  font-weight: 600;
+  color: #212121;
+  margin-bottom: 3px; /* Reduced */
 }
 
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
+.delivery-note {
+  font-size: 11px; /* Smaller */
+  color: #565656;
+  line-height: 1.4;
 }
 
-.error-state {
-  padding: 40px 20px;
-  text-align: center;
-}
-
-.error-container {
-  background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
-  padding: 24px;
+/* WhatsApp Contact */
+.whatsapp-contact {
+  margin-top: 16px; /* Reduced */
+  padding: 12px; /* Reduced */
+  background: linear-gradient(135deg, #25d366, #128c7e);
   border-radius: 8px;
-  max-width: 500px;
-  margin: 0 auto;
-  border: 1px solid #f44336;
+  color: white;
+  text-align: center;
+  flex: 0 0 auto; /* Don't grow */
 }
 
-.error-icon {
-  font-size: 40px;
-  margin-bottom: 16px;
-  color: #d32f2f;
+.whatsapp-contact h3 {
+  margin: 0 0 6px 0;
+  font-size: 14px; /* Smaller */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
 }
 
-/* ========== RESPONSIVE DESIGN ========== */
-@media (max-width: 1200px) {
-  .product-detail-container {
-    max-width: 100%;
-    padding: 0 20px;
+.whatsapp-contact p {
+  margin: 0;
+  font-size: 11px; /* Smaller */
+  opacity: 0.9;
+  line-height: 1.4;
+}
+
+/* Image Details */
+.image-details {
+  background: #f9f9f9;
+  border: 1px solid #f0f0f0;
+  border-radius: 4px;
+  padding: 12px; /* Reduced */
+  margin-top: 12px; /* Reduced */
+}
+
+.details-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.image-count-badge {
+  background: #2874f0;
+  color: white;
+  padding: 4px 10px; /* Smaller */
+  border-radius: 20px;
+  font-size: 11px; /* Smaller */
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+/* ==================== RESPONSIVE DESIGN ==================== */
+@media (max-width: 1024px) {
+  .image-gallery-container {
+    flex-direction: column;
+  }
+  
+  .image-gallery-sidebar {
+    width: 100%;
+    flex-direction: row;
+    order: 2;
+    margin-top: 12px; /* Reduced */
+    justify-content: center;
+  }
+  
+  .main-image-area {
+    order: 1;
+  }
+  
+  .zoom-preview-container {
+    display: none !important;
+  }
+  
+  .product-info-section {
+    position: static;
+    min-height: auto;
+  }
+  
+  .sub-image-item {
+    width: 70px;
+    height: 70px;
   }
   
   .main-image-container {
-    height: 380px;
-  }
-}
-
-@media (max-width: 992px) {
-  .product-detail-layout {
-    grid-template-columns: 1fr;
-    gap: 20px;
+    height: 400px;
   }
   
-  .main-image-container {
-    height: 350px;
-  }
-  
-  .product-title {
-    font-size: 20px;
-  }
-  
-  .price-value {
-    font-size: 26px;
+  /* Remove max heights on mobile */
+  .specifications-section,
+  .description-section,
+  .offers-section {
+    max-height: none;
+    overflow-y: visible;
   }
 }
 
 @media (max-width: 768px) {
-  .product-breadcrumb {
-    padding: 12px 0 16px;
-    font-size: 11px;
-  }
-  
-  .image-gallery-section,
-  .product-info-section {
-    padding: 16px;
-  }
-  
   .main-image-container {
-    height: 300px;
+    height: 350px;
   }
   
-  .nav-arrow {
-    width: 32px;
-    height: 32px;
-    font-size: 16px;
-    opacity: 1;
+  .image-actions-container {
+    flex-direction: column;
   }
   
-  .thumbnail-strip {
-    grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
-  }
-  
-  .thumbnail-button {
-    height: 60px;
+  .image-action-btn {
+    width: 100%;
+    min-width: unset;
   }
   
   .specs-grid {
     grid-template-columns: 1fr;
   }
   
-  .whatsapp-button,
-  .back-button {
-    padding: 12px 16px;
-    font-size: 14px;
+  .sub-image-item {
+    width: 65px;
+    height: 65px;
+  }
+  
+  .product-detail-layout > div:first-child {
+    flex: 0 0 100%;
+  }
+  
+  .product-detail-layout > div:last-child {
+    flex: 0 0 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-image-container {
+    height: 300px;
+  }
+  
+  .product-title {
+    font-size: 17px;
+    max-height: none;
   }
   
   .price-value {
     font-size: 24px;
   }
-}
-
-@media (max-width: 480px) {
-  .product-detail-container {
-    padding: 0 12px;
-  }
   
-  .main-image-container {
-    height: 260px;
-  }
-  
-  .product-title {
-    font-size: 18px;
-  }
-  
-  .price-value {
-    font-size: 22px;
-  }
-  
-  .section-title {
+  .nav-arrow {
+    width: 34px;
+    height: 34px;
     font-size: 16px;
   }
   
-  .whatsapp-button,
-  .back-button {
-    padding: 10px 14px;
-    font-size: 13px;
+  .image-gallery-section {
+    padding: 12px;
   }
   
-  .rating-badge {
-    font-size: 12px;
-    padding: 2px 6px;
+  .sub-image-item {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .product-info-section {
+    padding: 16px;
   }
 }
 
-/* ========== SMOOTH TRANSITIONS ========== */
-.product-detail-page * {
-  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
+/* ==================== ANIMATIONS ==================== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* ========== SCROLLBAR STYLING ========== */
-.product-detail-page ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+.product-info-section,
+.image-gallery-section {
+  animation: fadeIn 0.4s ease-out;
 }
 
-.product-detail-page ::-webkit-scrollbar-track {
-  background: #f1f1f1;
-  border-radius: 3px;
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
-.product-detail-page ::-webkit-scrollbar-thumb {
-  background: #c1c1c1;
-  border-radius: 3px;
+.sub-image-item {
+  animation: slideIn 0.3s ease-out;
 }
 
-.product-detail-page ::-webkit-scrollbar-thumb:hover {
-  background: #a8a8a8;
+.sub-image-item:nth-child(2) { animation-delay: 0.1s; }
+.sub-image-item:nth-child(3) { animation-delay: 0.2s; }
+.sub-image-item:nth-child(4) { animation-delay: 0.3s; }
+
+/* ==================== UTILITY CLASSES ==================== */
+.text-success {
+  color: #388e3c;
 }
 
-/*  zoom features */
-
-/* ========== ZOOM FEATURES ========== */
-
-/* Zoom Container */
-.zoom-container {
-  position: relative;
-  overflow: hidden;
-  cursor: zoom-in;
-  transition: all 0.3s ease;
+.text-primary {
+  color: #2874f0;
 }
 
-.zoom-container.zoomed {
-  cursor: zoom-out;
-  overflow: visible;
+.text-muted {
+  color: #878787;
 }
 
-/* Zoom Lens (Magnifying Glass) */
+.bg-light {
+  background: #f9f9f9;
+}
+
+.shadow-sm {
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.rounded {
+  border-radius: 6px;
+}
+
+.flex {
+  display: flex;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.gap-2 {
+  gap: 8px;
+}
+
+.gap-3 {
+  gap: 12px;
+}
+
+.p-3 {
+  padding: 12px;
+}
+
+.mb-2 {
+  margin-bottom: 8px;
+}
+
+.mb-3 {
+  margin-bottom: 12px;
+}
+
+.mb-4 {
+  margin-bottom: 16px;
+}
+
+/* ==================== FLIPKART ZOOM STYLES ==================== */
+
+/* Zoom Lens Styles */
 .zoom-lens {
   position: absolute;
-  width: 150px;
-  height: 150px;
-  border: 2px solid #ffa41c;
-  border-radius: 50%;
-  background-repeat: no-repeat;
+  border: 2px solid #2874f0;
+  background-color: rgba(40, 116, 240, 0.1);
+  cursor: crosshair;
+  display: none;
+  z-index: 10;
+  box-shadow: 0 0 10px rgba(40, 116, 240, 0.3);
   pointer-events: none;
-  z-index: 100;
-  box-shadow: 0 0 20px rgba(0,0,0,0.3);
-  opacity: 0;
-  transition: opacity 0.2s ease;
 }
 
-.zoom-container:hover .zoom-lens {
-  opacity: 1;
-}
-
-/* Zoom Controls */
-.zoom-controls {
+/* Zoomed Image Container */
+.zoomed-image-container {
   position: absolute;
-  bottom: 15px;
-  right: 15px;
-  display: flex;
-  gap: 8px;
-  z-index: 50;
-}
-
-.zoom-btn {
-  background: rgba(255, 255, 255, 0.95);
-  border: 1px solid #d5d9d9;
+  width: 400px;
+  height: 400px;
+  border: 1px solid #f0f0f0;
   border-radius: 4px;
-  padding: 6px 12px;
-  font-size: 12px;
-  font-weight: 600;
-  color: #0f1111;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  transition: all 0.2s ease;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-}
-
-.zoom-btn:hover {
-  background: white;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-  transform: translateY(-1px);
-}
-
-.zoom-btn.zoom-in {
-  background: linear-gradient(135deg, #ffa41c 0%, #ff8f00 100%);
-  color: white;
-  border-color: #ff8f00;
-}
-
-.zoom-btn.zoom-out {
-  background: rgba(0, 0, 0, 0.7);
-  color: white;
-  border-color: #333;
-}
-
-/* Zoom Instructions */
-.zoom-instruction {
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(0, 0, 0, 0.8);
-  color: white;
-  padding: 6px 12px;
-  border-radius: 16px;
-  font-size: 11px;
-  font-weight: 500;
-  z-index: 30;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  backdrop-filter: blur(4px);
-  white-space: nowrap;
-}
-
-.zoom-level {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  background: rgba(0, 0, 0, 0.8);
-  color: white;
-  padding: 4px 8px;
-  border-radius: 12px;
-  font-size: 10px;
-  font-weight: 600;
-  z-index: 30;
-  backdrop-filter: blur(4px);
-}
-
-/* Zoom Modal (Fullscreen) */
-.zoom-modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.95);
+  overflow: hidden;
+  background-color: white;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   z-index: 1000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.zoom-modal-content {
-  position: relative;
-  max-width: 90vw;
-  max-height: 90vh;
-}
-
-.zoom-modal-close {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background: white;
-  border: none;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  font-size: 20px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-  transition: all 0.2s ease;
-  z-index: 1001;
-}
-
-.zoom-modal-close:hover {
-  background: #ff6b6b;
-  color: white;
-  transform: rotate(90deg);
-}
-
-/* Touch Zoom Controls (Mobile) */
-.touch-zoom-controls {
   display: none;
 }
 
-@media (max-width: 768px) {
-  .touch-zoom-controls {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    margin-top: 15px;
+/* Zoomed Image */
+.zoomed-image {
+  width: 800px;
+  height: 800px;
+  position: absolute;
+  background-size: 200%;
+  background-repeat: no-repeat;
+}
+
+/* Make sure zoom doesn't hide buttons */
+.image-actions-container {
+  position: relative;
+  z-index: 5 !important;
+}
+
+/* Fix for responsive zoom preview */
+@media (max-width: 1024px) {
+  .zoomed-image-container {
+    display: none !important;
   }
   
-  .touch-zoom-btn {
-    background: #f0f2f2;
-    border: 1px solid #d5d9d9;
-    border-radius: 20px;
-    padding: 8px 16px;
-    font-size: 14px;
-    font-weight: 600;
-    color: #0f1111;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 6px;
+  .zoom-lens {
+    display: none !important;
   }
   
-  .touch-zoom-btn.active {
-    background: #ffa41c;
-    color: white;
-    border-color: #ff8f00;
+  .main-image-container:hover .zoom-instruction {
+    display: none;
   }
+}
+
+/* Ensure main image container has proper stacking */
+.main-image-area {
+  position: relative;
+}
+
+/* Zoom instruction stays visible */
+.zoom-instruction {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 6px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 500;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255,255,255,0.1);
+  pointer-events: none;
+}
+
+/* Animation for smooth zoom */
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.zoomed-image-container {
+  animation: zoomIn 0.2s ease-out;
+}
+
+/* Crosshair cursor for zoom */
+.main-image-container.zoom-active {
+  cursor: crosshair;
+}
+
+/* Ensure image is not selectable */
+.main-image-container img {
+  -webkit-user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+/* Fix for button z-index */
+.image-action-btn {
+  position: relative;
+  z-index: 10 !important;
+}
+
+/* Make sure thumbnail hover doesn't affect buttons */
+.sub-image-item {
+  z-index: 2;
+}
+
+/* Desktop hover styles */
+@media (hover: hover) {
+  .main-image-container:hover {
+    cursor: crosshair;
+  }
+  
+  .main-image-container:hover .zoom-instruction {
+    opacity: 1;
+  }
+}
+
+/* Mobile touch styles */
+@media (hover: none) {
+  .zoom-instruction {
+    display: none;
+  }
+  
+  .main-image-container:active {
+    transform: scale(0.98);
+    transition: transform 0.2s;
+  }
+}
+
+/* Fix positioning for zoom container on large screens */
+@media (min-width: 1400px) {
+  .zoomed-image-container {
+    width: 450px;
+    height: 450px;
+  }
+  
+  .zoomed-image {
+    width: 900px;
+    height: 900px;
+  }
+}
+
+/* Fix for zoom lens positioning */
+.zoom-lens {
+  transition: left 0.05s linear, top 0.05s linear;
+}
+
+/* Smooth background position transition */
+.zoomed-image {
+  transition: background-position 0.05s linear;
+}
+
+/* ==================== SCROLLBAR STYLING ==================== */
+.specifications-section::-webkit-scrollbar,
+.description-section::-webkit-scrollbar,
+.offers-section::-webkit-scrollbar {
+  width: 4px;
+}
+
+.specifications-section::-webkit-scrollbar-track,
+.description-section::-webkit-scrollbar-track,
+.offers-section::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 2px;
+}
+
+.specifications-section::-webkit-scrollbar-thumb,
+.description-section::-webkit-scrollbar-thumb,
+.offers-section::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 2px;
+}
+
+.specifications-section::-webkit-scrollbar-thumb:hover,
+.description-section::-webkit-scrollbar-thumb:hover,
+.offers-section::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+/* ==================== FLEX LAYOUT FOR RIGHT SECTION ==================== */
+@media (min-width: 1025px) {
+  .product-info-section {
+    min-height: 520px;
+  }
+  
+  /* Push WhatsApp to bottom when there's space */
+  .product-info-section:has(.whatsapp-contact) {
+    justify-content: space-between;
+  }
+}
+
+/* ==================== HEIGHT OPTIMIZATION ==================== */
+.compact-text {
+  font-size: 0.9em;
+  line-height: 1.4;
+}
+
+.dense {
+  margin: 4px 0;
+  padding: 6px;
+}
+
+/* Make sure content doesn't overflow */
+.spec-value,
+.description-content,
+.offer-description {
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Better spacing for empty states */
+.product-info-section > *:empty {
+  display: none;
 }

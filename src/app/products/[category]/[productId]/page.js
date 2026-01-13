@@ -4696,13 +4696,751 @@
 // export const revalidate = 60; // Revalidate every 60 seconds
 
 
+// import { notFound } from 'next/navigation';
+// import Image from 'next/image';
+// import Link from 'next/link';
+// import fs from 'fs';
+// import path from 'path';
+// import '../../wooden-doors/products-styles.css';
+// import '../../wooden-doors/product-detail-styles.css'; // ✅ Import new CSS
+// import { categories } from '@/utils/productData';
+// import ProductImages from './ProductImages';
+// import Navbar from '@/components/Navbar';
+
+// // Category folders mapping
+// const categoryFolders = {
+//   woodenDoor: '1_woodenDoor',
+//   woodenFrame: '2_WoodenFream',
+//   safetyDoors: '3_safetyDoors',
+//   woodenBed: '4_woodenBed',
+//   woodenMandir: '5_woodenMandir',
+//   woodenWindow: '6_woodenWindow',
+//   woodenArt: '7_woodenArt',
+//   sofaChair: '8_sofaChair'
+// };
+
+// // Read product data from file system
+// async function getProductData(category, productId) {
+//   try {
+//     console.log('🔍 Getting product:', { category, productId });
+    
+//     // Extract product number
+//     let productNumber = 1;
+//     if (productId) {
+//       const str = productId.toString();
+//       const match = str.match(/product(\d+)/i);
+//       if (match) {
+//         productNumber = parseInt(match[1], 10);
+//       } else {
+//         const num = parseInt(str, 10);
+//         if (!isNaN(num)) productNumber = num;
+//       }
+//     }
+
+//     const folderName = categoryFolders[category];
+//     if (!folderName) {
+//       console.log('❌ Category not found:', category);
+//       return null;
+//     }
+
+//     // Construct path to info.json in public folder
+//     const infoPath = path.join(
+//       process.cwd(), 
+//       'public', 
+//       'images', 
+//       'category', 
+//       folderName, 
+//       `product${productNumber}`, 
+//       'info.json'
+//     );
+    
+//     console.log('📁 Reading from:', infoPath);
+    
+//     // Check if file exists
+//     if (!fs.existsSync(infoPath)) {
+//       console.log('❌ File does not exist:', infoPath);
+//       return null;
+//     }
+    
+//     // Read and parse JSON file
+//     const fileContent = fs.readFileSync(infoPath, 'utf-8');
+//     const infoData = JSON.parse(fileContent);
+    
+//     console.log('✅ Product data loaded');
+    
+//     // Check which images exist
+//     const basePath = `/images/category/${folderName}/product${productNumber}/`;
+//     const images = [];
+    
+//     // Check for images 1.webp to 4.webp
+//     for (let i = 1; i <= 4; i++) {
+//       const imagePath = path.join(
+//         process.cwd(),
+//         'public',
+//         'images',
+//         'category',
+//         folderName,
+//         `product${productNumber}`,
+//         `${i}.webp`
+//       );
+      
+//       if (fs.existsSync(imagePath)) {
+//         images.push(`${basePath}${i}.webp`);
+//         console.log(`🖼️ Found image ${i}: ${basePath}${i}.webp`);
+//       }
+//     }
+    
+//     return {
+//       ...infoData,
+//       images,
+//       categoryName: category,
+//       productNumber
+//     };
+    
+//   } catch (error) {
+//     console.error('💥 Error loading product:', error);
+//     return null;
+//   }
+// }
+
+// export default async function ProductDetailPage({ params }) {
+//   const { category, productId } = await params;
+  
+//   console.log('📌 URL Params:', { category, productId });
+
+//   const product = await getProductData(category, productId);
+  
+//   if (!product) {
+//     console.log('❌ Product not found, showing 404');
+//     notFound();
+//   }
+
+//   const categoryData = categories.find(cat => cat.name === category);
+  
+//   // WhatsApp message
+//   const whatsappMessage = `Hello, I'm interested in this product:%0A%0A📦 *${product.name}*%0A💰 Price: ₹${product.price}%0A🌳 Wood: ${product.woodtype}%0A📏 Size: ${product.size}%0A${product.desc ? `📝 ${product.desc}%0A` : ''}%0APlease provide more details.`;
+
+//   return (
+//     <>
+
+
+
+//     <Navbar />
+//     <div className="product-detail-page"> {/* ✅ Changed class */}
+//       {/* Debug Banner */}
+//       <div className="debug-banner"> {/* ✅ Changed class */}
+//         <strong>Images Found:</strong> {product.images?.length || 0} images | 
+//         <strong> Product:</strong> {product.name}
+//       </div>
+
+//       {/* Breadcrumb */}
+//       <div className="product-detail-container"> {/* ✅ Changed class */}
+//         <div className="product-breadcrumb"> {/* ✅ Changed class */}
+//           <Link href="/" className="breadcrumb-link">Home</Link> {/* ✅ Changed class */}
+//           <span className="breadcrumb-separator">›</span> {/* ✅ Changed class */}
+//           <Link href="/products/wooden-doors" className="breadcrumb-link"> {/* ✅ Changed class */}
+//             Products
+//           </Link>
+//           <span className="breadcrumb-separator">›</span> {/* ✅ Changed class */}
+//           <span className="breadcrumb-current"> {/* ✅ Changed class */}
+//             {categoryData?.displayName || 'Product'}
+//           </span>
+//           <span className="breadcrumb-separator">›</span> {/* ✅ Changed class */}
+//           <span className="breadcrumb-current" style={{ fontWeight: '600' }}> {/* ✅ Changed class */}
+//             {product.name}
+//           </span>
+//         </div>
+//       </div>
+
+//       {/* Main Content */}
+//       <div className="product-detail-container"> {/* ✅ Changed class */}
+//         <div className="product-detail-layout"> {/* ✅ Changed class */}
+//           {/* Left Column - Images Gallery */}
+//           <div>
+//             <div className="image-gallery-section"> {/* ✅ Changed class */}
+//               <h3 className="gallery-title"> {/* ✅ Changed class */}
+//                 <span>🖼️</span> Product Gallery ({product.images?.length || 0} images)
+//               </h3>
+              
+//               {/* ✅ Use the ProductImages Component */}
+//               <ProductImages 
+//                 images={product.images} 
+//                 productName={product.name}
+//               />
+              
+//               {/* Image Details */}
+//               <div className="image-details"> {/* ✅ Changed class */}
+//                 <div className="details-row"> {/* ✅ Changed class */}
+//                   <div>
+//                     <span style={{ fontWeight: '500', color: '#333' }}>View Options:</span>
+//                     <div style={{ marginTop: '5px', fontSize: '13px' }}>
+//                       • Click thumbnails to switch views
+//                       <br/>• Use arrows for navigation
+//                       <br/>• Shows all available angles
+//                     </div>
+//                   </div>
+//                   <div className="image-count-badge"> {/* ✅ Changed class */}
+//                     {product.images?.length || 0}/4 photos
+//                   </div>
+//                 </div>
+//               </div>
+//             </div>
+//           </div>
+
+//           {/* Right Column - Product Info */}
+//           <div>
+//             <div className="product-info-section"> {/* ✅ Changed class */}
+//               {/* Product Title */}
+//               <h1 className="product-title"> {/* ✅ Changed class */}
+//                 {product.name}
+//               </h1>
+              
+//               {/* Rating */}
+//               {product.rating && (
+//                 <div className="rating-section"> {/* ✅ Changed class */}
+//                   <div className="rating-badge"> {/* ✅ Changed class */}
+//                     <span>⭐</span>
+//                     <span>{product.rating}</span>
+//                   </div>
+//                   {product.sales > 0 && (
+//                     <span className="sales-count"> {/* ✅ Changed class */}
+//                       🔥 {product.sales}+ Sold
+//                     </span>
+//                   )}
+//                 </div>
+//               )}
+              
+//               {/* Price */}
+//               <div className="price-section"> {/* ✅ Changed class */}
+//                 <div className="price-amount"> {/* ✅ Changed class */}
+//                   <span className="price-symbol">₹</span> {/* ✅ Changed class */}
+//                   <span className="price-value"> {/* ✅ Changed class */}
+//                     {typeof product.price === 'number' ? product.price.toLocaleString() : product.price}
+//                   </span>
+//                 </div>
+//                 <div className="price-note"> {/* ✅ Changed class */}
+//                   Inclusive of all taxes • Free installation support
+//                 </div>
+//               </div>
+              
+//               {/* Specifications */}
+//               <div className="specifications-section"> {/* ✅ Changed class */}
+//                 <h2 className="section-title"> {/* ✅ Changed class */}
+//                   Product Specifications
+//                 </h2>
+//                 <div className="specs-grid"> {/* ✅ Changed class */}
+//                   <div className="spec-item"> {/* ✅ Changed class */}
+//                     <div className="spec-label">Wood Type</div> {/* ✅ Changed class */}
+//                     <div className="spec-value">{product.woodtype}</div> {/* ✅ Changed class */}
+//                   </div>
+//                   <div className="spec-item"> {/* ✅ Changed class */}
+//                     <div className="spec-label">Size</div> {/* ✅ Changed class */}
+//                     <div className="spec-value">{product.size}</div> {/* ✅ Changed class */}
+//                   </div>
+//                   <div className="spec-item"> {/* ✅ Changed class */}
+//                     <div className="spec-label">Category</div> {/* ✅ Changed class */}
+//                     <div className="spec-value"> {/* ✅ Changed class */}
+//                       {categoryData?.displayName || category}
+//                     </div>
+//                   </div>
+//                   <div className="spec-item"> {/* ✅ Changed class */}
+//                     <div className="spec-label">Product Code</div> {/* ✅ Changed class */}
+//                     <div className="spec-value"> {/* ✅ Changed class */}
+//                       {category?.toUpperCase() || 'PROD'}-{product.productNumber}
+//                     </div>
+//                   </div>
+//                 </div>
+//               </div>
+              
+//               {/* Description */}
+//               {product.desc && (
+//                 <div className="description-section"> {/* ✅ Changed class */}
+//                   <h2 className="section-title"> {/* ✅ Changed class */}
+//                     Description
+//                   </h2>
+//                   <div className="description-content"> {/* ✅ Changed class */}
+//                     {product.desc}
+//                   </div>
+//                 </div>
+//               )}
+              
+//               {/* Action Buttons */}
+//               <div className="action-buttons"> {/* ✅ Changed class */}
+//                 <a
+//                   href={`https://wa.me/919876543210?text=${whatsappMessage}`}
+//                   target="_blank"
+//                   rel="noopener noreferrer"
+//                   className="whatsapp-button" /* ✅ Changed class */
+//                 >
+//                   <span>🛒</span> Buy Now on WhatsApp
+//                 </a>
+                
+//                 <Link
+//                   href="/products/wooden-doors"
+//                   className="back-button" /* ✅ Changed class */
+//                 >
+//                   ← Back to Products
+//                 </Link>
+//               </div>
+              
+//               {/* Additional Info */}
+//               <div className="additional-info"> {/* ✅ Changed class */}
+//                 <p className="info-item"> {/* ✅ Changed class */}
+//                   <strong>✅ Guarantee:</strong> 100% quality checked | 2-year warranty
+//                 </p>
+//                 <p className="info-item"> {/* ✅ Changed class */}
+//                   <strong>🚚 Delivery:</strong> Free delivery in city | 5-7 days
+//                 </p>
+//                 <p className="info-item"> {/* ✅ Changed class */}
+//                   <strong>🛠️ Installation:</strong> Free professional installation included
+//                 </p>
+//               </div>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//     </>
+//   );
+// }
+
+// // Generate static paths
+// export async function generateStaticParams() {
+//   console.log('🔧 Generating static params');
+  
+//   const categories = [
+//     'woodenDoor',
+//     'woodenFrame',
+//     'safetyDoors',
+//     'woodenBed',
+//     'woodenMandir',
+//     'woodenWindow',
+//     'woodenArt',
+//     'sofaChair'
+//   ];
+  
+//   const params = [];
+  
+//   // Generate first 5 products for each category
+//   for (const category of categories) {
+//     for (let i = 1; i <= 5; i++) {
+//       params.push({
+//         category,
+//         productId: `product${i}`
+//       });
+//     }
+//   }
+  
+//   console.log(`Generated ${params.length} static paths`);
+//   return params;
+// }
+
+// // Optional: Add revalidation
+// export const revalidate = 60; // Revalidate every 60 seconds
+
+
+// import { notFound } from 'next/navigation';
+// import Image from 'next/image';
+// import Link from 'next/link';
+// import fs from 'fs';
+// import path from 'path';
+// import '../../wooden-doors/product-view-flipkart.css'; // ✅ Import new CSS
+// import { categories } from '@/utils/productData';
+// import ProductImages from './ProductImages';
+// import Navbar from '@/components/Navbar';
+
+// // Category folders mapping
+// const categoryFolders = {
+//   woodenDoor: '1_woodenDoor',
+//   woodenFrame: '2_WoodenFream',
+//   safetyDoors: '3_safetyDoors',
+//   woodenBed: '4_woodenBed',
+//   woodenMandir: '5_woodenMandir',
+//   woodenWindow: '6_woodenWindow',
+//   woodenArt: '7_woodenArt',
+//   sofaChair: '8_sofaChair'
+// };
+
+// // Read product data from file system
+// async function getProductData(category, productId) {
+//   try {
+//     console.log('🔍 Getting product:', { category, productId });
+    
+//     // Extract product number
+//     let productNumber = 1;
+//     if (productId) {
+//       const str = productId.toString();
+//       const match = str.match(/product(\d+)/i);
+//       if (match) {
+//         productNumber = parseInt(match[1], 10);
+//       } else {
+//         const num = parseInt(str, 10);
+//         if (!isNaN(num)) productNumber = num;
+//       }
+//     }
+
+//     const folderName = categoryFolders[category];
+//     if (!folderName) {
+//       console.log('❌ Category not found:', category);
+//       return null;
+//     }
+
+//     // Construct path to info.json in public folder
+//     const infoPath = path.join(
+//       process.cwd(), 
+//       'public', 
+//       'images', 
+//       'category', 
+//       folderName, 
+//       `product${productNumber}`, 
+//       'info.json'
+//     );
+    
+//     console.log('📁 Reading from:', infoPath);
+    
+//     // Check if file exists
+//     if (!fs.existsSync(infoPath)) {
+//       console.log('❌ File does not exist:', infoPath);
+//       return null;
+//     }
+    
+//     // Read and parse JSON file
+//     const fileContent = fs.readFileSync(infoPath, 'utf-8');
+//     const infoData = JSON.parse(fileContent);
+    
+//     console.log('✅ Product data loaded');
+    
+//     // Check which images exist
+//     const basePath = `/images/category/${folderName}/product${productNumber}/`;
+//     const images = [];
+    
+//     // Check for images 1.webp to 4.webp
+//     for (let i = 1; i <= 4; i++) {
+//       const imagePath = path.join(
+//         process.cwd(),
+//         'public',
+//         'images',
+//         'category',
+//         folderName,
+//         `product${productNumber}`,
+//         `${i}.webp`
+//       );
+      
+//       if (fs.existsSync(imagePath)) {
+//         images.push(`${basePath}${i}.webp`);
+//         console.log(`🖼️ Found image ${i}: ${basePath}${i}.webp`);
+//       }
+//     }
+    
+//     return {
+//       ...infoData,
+//       images,
+//       categoryName: category,
+//       productNumber
+//     };
+    
+//   } catch (error) {
+//     console.error('💥 Error loading product:', error);
+//     return null;
+//   }
+// }
+
+// export default async function ProductDetailPage({ params }) {
+//   const { category, productId } = await params;
+  
+//   console.log('📌 URL Params:', { category, productId });
+
+//   const product = await getProductData(category, productId);
+  
+//   if (!product) {
+//     console.log('❌ Product not found, showing 404');
+//     notFound();
+//   }
+
+//   const categoryData = categories.find(cat => cat.name === category);
+  
+//   // WhatsApp message
+//   const whatsappMessage = `Hello, I'm interested in this product:%0A%0A📦 *${product.name}*%0A💰 Price: ₹${product.price}%0A🌳 Wood: ${product.woodtype}%0A📏 Size: ${product.size}%0A${product.desc ? `📝 ${product.desc}%0A` : ''}%0APlease provide more details.`;
+
+//   return (
+//     <>
+//       <Navbar />
+      
+//       <div className="product-detail-page">
+//         {/* Debug Banner */}
+//         <div className="debug-banner">
+//           <strong>Images Found:</strong> {product.images?.length || 0} images | 
+//           <strong> Product:</strong> {product.name}
+//         </div>
+
+//         {/* Breadcrumb */}
+//         <div className="product-detail-container">
+//           <div className="product-breadcrumb">
+//             <Link href="/" className="breadcrumb-link">Home</Link>
+//             <span className="breadcrumb-separator">›</span>
+//             <Link href="/products/wooden-doors" className="breadcrumb-link">
+//               Products
+//             </Link>
+//             <span className="breadcrumb-separator">›</span>
+//             <span className="breadcrumb-current">
+//               {categoryData?.displayName || 'Product'}
+//             </span>
+//             <span className="breadcrumb-separator">›</span>
+//             <span className="breadcrumb-current" style={{ fontWeight: '600' }}>
+//               {product.name}
+//             </span>
+//           </div>
+//         </div>
+
+//         {/* Main Content */}
+//         <div className="product-detail-container">
+//           <div className="product-detail-layout">
+//             {/* Left Column - Image Gallery */}
+//             <div>
+//               <div className="image-gallery-section">
+//                 <ProductImages 
+//                   images={product.images} 
+//                   productName={product.name}
+//                 />
+                
+//                 {/* Action Buttons below image */}
+//                 <div className="image-actions-container">
+//                   <a
+//                     href={`https://wa.me/919876543210?text=${whatsappMessage}`}
+//                     target="_blank"
+//                     rel="noopener noreferrer"
+//                     className="image-action-btn btn-primary"
+//                   >
+//                     <span style={{ fontSize: '18px' }}>🛒</span> Buy Now on WhatsApp
+//                   </a>
+                  
+//                   <Link
+//                     href="/products/wooden-doors"
+//                     className="image-action-btn btn-secondary"
+//                   >
+//                     <span style={{ fontSize: '18px' }}>←</span> Back to Products
+//                   </Link>
+//                 </div>
+                
+//                 {/* Image Details */}
+//                 <div className="image-details">
+//                   <div className="details-row">
+//                     <div style={{ flex: 1 }}>
+//                       <p style={{ fontWeight: '500', color: '#333', marginBottom: '8px' }}>
+//                         📸 Image Gallery Features:
+//                       </p>
+//                       <div style={{ fontSize: '13px', color: '#555', lineHeight: '1.5' }}>
+//                         • <strong>Zoom:</strong> Click image for 2x zoom<br/>
+//                         • <strong>Navigation:</strong> Use arrows or click thumbnails<br/>
+//                         • <strong>Preview:</strong> Hover thumbnails for zoom preview<br/>
+//                         • <strong>Pan:</strong> Move mouse when zoomed
+//                       </div>
+//                     </div>
+//                     <div className="image-count-badge">
+//                       {product.images?.length || 0}/4 images
+//                     </div>
+//                   </div>
+//                 </div>
+//               </div>
+//             </div>
+
+//             {/* Right Column - Product Info */}
+//             <div>
+//               <div className="product-info-section">
+//                 {/* Product Title */}
+//                 <h1 className="product-title">
+//                   {product.name}
+//                 </h1>
+                
+//                 {/* Rating & Sales */}
+//                 <div className="rating-section">
+//                   <div className="rating-badge">
+//                     <span>⭐</span>
+//                     <span>{product.rating || '4.5'}</span>
+//                   </div>
+//                   <span className="sales-count">
+//                     🔥 {product.sales || '50'}+ Sold
+//                   </span>
+//                 </div>
+                
+//                 {/* Price */}
+//                 <div className="price-section">
+//                   <div className="price-amount">
+//                     <span className="price-symbol">₹</span>
+//                     <span className="price-value">
+//                       {typeof product.price === 'number' ? product.price.toLocaleString() : product.price}
+//                     </span>
+//                   </div>
+                  
+//                   {product.originalPrice && (
+//                     <div className="price-discount">
+//                       <span className="original-price">
+//                         ₹{typeof product.originalPrice === 'number' ? product.originalPrice.toLocaleString() : product.originalPrice}
+//                       </span>
+//                       <span className="discount-badge">
+//                         {product.discount || '20%'} OFF
+//                       </span>
+//                     </div>
+//                   )}
+                  
+//                   <div className="price-note">
+//                     <span style={{ color: '#388e3c' }}>✅</span> Inclusive of all taxes • Free installation support
+//                   </div>
+//                 </div>
+                
+//                 {/* Offers Section */}
+//                 <div className="offers-section">
+//                   <h2 className="section-title">Special Offers</h2>
+//                   <ul className="offers-list">
+//                     <li className="offer-item">
+//                       <div className="offer-icon">✓</div>
+//                       <div className="offer-content">
+//                         <div className="offer-title">Free Installation</div>
+//                         <div className="offer-description">Professional installation included at no extra cost</div>
+//                       </div>
+//                     </li>
+//                     <li className="offer-item">
+//                       <div className="offer-icon">✓</div>
+//                       <div className="offer-content">
+//                         <div className="offer-title">2-Year Warranty</div>
+//                         <div className="offer-description">Comprehensive warranty on material and workmanship</div>
+//                       </div>
+//                     </li>
+//                     <li className="offer-item">
+//                       <div className="offer-icon">✓</div>
+//                       <div className="offer-content">
+//                         <div className="offer-title">Free Delivery</div>
+//                         <div className="offer-description">Free delivery within city limits</div>
+//                       </div>
+//                     </li>
+//                     <li className="offer-item">
+//                       <div className="offer-icon">✓</div>
+//                       <div className="offer-content">
+//                         <div className="offer-title">Customization Available</div>
+//                         <div className="offer-description">Custom sizes and designs available on request</div>
+//                       </div>
+//                     </li>
+//                   </ul>
+//                 </div>
+                
+//                 {/* Specifications */}
+//                 <div className="specifications-section">
+//                   <h2 className="section-title">Product Specifications</h2>
+//                   <div className="specs-grid">
+//                     <div className="spec-item">
+//                       <div className="spec-label">Wood Type</div>
+//                       <div className="spec-value">{product.woodtype}</div>
+//                     </div>
+//                     <div className="spec-item">
+//                       <div className="spec-label">Size</div>
+//                       <div className="spec-value">{product.size}</div>
+//                     </div>
+//                     <div className="spec-item">
+//                       <div className="spec-label">Category</div>
+//                       <div className="spec-value">
+//                         {categoryData?.displayName || category}
+//                       </div>
+//                     </div>
+//                     <div className="spec-item">
+//                       <div className="spec-label">Product Code</div>
+//                       <div className="spec-value">
+//                         {category?.toUpperCase() || 'PROD'}-{product.productNumber}
+//                       </div>
+//                     </div>
+//                     <div className="spec-item">
+//                       <div className="spec-label">Finish Type</div>
+//                       <div className="spec-value">{product.finish || 'Premium Polish'}</div>
+//                     </div>
+//                     <div className="spec-item">
+//                       <div className="spec-label">Weight</div>
+//                       <div className="spec-value">{product.weight || 'Approx 25-30 kg'}</div>
+//                     </div>
+//                   </div>
+//                 </div>
+                
+//                 {/* Description */}
+//                 {product.desc && (
+//                   <div className="description-section">
+//                     <h2 className="section-title">Description</h2>
+//                     <div className="description-content">
+//                       {product.desc}
+//                     </div>
+//                   </div>
+//                 )}
+                
+//                 {/* Delivery Info */}
+//                 <div className="delivery-info">
+//                   <div className="delivery-header">
+//                     <div className="delivery-icon">🚚</div>
+//                     <div className="delivery-title">Delivery Information</div>
+//                   </div>
+//                   <div className="delivery-details">
+//                     <div className="delivery-date">Delivery in 5-7 working days</div>
+//                     <div className="delivery-note">
+//                       • Free delivery within city<br/>
+//                       • Installation included<br/>
+//                       • Cash on delivery available<br/>
+//                       • Contact for bulk orders
+//                     </div>
+//                   </div>
+//                 </div>
+                
+//                 {/* WhatsApp Contact */}
+//                 <div className="whatsapp-contact">
+//                   <h3><span>💬</span> Need Help? WhatsApp Us</h3>
+//                   <p>Get instant assistance for queries, customization, or bulk orders</p>
+//                 </div>
+//               </div>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//     </>
+//   );
+// }
+
+// // Generate static paths
+// export async function generateStaticParams() {
+//   console.log('🔧 Generating static params');
+  
+//   const categories = [
+//     'woodenDoor',
+//     'woodenFrame',
+//     'safetyDoors',
+//     'woodenBed',
+//     'woodenMandir',
+//     'woodenWindow',
+//     'woodenArt',
+//     'sofaChair'
+//   ];
+  
+//   const params = [];
+  
+//   // Generate first 5 products for each category
+//   for (const category of categories) {
+//     for (let i = 1; i <= 5; i++) {
+//       params.push({
+//         category,
+//         productId: `product${i}`
+//       });
+//     }
+//   }
+  
+//   console.log(`Generated ${params.length} static paths`);
+//   return params;
+// }
+
+// // Optional: Add revalidation
+// export const revalidate = 60; // Revalidate every 60 seconds
+
+
+
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 import fs from 'fs';
 import path from 'path';
-import '../../wooden-doors/products-styles.css';
-import '../../wooden-doors/product-detail-styles.css'; // ✅ Import new CSS
+import '../../wooden-doors/product-view-flipkart.css';
 import { categories } from '@/utils/productData';
 import ProductImages from './ProductImages';
 import Navbar from '@/components/Navbar';
@@ -4817,189 +5555,272 @@ export default async function ProductDetailPage({ params }) {
 
   const categoryData = categories.find(cat => cat.name === category);
   
-  // WhatsApp message
-  const whatsappMessage = `Hello, I'm interested in this product:%0A%0A📦 *${product.name}*%0A💰 Price: ₹${product.price}%0A🌳 Wood: ${product.woodtype}%0A📏 Size: ${product.size}%0A${product.desc ? `📝 ${product.desc}%0A` : ''}%0APlease provide more details.`;
+  // WhatsApp message using ONLY info.json data
+  const whatsappMessage = `Hello, I'm interested in this product:%0A%0A📦 *${product.name}*%0A💰 Price: ₹${product.price}%0A${product.woodtype ? `🌳 Wood: ${product.woodtype}%0A` : ''}${product.size ? `📏 Size: ${product.size}%0A` : ''}${product.desc ? `📝 ${product.desc}%0A` : ''}%0APlease provide more details.`;
 
   return (
     <>
-
-
-
-    <Navbar />
-    <div className="product-detail-page"> {/* ✅ Changed class */}
-      {/* Debug Banner */}
-      <div className="debug-banner"> {/* ✅ Changed class */}
-        <strong>Images Found:</strong> {product.images?.length || 0} images | 
-        <strong> Product:</strong> {product.name}
-      </div>
-
-      {/* Breadcrumb */}
-      <div className="product-detail-container"> {/* ✅ Changed class */}
-        <div className="product-breadcrumb"> {/* ✅ Changed class */}
-          <Link href="/" className="breadcrumb-link">Home</Link> {/* ✅ Changed class */}
-          <span className="breadcrumb-separator">›</span> {/* ✅ Changed class */}
-          <Link href="/products/wooden-doors" className="breadcrumb-link"> {/* ✅ Changed class */}
-            Products
-          </Link>
-          <span className="breadcrumb-separator">›</span> {/* ✅ Changed class */}
-          <span className="breadcrumb-current"> {/* ✅ Changed class */}
-            {categoryData?.displayName || 'Product'}
-          </span>
-          <span className="breadcrumb-separator">›</span> {/* ✅ Changed class */}
-          <span className="breadcrumb-current" style={{ fontWeight: '600' }}> {/* ✅ Changed class */}
-            {product.name}
-          </span>
+      <Navbar />
+      
+      <div className="product-detail-page">
+        {/* Debug Banner */}
+        <div className="debug-banner">
+          <strong>Images Found:</strong> {product.images?.length || 0} images | 
+          <strong> Product:</strong> {product.name}
         </div>
-      </div>
 
-      {/* Main Content */}
-      <div className="product-detail-container"> {/* ✅ Changed class */}
-        <div className="product-detail-layout"> {/* ✅ Changed class */}
-          {/* Left Column - Images Gallery */}
-          <div>
-            <div className="image-gallery-section"> {/* ✅ Changed class */}
-              <h3 className="gallery-title"> {/* ✅ Changed class */}
-                <span>🖼️</span> Product Gallery ({product.images?.length || 0} images)
-              </h3>
-              
-              {/* ✅ Use the ProductImages Component */}
-              <ProductImages 
-                images={product.images} 
-                productName={product.name}
-              />
-              
-              {/* Image Details */}
-              <div className="image-details"> {/* ✅ Changed class */}
-                <div className="details-row"> {/* ✅ Changed class */}
-                  <div>
-                    <span style={{ fontWeight: '500', color: '#333' }}>View Options:</span>
-                    <div style={{ marginTop: '5px', fontSize: '13px' }}>
-                      • Click thumbnails to switch views
-                      <br/>• Use arrows for navigation
-                      <br/>• Shows all available angles
+        {/* Breadcrumb */}
+        <div className="product-detail-container">
+          <div className="product-breadcrumb">
+            <Link href="/" className="breadcrumb-link">Home</Link>
+            <span className="breadcrumb-separator">›</span>
+            <Link href="/products/wooden-doors" className="breadcrumb-link">
+              Products
+            </Link>
+            <span className="breadcrumb-separator">›</span>
+            <span className="breadcrumb-current">
+              {categoryData?.displayName || 'Product'}
+            </span>
+            <span className="breadcrumb-separator">›</span>
+            <span className="breadcrumb-current" style={{ fontWeight: '600' }}>
+              {product.name}
+            </span>
+          </div>
+        </div>
+
+        {/* Main Content */}
+        <div className="product-detail-container">
+          <div className="product-detail-layout">
+            {/* Left Column - Image Gallery */}
+            <div>
+              <div className="image-gallery-section">
+                <ProductImages 
+                  images={product.images} 
+                  productName={product.name}
+                />
+                
+                {/* Action Buttons below image */}
+                <div className="image-actions-container">
+                  <a
+                    href={`https://wa.me/919876543210?text=${whatsappMessage}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="image-action-btn btn-primary"
+                  >
+                    <span style={{ fontSize: '18px' }}>🛒</span> Buy Now on WhatsApp
+                  </a>
+                  
+                  <Link
+                    href="/products/wooden-doors"
+                    className="image-action-btn btn-secondary"
+                  >
+                    <span style={{ fontSize: '18px' }}>←</span> Back to Products
+                  </Link>
+                </div>
+                
+                {/* Image Details */}
+                <div className="image-details">
+                  <div className="details-row">
+                    <div style={{ flex: 1 }}>
+                      <p style={{ fontWeight: '500', color: '#333', marginBottom: '8px' }}>
+                        📸 Image Gallery Features:
+                      </p>
+                      <div style={{ fontSize: '13px', color: '#555', lineHeight: '1.5' }}>
+                        • <strong>Zoom:</strong> Hover image for zoom preview<br/>
+                        • <strong>Navigation:</strong> Use arrows or click thumbnails<br/>
+                        • <strong>Click thumbnails:</strong> Switch between different views
+                      </div>
                     </div>
-                  </div>
-                  <div className="image-count-badge"> {/* ✅ Changed class */}
-                    {product.images?.length || 0}/4 photos
+                    <div className="image-count-badge">
+                      {product.images?.length || 0}/4 images
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          {/* Right Column - Product Info */}
-          <div>
-            <div className="product-info-section"> {/* ✅ Changed class */}
-              {/* Product Title */}
-              <h1 className="product-title"> {/* ✅ Changed class */}
-                {product.name}
-              </h1>
-              
-              {/* Rating */}
-              {product.rating && (
-                <div className="rating-section"> {/* ✅ Changed class */}
-                  <div className="rating-badge"> {/* ✅ Changed class */}
-                    <span>⭐</span>
-                    <span>{product.rating}</span>
+            {/* Right Column - Product Info */}
+            <div>
+              <div className="product-info-section">
+                {/* Product Title */}
+                <h1 className="product-title">
+                  {product.name}
+                </h1>
+                
+                {/* Rating & Sales - ONLY if exists in JSON */}
+                {product.rating && (
+                  <div className="rating-section">
+                    <div className="rating-badge">
+                      <span>⭐</span>
+                      <span>{product.rating}</span>
+                    </div>
+                    {product.sales && (
+                      <span className="sales-count">
+                        🔥 {product.sales}+ Sold
+                      </span>
+                    )}
                   </div>
-                  {product.sales > 0 && (
-                    <span className="sales-count"> {/* ✅ Changed class */}
-                      🔥 {product.sales}+ Sold
+                )}
+                
+                {/* Price */}
+                <div className="price-section">
+                  <div className="price-amount">
+                    <span className="price-symbol">₹</span>
+                    <span className="price-value">
+                      {typeof product.price === 'number' ? product.price.toLocaleString() : product.price}
                     </span>
+                  </div>
+                  
+                  {/* Original Price and Discount - ONLY if exists in JSON */}
+                  {product.originalPrice && product.discount && (
+                    <div className="price-discount">
+                      <span className="original-price">
+                        ₹{typeof product.originalPrice === 'number' ? product.originalPrice.toLocaleString() : product.originalPrice}
+                      </span>
+                      <span className="discount-badge">
+                        {product.discount} OFF
+                      </span>
+                    </div>
+                  )}
+                  
+                  {/* Price Note - ONLY if exists in JSON */}
+                  {product.priceNote && (
+                    <div className="price-note">
+                      <span style={{ color: '#388e3c' }}>✅</span> {product.priceNote}
+                    </div>
                   )}
                 </div>
-              )}
-              
-              {/* Price */}
-              <div className="price-section"> {/* ✅ Changed class */}
-                <div className="price-amount"> {/* ✅ Changed class */}
-                  <span className="price-symbol">₹</span> {/* ✅ Changed class */}
-                  <span className="price-value"> {/* ✅ Changed class */}
-                    {typeof product.price === 'number' ? product.price.toLocaleString() : product.price}
-                  </span>
-                </div>
-                <div className="price-note"> {/* ✅ Changed class */}
-                  Inclusive of all taxes • Free installation support
-                </div>
-              </div>
-              
-              {/* Specifications */}
-              <div className="specifications-section"> {/* ✅ Changed class */}
-                <h2 className="section-title"> {/* ✅ Changed class */}
-                  Product Specifications
-                </h2>
-                <div className="specs-grid"> {/* ✅ Changed class */}
-                  <div className="spec-item"> {/* ✅ Changed class */}
-                    <div className="spec-label">Wood Type</div> {/* ✅ Changed class */}
-                    <div className="spec-value">{product.woodtype}</div> {/* ✅ Changed class */}
-                  </div>
-                  <div className="spec-item"> {/* ✅ Changed class */}
-                    <div className="spec-label">Size</div> {/* ✅ Changed class */}
-                    <div className="spec-value">{product.size}</div> {/* ✅ Changed class */}
-                  </div>
-                  <div className="spec-item"> {/* ✅ Changed class */}
-                    <div className="spec-label">Category</div> {/* ✅ Changed class */}
-                    <div className="spec-value"> {/* ✅ Changed class */}
-                      {categoryData?.displayName || category}
-                    </div>
-                  </div>
-                  <div className="spec-item"> {/* ✅ Changed class */}
-                    <div className="spec-label">Product Code</div> {/* ✅ Changed class */}
-                    <div className="spec-value"> {/* ✅ Changed class */}
-                      {category?.toUpperCase() || 'PROD'}-{product.productNumber}
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              {/* Description */}
-              {product.desc && (
-                <div className="description-section"> {/* ✅ Changed class */}
-                  <h2 className="section-title"> {/* ✅ Changed class */}
-                    Description
-                  </h2>
-                  <div className="description-content"> {/* ✅ Changed class */}
-                    {product.desc}
-                  </div>
-                </div>
-              )}
-              
-              {/* Action Buttons */}
-              <div className="action-buttons"> {/* ✅ Changed class */}
-                <a
-                  href={`https://wa.me/919876543210?text=${whatsappMessage}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="whatsapp-button" /* ✅ Changed class */
-                >
-                  <span>🛒</span> Buy Now on WhatsApp
-                </a>
                 
-                <Link
-                  href="/products/wooden-doors"
-                  className="back-button" /* ✅ Changed class */
-                >
-                  ← Back to Products
-                </Link>
-              </div>
-              
-              {/* Additional Info */}
-              <div className="additional-info"> {/* ✅ Changed class */}
-                <p className="info-item"> {/* ✅ Changed class */}
-                  <strong>✅ Guarantee:</strong> 100% quality checked | 2-year warranty
-                </p>
-                <p className="info-item"> {/* ✅ Changed class */}
-                  <strong>🚚 Delivery:</strong> Free delivery in city | 5-7 days
-                </p>
-                <p className="info-item"> {/* ✅ Changed class */}
-                  <strong>🛠️ Installation:</strong> Free professional installation included
-                </p>
+                {/* Specifications - ONLY if exists in JSON */}
+                {(product.woodtype || product.size || product.color || product.material || product.finish || product.weight || product.dimensions) && (
+                  <div className="specifications-section">
+                    <h2 className="section-title">Product Specifications</h2>
+                    <div className="specs-grid">
+                      {product.woodtype && (
+                        <div className="spec-item">
+                          <div className="spec-label">Wood Type</div>
+                          <div className="spec-value">{product.woodtype}</div>
+                        </div>
+                      )}
+                      {product.size && (
+                        <div className="spec-item">
+                          <div className="spec-label">Size</div>
+                          <div className="spec-value">{product.size}</div>
+                        </div>
+                      )}
+                      {product.color && (
+                        <div className="spec-item">
+                          <div className="spec-label">Color</div>
+                          <div className="spec-value">{product.color}</div>
+                        </div>
+                      )}
+                      {product.material && (
+                        <div className="spec-item">
+                          <div className="spec-label">Material</div>
+                          <div className="spec-value">{product.material}</div>
+                        </div>
+                      )}
+                      {product.finish && (
+                        <div className="spec-item">
+                          <div className="spec-label">Finish</div>
+                          <div className="spec-value">{product.finish}</div>
+                        </div>
+                      )}
+                      {product.weight && (
+                        <div className="spec-item">
+                          <div className="spec-label">Weight</div>
+                          <div className="spec-value">{product.weight}</div>
+                        </div>
+                      )}
+                      {product.dimensions && (
+                        <div className="spec-item">
+                          <div className="spec-label">Dimensions</div>
+                          <div className="spec-value">{product.dimensions}</div>
+                        </div>
+                      )}
+                      {/* Category and Product Code - Always show */}
+                      <div className="spec-item">
+                        <div className="spec-label">Category</div>
+                        <div className="spec-value">
+                          {categoryData?.displayName || category}
+                        </div>
+                      </div>
+                      <div className="spec-item">
+                        <div className="spec-label">Product Code</div>
+                        <div className="spec-value">
+                          {category?.toUpperCase() || 'PROD'}-{product.productNumber}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+                
+                {/* Description - ONLY if exists in JSON */}
+                {product.desc && (
+                  <div className="description-section">
+                    <h2 className="section-title">Description</h2>
+                    <div className="description-content">
+                      {product.desc}
+                    </div>
+                  </div>
+                )}
+                
+                {/* Features - ONLY if exists in JSON */}
+                {product.features && Array.isArray(product.features) && product.features.length > 0 && (
+                  <div className="offers-section">
+                    <h2 className="section-title">Features</h2>
+                    <ul className="offers-list">
+                      {product.features.map((feature, index) => (
+                        <li key={index} className="offer-item">
+                          <div className="offer-icon">✓</div>
+                          <div className="offer-content">
+                            <div className="offer-description">{feature}</div>
+                          </div>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+                
+                {/* Delivery Info - ONLY if exists in JSON */}
+                {(product.deliveryTime || product.deliveryInfo || product.warranty || product.installation) && (
+                  <div className="delivery-info">
+                    <div className="delivery-header">
+                      <div className="delivery-icon">🚚</div>
+                      <div className="delivery-title">Delivery & Warranty</div>
+                    </div>
+                    <div className="delivery-details">
+                      {product.deliveryTime && (
+                        <div className="delivery-date">{product.deliveryTime}</div>
+                      )}
+                      <div className="delivery-note">
+                        {product.deliveryInfo && <>{product.deliveryInfo}<br/></>}
+                        {product.warranty && <>{product.warranty}<br/></>}
+                        {product.installation && <>{product.installation}</>}
+                      </div>
+                    </div>
+                  </div>
+                )}
+                
+                {/* Additional Notes - ONLY if exists in JSON */}
+                {product.notes && (
+                  <div className="additional-info" style={{ marginTop: '20px' }}>
+                    <p className="info-item">
+                      <strong>📝 Note:</strong> {product.notes}
+                    </p>
+                  </div>
+                )}
+                
+                {/* WhatsApp Contact - ALWAYS show */}
+                <div className="whatsapp-contact">
+                  <h3><span>💬</span> Need Help? WhatsApp Us</h3>
+                  <p>Get instant assistance for queries, customization, or bulk orders</p>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
     </>
   );
 }
@@ -5037,5 +5858,3 @@ export async function generateStaticParams() {
 
 // Optional: Add revalidation
 export const revalidate = 60; // Revalidate every 60 seconds
-
-

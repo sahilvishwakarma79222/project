@@ -1,9 +1,29 @@
 {
-  "name": "name70 Wood Doors",
-  "price": 70000,
-  "desc": "this is 70 good wood",
-  "woodtype": "70 Wood",
-  "size": "50 x 30",
-  "rating": 4.5,
-  "sales": 70
+  "name": "zzzSolid232323 Teak Wood Door",
+  "price": 770000,
+  "originalPrice": 777000,
+  "discount": "z161%",
+  "woodtype": "zSolid Teak Wood",
+  "size": "z7ft x 3ft",
+  "color": "zNatural Wood Finish",
+  "material": "zSolid Wood",
+  "finish": "zPremium Polish",
+  "weight": "z25-30 kg",
+  "dimensions": "z84\" x 36\" x 2\"",
+  "desc": "zPremium quality solid teak wood door with intricate carvings. Handcrafted by skilled artisans using traditional techniques.",
+  "rating": 7.5,
+  "sales": 770,
+  "priceNote": "zInclusive of all taxes • Free installation support",
+  "features": [
+    "z100% Solid Teak Wood",
+    "Hand Carved Design",
+    "zPremium Polish Finish",
+    "zTzermite Resistant",
+    "zWeather Proof"
+  ],
+  "deliveryTime": "zDelivery in 5-7 working days",
+  "deliveryInfo": "zFree delivery within city • Installation included",
+  "warranty": "z2-year warranty on material and workmanship",
+  "installation": "zProfessional installation included",
+  "notes": "zCustom sizes available on request"
 }
