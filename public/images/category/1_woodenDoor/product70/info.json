@@ -1,9 +1,9 @@
 {
-  "name": "name1 Wood Doors",
-  "price": 1000,
-  "desc": "this is good wood",
-  "woodtype": "Teak Wood",
+  "name": "name70 Wood Doors",
+  "price": 70000,
+  "desc": "this is 70 good wood",
+  "woodtype": "70 Wood",
   "size": "50 x 30",
   "rating": 4.5,
-  "sales": 30
+  "sales": 70
 }

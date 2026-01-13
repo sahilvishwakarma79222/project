@@ -3229,6 +3229,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import './products-styles.css';
 import { categories, getProductsByCategory, getActualProductCount, clearProductCountCache, clearProductInfoCache } from '@/utils/productData';
+import Navbar from '@/components/Navbar';
 
 const StarIcon = ({ filled }) => (
   <svg width="14" height="14" viewBox="0 0 24 24" fill={filled ? "#ffa41c" : "none"} stroke="#ffa41c" strokeWidth="2">
@@ -3413,13 +3414,16 @@ export default function ProductsPage() {
   const activeCategoryData = categories.find(cat => cat.name === activeCategory);
 
   return (
+
+    <>
+    < Navbar />
     <div className="wood-products-page">
       {/* Hero Banner */}
       <div className="wood-hero-section">
         <div className="wood-container">
-          <h1 className="wood-hero-title">Premium Wooden Products</h1>
+          <h1 className="wood-hero-title"></h1>
           <p className="wood-hero-subtitle">
-            Handcrafted with precision | 100% Quality Assurance | Free Installation Support
+            {/* Handcrafted with precision | 100% Quality Assurance | Free Installation Support */}
           </p>
         </div>
       </div>
@@ -3705,5 +3709,6 @@ export default function ProductsPage() {
         </div>
       </div>
     </div>
+    </>
   );
 }

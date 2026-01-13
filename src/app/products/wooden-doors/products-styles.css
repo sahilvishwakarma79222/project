@@ -884,3 +884,31 @@
     font-size: 14px;
   }
 }
+
+
+/* Add these styles at the end of products-styles.css */
+
+/* WhatsApp Button Hover Effects */
+.whatsapp-button {
+  transition: all 0.2s ease !important;
+}
+
+.whatsapp-button:hover {
+  opacity: 0.9 !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3) !important;
+}
+
+.whatsapp-button:active {
+  transform: translateY(0) !important;
+}
+
+/* Back Button Hover Effects */
+.back-button {
+  transition: all 0.2s ease !important;
+}
+
+.back-button:hover {
+  background: #e3e6e6 !important;
+  border-color: #a2a6ac !important;
+}
