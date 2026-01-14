@@ -912,3 +912,220 @@
   background: #e3e6e6 !important;
   border-color: #a2a6ac !important;
 }
+
+/* Add these to the end of your existing CSS file */
+
+/* ========== PERFORMANCE OPTIMIZATIONS ========== */
+
+/* Optimize image rendering */
+.wood-product-image img {
+  will-change: transform, opacity;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  backface-visibility: hidden;
+}
+
+/* Optimize animations and transitions */
+.wood-product-card {
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  contain: layout style paint;
+}
+
+/* Content visibility for better performance */
+.wood-products-grid {
+  content-visibility: auto;
+  contain-intrinsic-size: 400px;
+}
+
+.wood-categories-list {
+  content-visibility: auto;
+  contain-intrinsic-size: 300px;
+}
+
+/* Optimize loading states */
+.wood-loading-image {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%) !important;
+  background-size: 200% 100% !important;
+  animation: loading-shimmer 1.5s infinite linear !important;
+}
+
+@keyframes loading-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Optimize scrolling performance */
+.wood-products-page {
+  overflow-anchor: none;
+}
+
+/* Reduce paint operations */
+.wood-product-card,
+.wood-sidebar-card {
+  isolation: isolate;
+}
+
+/* Optimize hover effects */
+@media (hover: hover) {
+  .wood-product-card:hover {
+    z-index: 1;
+  }
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Optimize font rendering */
+.wood-products-page {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Optimize image placeholders */
+.wood-image-placeholder {
+  will-change: opacity;
+  transition: opacity 0.3s ease;
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .wood-product-card,
+  .wood-category-btn,
+  .wood-pagination-btn,
+  .wood-buy-button {
+    transition: none !important;
+    animation: none !important;
+  }
+  
+  .wood-product-card:hover {
+    transform: none !important;
+  }
+  
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Optimize for high DPI screens */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .wood-product-image {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
+
+/* Optimize for print */
+@media print {
+  .wood-hero-section,
+  .wood-sidebar,
+  .wood-buy-button,
+  .wood-whatsapp-help,
+  .wood-pagination {
+    display: none !important;
+  }
+  
+  .wood-product-card {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+}
+
+/* Optimize for mobile touch devices */
+@media (hover: none) and (pointer: coarse) {
+  .wood-category-btn,
+  .wood-page-number,
+  .wood-pagination-btn {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  .wood-buy-button {
+    padding: 12px 16px;
+  }
+}
+
+/* Optimize for dark mode */
+@media (prefers-color-scheme: dark) {
+  .wood-products-page {
+    background: #0f1111;
+    color: #ffffff;
+  }
+  
+  .wood-product-card {
+    background: #1a1a1a;
+    border-color: #333;
+  }
+  
+  .wood-category-header,
+  .wood-sidebar-card {
+    background: #1a1a1a;
+    border-color: #333;
+  }
+  
+  .wood-product-title,
+  .wood-category-title,
+  .wood-sidebar-title {
+    color: #ffffff;
+  }
+  
+  .wood-product-count,
+  .wood-product-description {
+    color: #a0a0a0;
+  }
+}
+
+/* Optimize grid layout for different screen sizes */
+@media (max-width: 1400px) {
+  .wood-products-grid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .wood-products-grid {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 12px;
+  }
+  
+  .wood-product-image {
+    height: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .wood-products-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+  
+  .wood-product-image {
+    height: 160px;
+  }
+}
+
+/* Optimize loading skeleton count */
+@media (max-width: 768px) {
+  .wood-products-grid .wood-product-card:nth-child(n+7) {
+    display: none;
+  }
+}
+
+/* Optimize for landscape orientation */
+@media (max-height: 600px) and (orientation: landscape) {
+  .wood-product-image {
+    height: 180px;
+  }
+  
+  .wood-products-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+}
