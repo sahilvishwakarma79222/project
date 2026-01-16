@@ -8,7 +8,7 @@
 }
 
 .product-detail-container {
-  max-width: 1300px;
+  max-width: 1500px;
   margin: 0 auto;
   padding: 0 12px;
 }
@@ -23,12 +23,12 @@
 /* Desktop Layout */
 @media (min-width: 1025px) {
   .product-detail-layout > div:first-child {
-    flex: 0 0 52%;
+    flex: 0 0 40%;
     min-width: 300px;
   }
   
   .product-detail-layout > div:last-child {
-    flex: 0 0 44%;
+    flex: 0 0 58%;
     min-width: 300px;
   }
 }
@@ -1671,8 +1671,8 @@
 }
 
 .zoomed-image-container {
-  width: 400px;
-  height: 400px;
+  width: 700px;
+  height: 80dvh;
   border: 1px solid #f0f0f0;
   border-radius: 8px;
   overflow: hidden;

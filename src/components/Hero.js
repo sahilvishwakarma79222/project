@@ -435,8 +435,11 @@ import 'swiper/css'
 import 'swiper/css/effect-fade'
 import 'swiper/css/navigation'
 import 'swiper/css/parallax'
+import { useRouter } from 'next/navigation'
 
 export default function Hero() {
+  const router = useRouter()
+
   const [displayText, setDisplayText] = useState('')
   const [currentStat, setCurrentStat] = useState({ categories: 0, customers: 0, experience: 0 })
   const [isVisible, setIsVisible] = useState(false)
@@ -635,7 +638,7 @@ export default function Hero() {
           <div className="cta-container">
             <button
               className="cta-button premium-cta pulse-animation"
-              onClick={scrollToCategories}
+              onClick={()=>{router.push('products/wooden-doors?category=woodenDoor')}}
             >
               <span className="cta-text">Explore Collection <i className="fas fa-arrow-right"></i></span>
               <div className="cta-icon">
