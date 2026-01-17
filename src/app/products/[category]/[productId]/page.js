@@ -360,7 +360,7 @@ export default async function ProductDetailPage({ params, searchParams }) {
                 {/* Price Note - ONLY if exists in JSON */}
                 {product.priceNote && (
                   <div className="price-note" style={{ marginBottom: '15px' }}>
-                    <span style={{ color: '#388e3c' }}>✅</span> {product.priceNote}
+                    <span className="price-note-circle">•</span> {product.priceNote}
                   </div>
                 )}
                 
