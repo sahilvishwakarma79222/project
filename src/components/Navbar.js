@@ -180,31 +180,28 @@ const menuData = {
         <div className="nav-container">
          
           <div className="nav-logo">
-            <Link href="/" className="logo" onClick={handleLinkClick}>
-              <div className="logo-horizontal">
-                <img
-                  src="/images/logo/3.png"
-                  alt="Wood Arts Logo"
-                  className="logo-img logo-img-1"
-                  width="70"
-                  height="70"
-                />
+  <Link href="/" className="logo" onClick={handleLinkClick}>
+    <div className="logo-horizontal">
+      <img
+        src="/images/logo/3.png"
+        alt="Wood Arts Logo"
+        className="logo-img logo-img-1"
+        width="70"
+        height="70"
+      />
 
-                <div className="logo-text-wrapper">
-                  <img
-                    src="/images/logo/2.png"
-                    alt="Wood Arts Logo Symbol"
-                    className="logo-img logo-img-2"
-                    width="65"
-                    height="58"
-                  />
-                  <span className="logo-text">
-                    Wood Arts
-                  </span>
-                </div>
-              </div>
-            </Link>
-          </div>
+      <div className="logo-text-wrapper">
+        <img
+          src="/images/logo/2.png"
+          alt="Wood Arts Logo Symbol"
+          className="logo-img logo-img-2"
+          width="70"
+          height="63"
+        />
+      </div>
+    </div>
+  </Link>
+</div>
 
           {/* Navigation Menu - Hidden on Mobile */}
           <div className="nav-menu">
