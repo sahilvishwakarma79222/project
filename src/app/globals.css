@@ -2609,6 +2609,9 @@ body {
 
 /* Responsive */
 @media (max-width: 768px) {
+  .showcase-container {
+    flex-direction: column;
+  }
 
   .showcase-content,
   .showcase-slider {
