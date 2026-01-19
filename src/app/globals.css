@@ -2589,47 +2589,12 @@ body {
   display: flex;
   gap: 16px;
   width: max-content;
-  animation: scroll-left 30s linear infinite;
+  animation: scroll-left 70s linear infinite;
 }
 
 /* Pause on hover (optional) */
 .scroll-content:hover {
   animation-play-state: paused;
-}
-
-.material-card {
-  min-width: 220px;
-  background: #fff;
-  border-radius: 12px;
-  padding: 12px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-  flex-shrink: 0;
-}
-
-.material-category {
-  font-size: 12px;
-  font-weight: 600;
-  color: #999;
-  margin-bottom: 8px;
-}
-
-.material-image-wrapper {
-  width: 100%;
-  height: 140px;
-  overflow: hidden;
-  border-radius: 8px;
-}
-
-.material-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.material-name {
-  margin-top: 10px;
-  font-size: 16px;
-  font-weight: 600;
 }
 
 /* Infinite animation */
@@ -2644,9 +2609,6 @@ body {
 
 /* Responsive */
 @media (max-width: 768px) {
-  .showcase-container {
-    flex-direction: column;
-  }
 
   .showcase-content,
   .showcase-slider {
