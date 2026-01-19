@@ -6,83 +6,32 @@
 // import 'swiper/css/effect-fade'
 // import 'swiper/css/navigation'
 // import 'swiper/css/parallax'
+// import { useRouter } from 'next/navigation'
+// import './hero.css'  // या global.css में डालें
 
 // export default function Hero() {
+//   const router = useRouter()
+
 //   const [displayText, setDisplayText] = useState('')
 //   const [currentStat, setCurrentStat] = useState({ categories: 0, customers: 0, experience: 0 })
 //   const [isVisible, setIsVisible] = useState(false)
-//   const [currentDescription, setCurrentDescription] = useState(0) // 0 for English, 1 for Hindi
 //   const statsRef = useRef(null)
-//   const typewriterRef = useRef(null)
-
-//   // Texts for typewriter
-//   const englishText = "Sagwan Doors & Frames"
-//   const hindiText = "सागवान दरवाज़े व चौखटें"
-
-//   // SLOWER TIMING FOR BETTER VISIBILITY
-//   const typeSpeed = 150 // Slower typing
-//   const eraseSpeed = 80 // Slower erasing
-//   const pauseTime = 3000 // Longer pause
-
-//   // Description texts in both languages
-//   const descriptions = [
-//     {
-//       id: 0,
-//       text: "We create <span class='highlight-text'>finely crafted sagwan doors</span> using traditional handwork and modern CNC 2D/3D design — bringing <span class='highlight-text'>natural elegance</span> to every home.",
-//       language: "en"
-//     },
-//     {
-//       id: 1,
-//       text: "हम <span class='highlight-text'>हाथ की कारीगरी</span> और आधुनिक CNC 2D/3D डिज़ाइन के साथ सागवान के दरवाज़े बनाते हैं, जो हर घर में <span class='highlight-text'>प्राकृतिक सुंदरता</span> जोड़ते हैं।",
-//       language: "hi"
-//     }
-//   ]
+//   const fullText = "Wooden Doors & Windows"
+//   const typeSpeed = 100
+//   const eraseSpeed = 50
+//   const pauseTime = 2000
 
 //   useEffect(() => {
 //     // Start animations
 //     setIsVisible(true)
-//     setupIntersectionObserver()
-
-//     // Start typewriter
 //     startTypewriter()
-
-//     // Start description rotation - LONGER INTERVAL
-//     const descriptionInterval = setInterval(() => {
-//       setCurrentDescription(prev => (prev === 0 ? 1 : 0))
-//     }, 6000) // Change every 6 seconds (doubled)
-
-//     return () => {
-//       clearInterval(descriptionInterval)
-//       if (typewriterRef.current) {
-//         clearTimeout(typewriterRef.current)
-//       }
-//     }
+//     setupIntersectionObserver()
 //   }, [])
 
-//   // Jab description change ho, typewriter bhi change ho
-//   useEffect(() => {
-//     if (typewriterRef.current) {
-//       clearTimeout(typewriterRef.current)
-//     }
 
-//     // Jab description change ho, typewriter reset karo aur naye text ke saath start karo
-//     const currentFullText = currentDescription === 0 ? englishText : hindiText
-//     setDisplayText('') // Pehle text clear karo
 
-//     // Thoda delay ke baad naya text start karo
-//     typewriterRef.current = setTimeout(() => {
-//       startTypewriterForLanguage(currentDescription)
-//     }, 500) // Increased delay
-
-//   }, [currentDescription])
-
+  
 //   const startTypewriter = () => {
-//     // Pehle English se start karo
-//     startTypewriterForLanguage(0)
-//   }
-
-//   const startTypewriterForLanguage = (languageIndex) => {
-//     const fullText = languageIndex === 0 ? englishText : hindiText
 //     let currentIndex = 0
 //     let isDeleting = false
 //     let currentText = ''
@@ -101,19 +50,14 @@
 //       let typeDelay = isDeleting ? eraseSpeed : typeSpeed
 
 //       if (!isDeleting && currentText === fullText) {
-//         // Typing complete, pause - LONGER PAUSE
 //         typeDelay = pauseTime
 //         isDeleting = true
 //       } else if (isDeleting && currentText === '') {
-//         // Deleting complete, wait for description to change
-//         // DON'T restart automatically - wait for description change
 //         isDeleting = false
 //         currentIndex = 0
-//         // Description automatically changes via interval, so we wait
-//         return
 //       }
 
-//       typewriterRef.current = setTimeout(type, typeDelay)
+//       setTimeout(type, typeDelay)
 //     }
 
 //     type()
@@ -148,16 +92,16 @@
 //     const customersStep = 1000 / steps
 
 //     let experienceCount = 0
-//     const experienceStep = 15 / steps
+//     const experienceStep = 28 / steps
 
 //     const counterInterval = setInterval(() => {
 //       categoriesCount += categoriesStep
 //       customersCount += customersStep
 //       experienceCount += experienceStep
 
-//       if (categoriesCount >= 50) categoriesCount = 50
+//       if (categoriesCount >= 8) categoriesCount = 8
 //       if (customersCount >= 1000) customersCount = 1000
-//       if (experienceCount >= 15) experienceCount = 15
+//       if (experienceCount >= 15) experienceCount = 28
 
 //       setCurrentStat({
 //         categories: Math.floor(categoriesCount),
@@ -165,7 +109,7 @@
 //         experience: Math.floor(experienceCount)
 //       })
 
-//       if (categoriesCount >= 50 && customersCount >= 1000 && experienceCount >= 15) {
+//       if (categoriesCount >= 8 && customersCount >= 1000 && experienceCount >= 15) {
 //         clearInterval(counterInterval)
 //       }
 //     }, stepDuration)
@@ -249,8 +193,7 @@
 //       <div className="hero-container">
 //         {/* Left Side - Premium Content */}
 //         <div className="hero-content">
-
-//           {/* Main Heading with Typewriter */}
+//           {/* Main Heading with Gradient */}
 //           <div className="hero-heading">
 //             <h1 className="typewriter-text">
 //               {displayText}
@@ -259,27 +202,22 @@
 //             <div className="heading-glow"></div>
 //           </div>
 
-//           {/* Premium Description with Language Rotation */}
-//           <div className="description-container">
-//             <p
-//               className="fade-in-text premium-description"
-//               key={currentDescription}
-//               dangerouslySetInnerHTML={{
-//                 __html: descriptions[currentDescription].text
-//               }}
-//             />
-//           </div>
+//           {/* Premium Description */}
+//           <p className="fade-in-text premium-description">
+//             Crafting <span className="highlight-text">timeless elegance</span> with India's finest wooden doors.
+//             Experience unparalleled craftsmanship with <span className="highlight-text">50+ specialized categories</span>
+//             of premium doors and windows.
+//           </p>
 
 //           {/* Premium CTA Button */}
 //           <div className="cta-container">
 //             <button
 //               className="cta-button premium-cta pulse-animation"
-//               onClick={scrollToCategories}
+//               onClick={()=>{router.push('products/wooden-doors?category=woodenDoor')}}
 //             >
-//               <span className="cta-text">
-//                 Explore Collection <i className="fas fa-arrow-right"></i>
-//               </span>
-//               <div className="cta-icon"></div>
+//               <span className="cta-text">Explore Collection <i className="fas fa-arrow-right"></i></span>
+//               <div className="cta-icon">
+//               </div>
 //               <div className="cta-glow"></div>
 //             </button>
 //           </div>
@@ -293,9 +231,7 @@
 //               <span className="hero-stat-number count-animation">
 //                 {currentStat.categories}+
 //               </span>
-//               <div className="hero-stat-label">
-//                 Premium Categories
-//               </div>
+//               <div className="hero-stat-label">Premium Categories</div>
 //             </div>
 //             <div className="hero-stat">
 //               <div className="stat-icon">
@@ -304,9 +240,7 @@
 //               <span className="hero-stat-number count-animation">
 //                 {currentStat.customers}+
 //               </span>
-//               <div className="hero-stat-label">
-//                 Satisfied Clients
-//               </div>
+//               <div className="hero-stat-label">Satisfied Clients</div>
 //             </div>
 //             <div className="hero-stat">
 //               <div className="stat-icon">
@@ -315,9 +249,7 @@
 //               <span className="hero-stat-number count-animation">
 //                 {currentStat.experience}+
 //               </span>
-//               <div className="hero-stat-label">
-//                 Years Excellence
-//               </div>
+//               <div className="hero-stat-label">Years Excellence</div>
 //             </div>
 //           </div>
 
@@ -325,7 +257,7 @@
 //           <div className="trust-badges">
 //             <div className="trust-badge">
 //               <i className="fas fa-shield-alt"></i>
-//               <span>10 Years Warranty</span>
+//               <span>Natural Product</span>
 //             </div>
 //             <div className="trust-badge">
 //               <i className="fas fa-truck"></i>
@@ -406,9 +338,7 @@
 
 //       {/* Premium Scroll Indicator */}
 //       <div className="scroll-indicator premium-scroll">
-//         <div className="scroll-text">
-//           Scroll Down
-//         </div>
+//         <div className="scroll-text">Scroll Down</div>
 //         <div className="scroll-line">
 //           <div className="scroll-glow"></div>
 //         </div>
@@ -423,8 +353,653 @@
 //   )
 // }
 
+// 'use client'
+// import { useEffect, useState, useRef } from 'react'
+// import { Swiper, SwiperSlide } from 'swiper/react'
+// import { Autoplay, EffectFade, Navigation, Parallax } from 'swiper/modules'
+// import 'swiper/css'
+// import 'swiper/css/effect-fade'
+// import 'swiper/css/navigation'
+// import 'swiper/css/parallax'
+// import { useRouter } from 'next/navigation'
+// import './hero.css'
 
+// export default function Hero() {
+//   const router = useRouter()
 
+//   const [displayText, setDisplayText] = useState('')
+//   const [currentStat, setCurrentStat] = useState({ categories: 0, customers: 0, experience: 0 })
+//   const [isVisible, setIsVisible] = useState(false)
+//   const [isMobile, setIsMobile] = useState(false)
+//   const statsRef = useRef(null)
+//   const fullText = "Wooden Doors & Windows"
+//   const typeSpeed = 100
+//   const eraseSpeed = 50
+//   const pauseTime = 2000
+
+//   useEffect(() => {
+//     // Check if mobile
+//     const checkMobile = () => {
+//       setIsMobile(window.innerWidth <= 768)
+//     }
+    
+//     checkMobile()
+//     window.addEventListener('resize', checkMobile)
+    
+//     // Start animations
+//     setIsVisible(true)
+//     startTypewriter()
+//     setupIntersectionObserver()
+    
+//     return () => {
+//       window.removeEventListener('resize', checkMobile)
+//     }
+//   }, [])
+
+//   const startTypewriter = () => {
+//     let currentIndex = 0
+//     let isDeleting = false
+//     let currentText = ''
+
+//     const type = () => {
+//       if (isDeleting) {
+//         currentText = fullText.substring(0, currentIndex - 1)
+//         currentIndex--
+//       } else {
+//         currentText = fullText.substring(0, currentIndex + 1)
+//         currentIndex++
+//       }
+
+//       setDisplayText(currentText)
+
+//       let typeDelay = isDeleting ? eraseSpeed : typeSpeed
+
+//       if (!isDeleting && currentText === fullText) {
+//         typeDelay = pauseTime
+//         isDeleting = true
+//       } else if (isDeleting && currentText === '') {
+//         isDeleting = false
+//         currentIndex = 0
+//       }
+
+//       setTimeout(type, typeDelay)
+//     }
+
+//     type()
+//   }
+
+//   const setupIntersectionObserver = () => {
+//     const observer = new IntersectionObserver(
+//       (entries) => {
+//         entries.forEach((entry) => {
+//           if (entry.isIntersecting) {
+//             startCounterAnimation()
+//           }
+//         })
+//       },
+//       { threshold: 0.5 }
+//     )
+
+//     if (statsRef.current) {
+//       observer.observe(statsRef.current)
+//     }
+//   }
+
+//   const startCounterAnimation = () => {
+//     const duration = 2000
+//     const steps = 60
+//     const stepDuration = duration / steps
+
+//     let categoriesCount = 0
+//     const categoriesStep = 50 / steps
+
+//     let customersCount = 0
+//     const customersStep = 1000 / steps
+
+//     let experienceCount = 0
+//     const experienceStep = 28 / steps
+
+//     const counterInterval = setInterval(() => {
+//       categoriesCount += categoriesStep
+//       customersCount += customersStep
+//       experienceCount += experienceStep
+
+//       if (categoriesCount >= 8) categoriesCount = 8
+//       if (customersCount >= 1000) customersCount = 1000
+//       if (experienceCount >= 15) experienceCount = 28
+
+//       setCurrentStat({
+//         categories: Math.floor(categoriesCount),
+//         customers: Math.floor(customersCount),
+//         experience: Math.floor(experienceCount)
+//       })
+
+//       if (categoriesCount >= 8 && customersCount >= 1000 && experienceCount >= 15) {
+//         clearInterval(counterInterval)
+//       }
+//     }, stepDuration)
+//   }
+
+//   const scrollToCategories = () => {
+//     const categoriesSection = document.getElementById('categories')
+//     if (categoriesSection) {
+//       categoriesSection.scrollIntoView({
+//         behavior: 'smooth',
+//         block: 'start'
+//       })
+//     }
+//   }
+
+//   // Premium door images data
+//   const doorImages = [
+//     {
+//       id: 1,
+//       src: '/images/doors/1.png',
+//       alt: 'Luxury Wooden Door 1',
+//       title: 'Executive Series',
+//       subtitle: 'Handcrafted Teak Wood'
+//     },
+//     {
+//       id: 2,
+//       src: '/images/doors/2.png',
+//       alt: 'Luxury Wooden Door 2',
+//       title: 'Heritage Collection',
+//       subtitle: 'Traditional Carving'
+//     },
+//     {
+//       id: 3,
+//       src: '/images/doors/5.png',
+//       alt: 'Luxury Wooden Door 3',
+//       title: 'Modern Elegance',
+//       subtitle: 'Contemporary Design'
+//     },
+//     {
+//       id: 4,
+//       src: '/images/doors/4.png',
+//       alt: 'Luxury Wooden Door 4',
+//       title: 'Royal Oak Series',
+//       subtitle: 'Premium Finish'
+//     },
+//     {
+//       id: 5,
+//       src: '/images/doors/3.png',
+//       alt: 'Luxury Wooden Door 5',
+//       title: 'Designer Edition',
+//       subtitle: 'Custom Made'
+//     },
+//     {
+//       id: 6,
+//       src: '/images/doors/6.png',
+//       alt: 'Luxury Wooden Door 6',
+//       title: 'Designer Edition',
+//       subtitle: 'Custom Made'
+//     },
+//     {
+//       id: 7,
+//       src: '/images/doors/45.png',
+//       alt: 'Luxury Wooden Door 7',
+//       title: 'Classic Mahogany',
+//       subtitle: 'Timeless Beauty'
+//     }
+//   ]
+
+//   return (
+//     <>
+//       <style jsx>{`
+//         /* Mobile Responsive Styles Only */
+//         @media (max-width: 768px) {
+//           .hero {
+//             padding: 20px 15px !important;
+//             min-height: auto !important;
+//             padding-top: 60px !important;
+//           }
+
+//           .hero-container {
+//             display: flex !important;
+//             flex-direction: column !important;
+//             gap: 30px !important;
+//             padding: 0 !important;
+//           }
+
+//           /* Content on Top, Slider at Bottom */
+//           .hero-content {
+//             order: 1 !important;
+//             text-align: center !important;
+//             padding: 0 10px !important;
+//             margin-bottom: 20px !important;
+//           }
+
+//           .hero-slider {
+//             order: 2 !important;
+//             height: 280px !important;
+//             margin-top: 0 !important;
+//             margin-bottom: 20px !important;
+//           }
+
+//           /* Compact Heading */
+//           .hero-heading h1 {
+//             font-size: 1.8rem !important;
+//             line-height: 1.2 !important;
+//             margin-bottom: 15px !important;
+//             min-height: 40px !important;
+//           }
+
+//           /* Compact Description */
+//           .premium-description {
+//             font-size: 0.9rem !important;
+//             line-height: 1.5 !important;
+//             margin-bottom: 20px !important;
+//             padding: 0 5px !important;
+//           }
+
+//           /* Compact Stats - Single Row */
+//           .premium-stats {
+//             display: grid !important;
+//             grid-template-columns: repeat(3, 1fr) !important;
+//             gap: 10px !important;
+//             margin: 20px 0 !important;
+//             padding: 0 5px !important;
+//           }
+
+//           .hero-stat {
+//             padding: 10px !important;
+//             min-width: auto !important;
+//           }
+
+//           .stat-icon {
+//             font-size: 1.2rem !important;
+//             margin-bottom: 5px !important;
+//           }
+
+//           .hero-stat-number {
+//             font-size: 1.5rem !important;
+//             font-weight: 700 !important;
+//             margin-bottom: 2px !important;
+//           }
+
+//           .hero-stat-label {
+//             font-size: 0.7rem !important;
+//             line-height: 1.2 !important;
+//             white-space: nowrap !important;
+//           }
+
+//           /* Compact CTA Button */
+//           .cta-container {
+//             margin: 15px 0 !important;
+//           }
+
+//           .cta-button {
+//             padding: 12px 24px !important;
+//             font-size: 0.9rem !important;
+//             width: 100% !important;
+//             max-width: 220px !important;
+//             margin: 0 auto !important;
+//             border-radius: 6px !important;
+//           }
+
+//           .cta-text {
+//             font-size: 0.9rem !important;
+//           }
+
+//           /* Compact Trust Badges - Single Row */
+//           .trust-badges {
+//             display: flex !important;
+//             flex-wrap: wrap !important;
+//             justify-content: center !important;
+//             gap: 8px !important;
+//             margin-top: 15px !important;
+//             padding: 0 5px !important;
+//           }
+
+//           .trust-badge {
+//             padding: 6px 10px !important;
+//             font-size: 0.7rem !important;
+//             border-radius: 12px !important;
+//             min-width: auto !important;
+//             flex: 1 !important;
+//             max-width: 110px !important;
+//             justify-content: center !important;
+//           }
+
+//           .trust-badge i {
+//             font-size: 0.7rem !important;
+//             margin-right: 4px !important;
+//           }
+
+//           /* Compact Slider */
+//           .premium-slider {
+//             height: 280px !important;
+//             border-radius: 10px !important;
+//             margin: 0 auto !important;
+//           }
+
+//           .premium-door-image {
+//             height: 100% !important;
+//             object-fit: cover !important;
+//           }
+
+//           .slide-overlay {
+//             padding: 15px !important;
+//           }
+
+//           .slide-title {
+//             font-size: 1rem !important;
+//             margin-bottom: 4px !important;
+//           }
+
+//           .slide-subtitle {
+//             font-size: 0.75rem !important;
+//             margin-bottom: 8px !important;
+//           }
+
+//           .slide-badge {
+//             font-size: 0.7rem !important;
+//             padding: 3px 8px !important;
+//             border-radius: 12px !important;
+//           }
+
+//           /* Compact Navigation */
+//           .premium-nav {
+//             width: 35px !important;
+//             height: 35px !important;
+//             display: ${isMobile ? 'none' : 'flex'} !important;
+//           }
+
+//           .premium-nav i {
+//             font-size: 0.9rem !important;
+//           }
+
+//           /* Hide Unnecessary Elements on Mobile */
+//           .floating-shapes,
+//           .hero-bg-pattern,
+//           .hero-gold-overlay,
+//           .scroll-indicator,
+//           .corner-decoration,
+//           .heading-glow,
+//           .cta-glow,
+//           .nav-glow,
+//           .scroll-glow,
+//           .slider-frame,
+//           .cta-icon,
+//           .cursor {
+//             display: none !important;
+//           }
+
+//           /* Adjust Swiper Pagination */
+//           :global(.premium-pagination) {
+//             bottom: 5px !important;
+//           }
+          
+//           :global(.swiper-pagination-bullet) {
+//             width: 5px !important;
+//             height: 5px !important;
+//             margin: 0 3px !important;
+//           }
+//         }
+
+//         @media (max-width: 480px) {
+//           .hero {
+//             padding: 15px 10px !important;
+//             padding-top: 50px !important;
+//           }
+
+//           .hero-heading h1 {
+//             font-size: 1.6rem !important;
+//             min-height: 35px !important;
+//           }
+
+//           .premium-description {
+//             font-size: 0.85rem !important;
+//             margin-bottom: 15px !important;
+//           }
+
+//           .hero-slider {
+//             height: 250px !important;
+//           }
+
+//           .premium-stats {
+//             gap: 8px !important;
+//             margin: 15px 0 !important;
+//           }
+
+//           .hero-stat {
+//             padding: 8px 5px !important;
+//           }
+
+//           .hero-stat-number {
+//             font-size: 1.3rem !important;
+//           }
+
+//           .hero-stat-label {
+//             font-size: 0.65rem !important;
+//           }
+
+//           .trust-badge {
+//             font-size: 0.65rem !important;
+//             padding: 5px 8px !important;
+//             max-width: 100px !important;
+//           }
+
+//           .cta-button {
+//             padding: 10px 20px !important;
+//             font-size: 0.85rem !important;
+//             max-width: 200px !important;
+//           }
+
+//           .slide-title {
+//             font-size: 0.9rem !important;
+//           }
+
+//           .slide-subtitle {
+//             font-size: 0.7rem !important;
+//           }
+//         }
+
+//         /* Tablet Styles - More Compact */
+//         @media (min-width: 769px) and (max-width: 1024px) {
+//           .hero-container {
+//             gap: 30px !important;
+//           }
+
+//           .hero-slider {
+//             height: 400px !important;
+//           }
+
+//           .hero-heading h1 {
+//             font-size: 2.5rem !important;
+//           }
+
+//           .premium-stats {
+//             gap: 15px !important;
+//           }
+
+//           .hero-stat-number {
+//             font-size: 2rem !important;
+//           }
+//         }
+
+//         /* Ensure Smooth Transitions */
+//         .hero-stat,
+//         .trust-badge,
+//         .cta-button {
+//           transition: all 0.3s ease !important;
+//         }
+//       `}</style>
+
+//       <section className="hero">
+//         {/* Animated Background Elements */}
+//         <div className="hero-bg-pattern"></div>
+//         <div className="hero-gold-overlay"></div>
+//         <div className="floating-shapes">
+//           <div className="shape shape-1"></div>
+//           <div className="shape shape-2"></div>
+//           <div className="shape shape-3"></div>
+//           <div className="shape shape-4"></div>
+//         </div>
+
+//         <div className="hero-container">
+//           {/* Content on Top (Mobile पर ऊपर) */}
+//           <div className="hero-content">
+//             {/* Main Heading with Gradient */}
+//             <div className="hero-heading">
+//               <h1 className="typewriter-text">
+//                 {displayText}
+//                 <span className="cursor">|</span>
+//               </h1>
+//               <div className="heading-glow"></div>
+//             </div>
+
+//             {/* Premium Description */}
+//             <p className="fade-in-text premium-description">
+//               Crafting <span className="highlight-text">timeless elegance</span> with India's finest wooden doors.
+//               Experience unparalleled craftsmanship with <span className="highlight-text">50+ specialized categories</span>
+//               of premium doors and windows.
+//             </p>
+
+//             {/* Premium CTA Button */}
+//             <div className="cta-container">
+//               <button
+//                 className="cta-button premium-cta pulse-animation"
+//                 onClick={()=>{router.push('products/wooden-doors?category=woodenDoor')}}
+//               >
+//                 <span className="cta-text">Explore Collection <i className="fas fa-arrow-right"></i></span>
+//                 <div className="cta-icon">
+//                 </div>
+//                 <div className="cta-glow"></div>
+//               </button>
+//             </div>
+
+//             {/* Premium Stats - Compact Row */}
+//             <div className="hero-stats premium-stats" ref={statsRef}>
+//               <div className="hero-stat">
+//                 <div className="stat-icon">
+//                   <i className="fas fa-door-open"></i>
+//                 </div>
+//                 <span className="hero-stat-number count-animation">
+//                   {currentStat.categories}+
+//                 </span>
+//                 <div className="hero-stat-label">Premium Categories</div>
+//               </div>
+//               <div className="hero-stat">
+//                 <div className="stat-icon">
+//                   <i className="fas fa-smile"></i>
+//                 </div>
+//                 <span className="hero-stat-number count-animation">
+//                   {currentStat.customers}+
+//                 </span>
+//                 <div className="hero-stat-label">Satisfied Clients</div>
+//               </div>
+//               <div className="hero-stat">
+//                 <div className="stat-icon">
+//                   <i className="fas fa-award"></i>
+//                 </div>
+//                 <span className="hero-stat-number count-animation">
+//                   {currentStat.experience}+
+//                 </span>
+//                 <div className="hero-stat-label">Years Excellence</div>
+//               </div>
+//             </div>
+
+//             {/* Trust Badges - Compact Row */}
+//             <div className="trust-badges">
+//               <div className="trust-badge">
+//                 <i className="fas fa-shield-alt"></i>
+//                 <span>Natural Product</span>
+//               </div>
+//               <div className="trust-badge">
+//                 <i className="fas fa-truck"></i>
+//                 <span>Free Installation</span>
+//               </div>
+//               <div className="trust-badge">
+//                 <i className="fas fa-star"></i>
+//                 <span>Premium Quality</span>
+//               </div>
+//             </div>
+//           </div>
+
+//           {/* Slider at Bottom (Mobile पर नीचे) */}
+//           <div className="hero-slider premium-slider">
+//             <div className="slider-frame"></div>
+//             <Swiper
+//               modules={[Autoplay, EffectFade, Navigation, Parallax]}
+//               spaceBetween={0}
+//               slidesPerView={1}
+//               effect="fade"
+//               speed={1500}
+//               autoplay={{
+//                 delay: 4000,
+//                 disableOnInteraction: false,
+//               }}
+//               navigation={{
+//                 nextEl: '.swiper-button-next',
+//                 prevEl: '.swiper-button-prev',
+//               }}
+//               parallax={true}
+//               loop={true}
+//               className="door-swiper premium-swiper"
+//             >
+//               {doorImages.map((door) => (
+//                 <SwiperSlide key={door.id}>
+//                   <div
+//                     className="slide-image premium-slide"
+//                     data-swiper-parallax="-100"
+//                   >
+//                     <img
+//                       src={door.src}
+//                       alt={door.alt}
+//                       loading="eager"
+//                       className="premium-door-image"
+//                     />
+//                     <div className="slide-overlay">
+//                       <div className="slide-content">
+//                         <h3 className="slide-title" data-swiper-parallax="-200">
+//                           {door.title}
+//                         </h3>
+//                         <p className="slide-subtitle" data-swiper-parallax="-300">
+//                           {door.subtitle}
+//                         </p>
+//                         <div className="slide-badge" data-swiper-parallax="-400">
+//                           Premium
+//                         </div>
+//                       </div>
+//                     </div>
+//                   </div>
+//                 </SwiperSlide>
+//               ))}
+
+//               {/* Premium Navigation Buttons */}
+//               <div className="swiper-button-prev premium-nav">
+//                 <i className="fas fa-chevron-left"></i>
+//                 <div className="nav-glow"></div>
+//               </div>
+//               <div className="swiper-button-next premium-nav">
+//                 <i className="fas fa-chevron-right"></i>
+//                 <div className="nav-glow"></div>
+//               </div>
+
+//               {/* Swiper Pagination */}
+//               <div className="swiper-pagination premium-pagination"></div>
+//             </Swiper>
+//           </div>
+//         </div>
+
+//         {/* Premium Scroll Indicator */}
+//         <div className="scroll-indicator premium-scroll">
+//           <div className="scroll-text">Scroll Down</div>
+//           <div className="scroll-line">
+//             <div className="scroll-glow"></div>
+//           </div>
+//         </div>
+
+//         {/* Background Decorative Elements */}
+//         <div className="corner-decoration corner-tl"></div>
+//         <div className="corner-decoration corner-tr"></div>
+//         <div className="corner-decoration corner-bl"></div>
+//         <div className="corner-decoration corner-br"></div>
+//       </section>
+//     </>
+//   )
+// }
 
 
 'use client'
@@ -436,24 +1011,40 @@ import 'swiper/css/effect-fade'
 import 'swiper/css/navigation'
 import 'swiper/css/parallax'
 import { useRouter } from 'next/navigation'
+import './hero.css'
 
 export default function Hero() {
   const router = useRouter()
 
   const [displayText, setDisplayText] = useState('')
   const [currentStat, setCurrentStat] = useState({ categories: 0, customers: 0, experience: 0 })
-  const [isVisible, setIsVisible] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
   const statsRef = useRef(null)
+  const typewriterTimerRef = useRef(null)
   const fullText = "Wooden Doors & Windows"
   const typeSpeed = 100
   const eraseSpeed = 50
   const pauseTime = 2000
 
   useEffect(() => {
+    // Check if mobile
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768)
+    }
+    
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    
     // Start animations
-    setIsVisible(true)
     startTypewriter()
     setupIntersectionObserver()
+    
+    return () => {
+      window.removeEventListener('resize', checkMobile)
+      if (typewriterTimerRef.current) {
+        clearTimeout(typewriterTimerRef.current)
+      }
+    }
   }, [])
 
   const startTypewriter = () => {
@@ -482,7 +1073,7 @@ export default function Hero() {
         currentIndex = 0
       }
 
-      setTimeout(type, typeDelay)
+      typewriterTimerRef.current = setTimeout(type, typeDelay)
     }
 
     type()
@@ -511,7 +1102,7 @@ export default function Hero() {
     const stepDuration = duration / steps
 
     let categoriesCount = 0
-    const categoriesStep = 50 / steps
+    const categoriesStep = 8 / steps
 
     let customersCount = 0
     const customersStep = 1000 / steps
@@ -526,7 +1117,7 @@ export default function Hero() {
 
       if (categoriesCount >= 8) categoriesCount = 8
       if (customersCount >= 1000) customersCount = 1000
-      if (experienceCount >= 15) experienceCount = 28
+      if (experienceCount >= 28) experienceCount = 28
 
       setCurrentStat({
         categories: Math.floor(categoriesCount),
@@ -534,20 +1125,10 @@ export default function Hero() {
         experience: Math.floor(experienceCount)
       })
 
-      if (categoriesCount >= 8 && customersCount >= 1000 && experienceCount >= 15) {
+      if (categoriesCount >= 8 && customersCount >= 1000 && experienceCount >= 28) {
         clearInterval(counterInterval)
       }
     }, stepDuration)
-  }
-
-  const scrollToCategories = () => {
-    const categoriesSection = document.getElementById('categories')
-    if (categoriesSection) {
-      categoriesSection.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      })
-    }
   }
 
   // Premium door images data
@@ -604,191 +1185,577 @@ export default function Hero() {
   ]
 
   return (
-    <section className="hero">
-      {/* Animated Background Elements */}
-      <div className="hero-bg-pattern"></div>
-      <div className="hero-gold-overlay"></div>
-      <div className="floating-shapes">
-        <div className="shape shape-1"></div>
-        <div className="shape shape-2"></div>
-        <div className="shape shape-3"></div>
-        <div className="shape shape-4"></div>
-      </div>
+    <>
+      <style jsx>{`
+        /* Mobile Responsive Styles Only */
+        @media (max-width: 768px) {
+          /* Fix navbar overlap - Add more top padding */
+          .hero {
+            padding: 20px 15px !important;
+            min-height: auto !important;
+            padding-top: 100px !important; /* Increased from 60px */
+            margin-top: 0 !important;
+          }
 
-      <div className="hero-container">
-        {/* Left Side - Premium Content */}
-        <div className="hero-content">
-          {/* Main Heading with Gradient */}
-          <div className="hero-heading">
-            <h1 className="typewriter-text">
-              {displayText}
-              <span className="cursor">|</span>
-            </h1>
-            <div className="heading-glow"></div>
-          </div>
+          .hero-container {
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 30px !important;
+            padding: 0 !important;
+          }
 
-          {/* Premium Description */}
-          <p className="fade-in-text premium-description">
-            Crafting <span className="highlight-text">timeless elegance</span> with India's finest wooden doors.
-            Experience unparalleled craftsmanship with <span className="highlight-text">50+ specialized categories</span>
-            of premium doors and windows.
-          </p>
+          /* Content on Top, Slider at Bottom */
+          .hero-content {
+            order: 1 !important;
+            text-align: center !important;
+            padding: 0 10px !important;
+            margin-bottom: 20px !important;
+          }
 
-          {/* Premium CTA Button */}
-          <div className="cta-container">
-            <button
-              className="cta-button premium-cta pulse-animation"
-              onClick={()=>{router.push('products/wooden-doors?category=woodenDoor')}}
-            >
-              <span className="cta-text">Explore Collection <i className="fas fa-arrow-right"></i></span>
-              <div className="cta-icon">
-              </div>
-              <div className="cta-glow"></div>
-            </button>
-          </div>
-          {/* 👇 YAHAN ADD KARO - EXACT POSITION */}
-          {/* <div className="hero-badges">
-            <div className="badge-group">
-              <div className="badge since-badge">
-                <span className="badge-icon">🎯</span>
-                <span className="badge-text">Trusted Since 1996</span>
-              </div>
+          .hero-slider {
+            order: 2 !important;
+            height: 280px !important;
+            margin-top: 0 !important;
+            margin-bottom: 20px !important;
+          }
 
-              <div className="badge natural-badge">
-                <span className="badge-icon">🍃</span>
-                <span className="badge-text">100% Natural Wood</span>
-              </div>
-            </div>
-          </div> */}
-          {/* 👆 YAHAN TAK ADD KARO */}
+          /* Typewriter Effect Fix */
+          .hero-heading {
+            min-height: 60px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            margin-bottom: 20px !important;
+            margin-top: 0 !important;
+          }
 
-          {/* Premium Stats */}
-          <div className="hero-stats premium-stats" ref={statsRef}>
-            <div className="hero-stat">
-              <div className="stat-icon">
-                <i className="fas fa-door-open"></i>
-              </div>
-              <span className="hero-stat-number count-animation">
-                {currentStat.categories}+
-              </span>
-              <div className="hero-stat-label">Premium Categories</div>
-            </div>
-            <div className="hero-stat">
-              <div className="stat-icon">
-                <i className="fas fa-smile"></i>
-              </div>
-              <span className="hero-stat-number count-animation">
-                {currentStat.customers}+
-              </span>
-              <div className="hero-stat-label">Satisfied Clients</div>
-            </div>
-            <div className="hero-stat">
-              <div className="stat-icon">
-                <i className="fas fa-award"></i>
-              </div>
-              <span className="hero-stat-number count-animation">
-                {currentStat.experience}+
-              </span>
-              <div className="hero-stat-label">Years Excellence</div>
-            </div>
-          </div>
+          .hero-heading h1 {
+            font-size: 1.8rem !important;
+            line-height: 1.2 !important;
+            margin-bottom: 0 !important;
+            background: linear-gradient(135deg, #d4af37 0%, #ffd700 50%, #d4af37 100%) !important;
+            -webkit-background-clip: text !important;
+            -webkit-text-fill-color: transparent !important;
+            background-clip: text !important;
+            text-align: center !important;
+            display: inline-block !important;
+            min-width: 280px !important;
+          }
 
-          {/* Trust Badges */}
-          <div className="trust-badges">
-            <div className="trust-badge">
-              <i className="fas fa-shield-alt"></i>
-              <span>Natural Product</span>
-            </div>
-            <div className="trust-badge">
-              <i className="fas fa-truck"></i>
-              <span>Free Installation</span>
-            </div>
-            <div className="trust-badge">
-              <i className="fas fa-star"></i>
-              <span>Premium Quality</span>
-            </div>
-          </div>
+          .typewriter-text {
+            display: inline !important;
+            white-space: nowrap !important;
+          }
+
+          .cursor {
+            display: inline !important;
+            animation: blink 1s infinite !important;
+            color: #d4af37 !important;
+            font-weight: bold !important;
+          }
+
+          @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+          }
+
+          /* Compact Description */
+          .premium-description {
+            font-size: 0.9rem !important;
+            line-height: 1.5 !important;
+            margin-bottom: 20px !important;
+            padding: 0 5px !important;
+          }
+
+          .highlight-text {
+            color: #d4af37 !important;
+            font-weight: 600 !important;
+          }
+
+          /* Compact Stats - Single Row */
+          .premium-stats {
+            display: grid !important;
+            grid-template-columns: repeat(3, 1fr) !important;
+            gap: 10px !important;
+            margin: 20px 0 !important;
+            padding: 0 5px !important;
+          }
+
+          .hero-stat {
+            padding: 10px !important;
+            min-width: auto !important;
+          }
+
+          .stat-icon {
+            font-size: 1.2rem !important;
+            margin-bottom: 5px !important;
+            color: #d4af37 !important;
+          }
+
+          .hero-stat-number {
+            font-size: 1.5rem !important;
+            font-weight: 700 !important;
+            margin-bottom: 2px !important;
+            color: #d4af37 !important;
+            display: block !important;
+          }
+
+          .hero-stat-label {
+            font-size: 0.7rem !important;
+            line-height: 1.2 !important;
+            white-space: nowrap !important;
+            color: #aaa !important;
+          }
+
+          /* Compact CTA Button */
+          .cta-container {
+            margin: 15px 0 !important;
+          }
+
+          .cta-button {
+            padding: 12px 24px !important;
+            font-size: 0.9rem !important;
+            width: 100% !important;
+            max-width: 220px !important;
+            margin: 0 auto !important;
+            border-radius: 6px !important;
+            background: linear-gradient(135deg, #d4af37 0%, #b8941f 100%) !important;
+            border: none !important;
+            color: white !important;
+            font-weight: 600 !important;
+            cursor: pointer !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            gap: 8px !important;
+          }
+
+          .cta-text {
+            font-size: 0.9rem !important;
+          }
+
+          /* Compact Trust Badges - Single Row */
+          .trust-badges {
+            display: flex !important;
+            flex-wrap: wrap !important;
+            justify-content: center !important;
+            gap: 8px !important;
+            margin-top: 15px !important;
+            padding: 0 5px !important;
+          }
+
+          .trust-badge {
+            padding: 6px 10px !important;
+            font-size: 0.7rem !important;
+            border-radius: 12px !important;
+            min-width: auto !important;
+            flex: 1 !important;
+            max-width: 110px !important;
+            justify-content: center !important;
+            background: rgba(212, 175, 55, 0.1) !important;
+            border: 1px solid rgba(212, 175, 55, 0.3) !important;
+            display: flex !important;
+            align-items: center !important;
+            gap: 5px !important;
+          }
+
+          .trust-badge i {
+            font-size: 0.7rem !important;
+            color: #d4af37 !important;
+          }
+
+          /* Compact Slider */
+          .premium-slider {
+            height: 280px !important;
+            border-radius: 10px !important;
+            margin: 0 auto !important;
+            position: relative !important;
+            overflow: hidden !important;
+          }
+
+          .premium-door-image {
+            height: 100% !important;
+            object-fit: cover !important;
+            width: 100% !important;
+          }
+
+          .slide-overlay {
+            padding: 15px !important;
+            position: absolute !important;
+            bottom: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%) !important;
+          }
+
+          .slide-title {
+            font-size: 1rem !important;
+            margin-bottom: 4px !important;
+            color: white !important;
+            font-weight: 600 !important;
+          }
+
+          .slide-subtitle {
+            font-size: 0.75rem !important;
+            margin-bottom: 8px !important;
+            color: #d4af37 !important;
+          }
+
+          .slide-badge {
+            font-size: 0.7rem !important;
+            padding: 3px 8px !important;
+            border-radius: 12px !important;
+            background: rgba(212, 175, 55, 0.2) !important;
+            color: #ffd700 !important;
+            border: 1px solid rgba(212, 175, 55, 0.4) !important;
+            display: inline-block !important;
+          }
+
+          /* Hide Unnecessary Elements on Mobile */
+          .floating-shapes,
+          .hero-bg-pattern,
+          .hero-gold-overlay,
+          .scroll-indicator,
+          .corner-decoration,
+          .heading-glow,
+          .cta-glow,
+          .nav-glow,
+          .scroll-glow,
+          .slider-frame,
+          .cta-icon {
+            display: none !important;
+          }
+
+          /* Show cursor and typewriter effect */
+          .cursor {
+            display: inline !important;
+          }
+
+          /* Adjust Swiper Pagination */
+          :global(.premium-pagination) {
+            bottom: 5px !important;
+          }
+          
+          :global(.swiper-pagination-bullet) {
+            width: 5px !important;
+            height: 5px !important;
+            margin: 0 3px !important;
+            background: #d4af37 !important;
+          }
+          
+          :global(.swiper-pagination-bullet-active) {
+            transform: scale(1.2) !important;
+            opacity: 1 !important;
+          }
+
+          /* Navigation buttons - show only on hover/touch */
+          .premium-nav {
+            width: 35px !important;
+            height: 35px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            background: rgba(212, 175, 55, 0.9) !important;
+            border-radius: 50% !important;
+            color: white !important;
+            position: absolute !important;
+            top: 50% !important;
+            transform: translateY(-50%) !important;
+            z-index: 10 !important;
+            cursor: pointer !important;
+            opacity: 0.7 !important;
+          }
+
+          .swiper-button-prev {
+            left: 10px !important;
+          }
+
+          .swiper-button-next {
+            right: 10px !important;
+          }
+        }
+
+        @media (max-width: 480px) {
+          /* Even more padding for very small screens */
+          .hero {
+            padding: 15px 10px !important;
+            padding-top: 90px !important; /* Increased for small phones */
+          }
+
+          .hero-heading h1 {
+            font-size: 1.6rem !important;
+            min-width: 250px !important;
+          }
+
+          .premium-description {
+            font-size: 0.85rem !important;
+            margin-bottom: 15px !important;
+          }
+
+          .hero-slider {
+            height: 250px !important;
+          }
+
+          .premium-stats {
+            gap: 8px !important;
+            margin: 15px 0 !important;
+          }
+
+          .hero-stat {
+            padding: 8px 5px !important;
+          }
+
+          .hero-stat-number {
+            font-size: 1.3rem !important;
+          }
+
+          .hero-stat-label {
+            font-size: 0.65rem !important;
+          }
+
+          .trust-badge {
+            font-size: 0.65rem !important;
+            padding: 5px 8px !important;
+            max-width: 100px !important;
+          }
+
+          .cta-button {
+            padding: 10px 20px !important;
+            font-size: 0.85rem !important;
+            max-width: 200px !important;
+          }
+
+          .slide-title {
+            font-size: 0.9rem !important;
+          }
+
+          .slide-subtitle {
+            font-size: 0.7rem !important;
+          }
+        }
+
+        /* Tablet Styles */
+        @media (min-width: 769px) and (max-width: 1024px) {
+          .hero {
+            padding-top: 100px !important;
+          }
+          
+          .hero-container {
+            gap: 30px !important;
+          }
+
+          .hero-slider {
+            height: 400px !important;
+          }
+
+          .hero-heading h1 {
+            font-size: 2.5rem !important;
+          }
+
+          .premium-stats {
+            gap: 15px !important;
+          }
+
+          .hero-stat-number {
+            font-size: 2rem !important;
+          }
+        }
+
+        /* For Desktop - Add some top padding if needed */
+        @media (min-width: 1025px) {
+          .hero {
+            padding-top: 80px !important;
+          }
+        }
+
+        /* Ensure Typewriter is Visible */
+        .typewriter-text {
+          display: inline-block;
+          min-height: 40px;
+        }
+
+        .cursor {
+          animation: blink 1s infinite;
+          color: #d4af37;
+          font-weight: bold;
+        }
+
+        @keyframes blink {
+          0%, 50% { opacity: 1; }
+          51%, 100% { opacity: 0; }
+        }
+      `}</style>
+
+      <section className="hero">
+        {/* Animated Background Elements */}
+        <div className="hero-bg-pattern"></div>
+        <div className="hero-gold-overlay"></div>
+        <div className="floating-shapes">
+          <div className="shape shape-1"></div>
+          <div className="shape shape-2"></div>
+          <div className="shape shape-3"></div>
+          <div className="shape shape-4"></div>
         </div>
 
-        {/* Right Side - Premium Swiper Slider */}
-        <div className="hero-slider premium-slider">
-          <div className="slider-frame"></div>
-          <Swiper
-            modules={[Autoplay, EffectFade, Navigation, Parallax]}
-            spaceBetween={0}
-            slidesPerView={1}
-            effect="fade"
-            speed={1500}
-            autoplay={{
-              delay: 4000,
-              disableOnInteraction: false,
-            }}
-            navigation={{
-              nextEl: '.swiper-button-next',
-              prevEl: '.swiper-button-prev',
-            }}
-            parallax={true}
-            loop={true}
-            className="door-swiper premium-swiper"
-          >
-            {doorImages.map((door) => (
-              <SwiperSlide key={door.id}>
-                <div
-                  className="slide-image premium-slide"
-                  data-swiper-parallax="-100"
-                >
-                  <img
-                    src={door.src}
-                    alt={door.alt}
-                    loading="eager"
-                    className="premium-door-image"
-                  />
-                  <div className="slide-overlay">
-                    <div className="slide-content">
-                      <h3 className="slide-title" data-swiper-parallax="-200">
-                        {door.title}
-                      </h3>
-                      <p className="slide-subtitle" data-swiper-parallax="-300">
-                        {door.subtitle}
-                      </p>
-                      <div className="slide-badge" data-swiper-parallax="-400">
-                        Premium
+        <div className="hero-container">
+          {/* Content on Top */}
+          <div className="hero-content">
+            {/* Main Heading with Typewriter Effect */}
+            <div className="hero-heading">
+              <h1 className="typewriter-text">
+                {displayText || "Wooden Doors & Windows"}
+                <span className="cursor">|</span>
+              </h1>
+              <div className="heading-glow"></div>
+            </div>
+
+            {/* Premium Description */}
+            <p className="fade-in-text premium-description">
+              Crafting <span className="highlight-text">timeless elegance</span> with India's finest wooden doors.
+              Experience unparalleled craftsmanship with <span className="highlight-text">50+ specialized categories</span>
+              of premium doors and windows.
+            </p>
+
+            {/* Premium CTA Button */}
+            <div className="cta-container">
+              <button
+                className="cta-button premium-cta pulse-animation"
+                onClick={()=>{router.push('products/wooden-doors?category=woodenDoor')}}
+              >
+                <span className="cta-text">Explore Collection <i className="fas fa-arrow-right"></i></span>
+                <div className="cta-icon"></div>
+                <div className="cta-glow"></div>
+              </button>
+            </div>
+
+            {/* Premium Stats */}
+            <div className="hero-stats premium-stats" ref={statsRef}>
+              <div className="hero-stat">
+                <div className="stat-icon">
+                  <i className="fas fa-door-open"></i>
+                </div>
+                <span className="hero-stat-number count-animation">
+                  {currentStat.categories}+
+                </span>
+                <div className="hero-stat-label">Premium Categories</div>
+              </div>
+              <div className="hero-stat">
+                <div className="stat-icon">
+                  <i className="fas fa-smile"></i>
+                </div>
+                <span className="hero-stat-number count-animation">
+                  {currentStat.customers}+
+                </span>
+                <div className="hero-stat-label">Satisfied Clients</div>
+              </div>
+              <div className="hero-stat">
+                <div className="stat-icon">
+                  <i className="fas fa-award"></i>
+                </div>
+                <span className="hero-stat-number count-animation">
+                  {currentStat.experience}+
+                </span>
+                <div className="hero-stat-label">Years Excellence</div>
+              </div>
+            </div>
+
+            {/* Trust Badges */}
+            <div className="trust-badges">
+              <div className="trust-badge">
+                <i className="fas fa-shield-alt"></i>
+                <span>Natural Product</span>
+              </div>
+              <div className="trust-badge">
+                <i className="fas fa-truck"></i>
+                <span>Free Installation</span>
+              </div>
+              <div className="trust-badge">
+                <i className="fas fa-star"></i>
+                <span>Premium Quality</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Slider at Bottom */}
+          <div className="hero-slider premium-slider">
+            <div className="slider-frame"></div>
+            <Swiper
+              modules={[Autoplay, EffectFade, Navigation, Parallax]}
+              spaceBetween={0}
+              slidesPerView={1}
+              effect="fade"
+              speed={1500}
+              autoplay={{
+                delay: 4000,
+                disableOnInteraction: false,
+              }}
+              navigation={{
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+              }}
+              parallax={true}
+              loop={true}
+              className="door-swiper premium-swiper"
+            >
+              {doorImages.map((door) => (
+                <SwiperSlide key={door.id}>
+                  <div
+                    className="slide-image premium-slide"
+                    data-swiper-parallax="-100"
+                  >
+                    <img
+                      src={door.src}
+                      alt={door.alt}
+                      loading="eager"
+                      className="premium-door-image"
+                    />
+                    <div className="slide-overlay">
+                      <div className="slide-content">
+                        <h3 className="slide-title" data-swiper-parallax="-200">
+                          {door.title}
+                        </h3>
+                        <p className="slide-subtitle" data-swiper-parallax="-300">
+                          {door.subtitle}
+                        </p>
+                        <div className="slide-badge" data-swiper-parallax="-400">
+                          Premium
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </SwiperSlide>
-            ))}
+                </SwiperSlide>
+              ))}
 
-            {/* Premium Navigation Buttons */}
-            <div className="swiper-button-prev premium-nav">
-              <i className="fas fa-chevron-left"></i>
-              <div className="nav-glow"></div>
-            </div>
-            <div className="swiper-button-next premium-nav">
-              <i className="fas fa-chevron-right"></i>
-              <div className="nav-glow"></div>
-            </div>
+              {/* Navigation Buttons */}
+              <div className="swiper-button-prev premium-nav">
+                <i className="fas fa-chevron-left"></i>
+                <div className="nav-glow"></div>
+              </div>
+              <div className="swiper-button-next premium-nav">
+                <i className="fas fa-chevron-right"></i>
+                <div className="nav-glow"></div>
+              </div>
 
-            {/* Swiper Pagination */}
-            <div className="swiper-pagination premium-pagination"></div>
-          </Swiper>
+              {/* Swiper Pagination */}
+              <div className="swiper-pagination premium-pagination"></div>
+            </Swiper>
+          </div>
         </div>
-      </div>
 
-      {/* Premium Scroll Indicator */}
-      <div className="scroll-indicator premium-scroll">
-        <div className="scroll-text">Scroll Down</div>
-        <div className="scroll-line">
-          <div className="scroll-glow"></div>
+        {/* Scroll Indicator */}
+        <div className="scroll-indicator premium-scroll">
+          <div className="scroll-text">Scroll Down</div>
+          <div className="scroll-line">
+            <div className="scroll-glow"></div>
+          </div>
         </div>
-      </div>
 
-      {/* Background Decorative Elements */}
-      <div className="corner-decoration corner-tl"></div>
-      <div className="corner-decoration corner-tr"></div>
-      <div className="corner-decoration corner-bl"></div>
-      <div className="corner-decoration corner-br"></div>
-    </section>
+        {/* Background Decorative Elements */}
+        <div className="corner-decoration corner-tl"></div>
+        <div className="corner-decoration corner-tr"></div>
+        <div className="corner-decoration corner-bl"></div>
+        <div className="corner-decoration corner-br"></div>
+      </section>
+    </>
   )
 }
