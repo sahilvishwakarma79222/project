@@ -70,6 +70,7 @@ const menuData = {
     { name: 'Wooden Windows', href: '/products/wooden-doors?category=woodenWindows', icon: '🪟' },
     { name: 'Wooden Art', href: '/products/wooden-doors?category=woodenArt', icon: '🎨' },
     { name: 'Sofa Chair', href: '/products/wooden-doors?category=sofaChairs', icon: '🛋️' }
+ 
   ]
 };
 

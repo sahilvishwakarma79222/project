@@ -8,6 +8,7 @@ import Link from 'next/link';
 import './products-styles.css';
 import { categories, getProductsByCategory, getActualProductCount, clearProductCountCache, clearProductInfoCache } from '@/utils/productData';
 import Navbar from '@/components/Navbar';
+import { useSearchParams, useRouter } from 'next/navigation';
 
 // Create a debounce hook
 const useDebounce = (value, delay) => {
@@ -38,7 +39,7 @@ StarIcon.displayName = 'StarIcon';
 // Memoized ProductImage component with lazy loading
 const ProductImage = React.memo(({ images, alt, productNumber, priority = false }) => {
   const [imgError, setImgError] = useState(false);
-  const [imgLoaded, setImgLoaded] = useState(false);
+  const [imgLoaded, setImgLoaded] = useState(true);
   
   const imageSrc = images && images.length > 0 ? images[0] : null;
   
@@ -86,7 +87,7 @@ const ProductImage = React.memo(({ images, alt, productNumber, priority = false 
 ProductImage.displayName = 'ProductImage';
 
 // Memoized Product Card Component
-const ProductCard = React.memo(({ product, activeCategory }) => {
+const ProductCard = React.memo(({ product, activeCategory, currentPage }) => {
   const renderStars = useCallback((rating) => {
     const stars = [];
     const fullStars = Math.floor(rating);
@@ -117,7 +118,7 @@ const ProductCard = React.memo(({ product, activeCategory }) => {
 
   return (
     <Link 
-      href={`/products/${activeCategory}/product${product.productNumber}`}
+      href={`/products/${activeCategory}/product${product.productNumber}?pageNumber=${currentPage}`}
       style={{ 
         textDecoration: 'none', 
         color: 'inherit',
@@ -222,9 +223,14 @@ ProductSkeleton.displayName = 'ProductSkeleton';
 
 // Main Products Page Component
 export default function ProductsPage() {
+  const searchParams = useSearchParams()
+  const URLParams = new URLSearchParams(searchParams)
+  const category = URLParams.get('category');
+  const router = useRouter()
+
   // States
-  const [activeCategory, setActiveCategory] = useState('woodenDoor');
-  const [currentPage, setCurrentPage] = useState(1);
+  const [activeCategory, setActiveCategory] = useState(URLParams.get('category'));
+  const [currentPage, setCurrentPage] = useState(Number(URLParams.get('pageNumber')) || 1);
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true); // Keep true initially
   const [categoryCounts, setCategoryCounts] = useState({});
@@ -508,7 +514,10 @@ export default function ProductsPage() {
     categories.map((category) => (
       <button
         key={category.id}
-        onClick={() => handleCategoryChange(category.name)}
+        onClick={() => {
+          URLParams.set("category", category.name);
+          router.push(`?${URLParams.toString()}`);
+        }}
         onMouseEnter={() => setHoveredCategory(category.name)}
         onMouseLeave={() => setHoveredCategory(null)}
         onFocus={() => setHoveredCategory(category.name)}
@@ -530,6 +539,11 @@ export default function ProductsPage() {
     )),
     [categories, activeCategory, countsLoading, categoryCounts, loading, handleCategoryChange]
   );
+
+  useEffect(()=>{
+    handleCategoryChange(category)
+    prefetchCategoryProducts(category)
+  }, [category])
 
   // Show loading until initial load is complete
   if (loading && !initialLoadComplete) {
@@ -688,6 +702,7 @@ export default function ProductsPage() {
                         key={`${activeCategory}-${product.id}`}
                         product={product}
                         activeCategory={activeCategory}
+                        currentPage={currentPage}
                       />
                     ))}
                   </div>

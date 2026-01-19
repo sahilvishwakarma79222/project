@@ -8,7 +8,7 @@ const productCategories = [
   {
     id: 'wooden-doors',
     name: 'Wooden Doors',
-    href: '/products/wooden-doors?category=wooden-doors', // Only change href
+    href: '/products/wooden-doors?category=woodenDoor', // Only change href
     image: '/images/products/wooden-doors.jpg',
     description: 'Premium handcrafted doors',
     badge: 'Bestseller',
@@ -18,7 +18,7 @@ const productCategories = [
   {
     id: 'safety-doors',
     name: 'Safety Doors',
-    href: '/products/wooden-doors?category=safety-doors', // Same page, different category
+    href: '/products/wooden-doors?category=safetyDoors', // Same page, different category
     image: '/images/products/safety-doors.jpg',
     description: 'Advanced security doors',
     badge: 'Secure',
@@ -28,7 +28,7 @@ const productCategories = [
   {
     id: 'wooden-frames',
     name: 'Wooden Frames',
-    href: '/products/wooden-doors?category=wooden-frames', // Same page, different category
+    href: '/products/wooden-doors?category=woodenFrame', // Same page, different category
     image: '/images/products/wooden-frames.jpg',
     description: 'Elegant door frames',
     badge: 'Essential',
@@ -38,7 +38,7 @@ const productCategories = [
   {
     id: 'wooden-windows',
     name: 'Wooden Windows',
-    href: '/products/wooden-doors?category=wooden-windows', // Same page, different category
+    href: '/products/wooden-doors?category=woodenWindow', // Same page, different category
     image: '/images/products/wooden-windows.jpg',
     description: 'Beautiful wooden windows',
     badge: 'Premium',
@@ -48,7 +48,7 @@ const productCategories = [
   {
     id: 'wooden-beds',
     name: 'Wooden Beds',
-    href: '/products/wooden-doors?category=wooden-beds', // Same page, different category
+    href: '/products/wooden-doors?category=woodenBed', // Same page, different category
     image: '/images/products/wooden-beds.jpg',
     description: 'Handcrafted wooden beds',
     badge: 'Luxury',
@@ -58,7 +58,7 @@ const productCategories = [
   {
     id: 'sofa-chairs',
     name: 'Sofa & Chairs',
-    href: '/products/wooden-doors?category=sofa-chairs', // Same page, different category
+    href: '/products/wooden-doors?category=sofaChair', // Same page, different category
     image: '/images/products/sofa-chairs.jpg',
     description: 'Comfortable seating',
     badge: 'Comfort',
@@ -68,7 +68,7 @@ const productCategories = [
   {
     id: 'wooden-mandir',
     name: 'Wooden Mandir',
-    href: '/products/wooden-doors?category=wooden-mandir', // Same page, different category
+    href: '/products/wooden-doors?category=woodenMandir', // Same page, different category
     image: '/images/products/wooden-mandir.jpg',
     description: 'Sacred home temples',
     badge: 'Spiritual',
@@ -78,7 +78,7 @@ const productCategories = [
   {
     id: 'wooden-art',
     name: 'Wooden Art',
-    href: '/products/wooden-doors?category=wooden-art', // Same page, different category
+    href: '/products/wooden-doors?category=woodenArt', // Same page, different category
     image: '/images/products/wooden-art.jpg',
     description: 'Exquisite sculptures',
     badge: 'Artistic',
