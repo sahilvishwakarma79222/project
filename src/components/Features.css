@@ -903,7 +903,7 @@ body {
 /* ========== DARK MODE SUPPORT ========== */
 @media (prefers-color-scheme: dark) {
   .features-section {
-    background: linear-gradient(135deg, var(--primary-black) 0%, #2d2d2d 100%);
+    background: linear-gradient(135deg,  #ffffff 100%, #ffffff 100%);
   }
   
   .section-title {

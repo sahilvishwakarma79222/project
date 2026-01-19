@@ -97,7 +97,7 @@ export default function BestSeller() {
                 <img src={item.src} alt={`Door ${i + 1}`} className="coverflow-image" />
                 
                 {/* Best Seller Label - Only for active slide */}
-                <div className="best-seller-label">BEST SELLER</div>
+                {/* <div className="best-seller-label">BEST SELLER</div> */}
               </div>
             </SwiperSlide>
           ))}

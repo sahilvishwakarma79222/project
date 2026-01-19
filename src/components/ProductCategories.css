@@ -337,7 +337,8 @@
 
 .explore-products-btn {
   width: 100%;
-  background: linear-gradient(135deg, #c8a97e, #e6b87a);
+  /* background: linear-gradient(135deg, #c8a97e, #e6b87a); */
+  background: linear-gradient(135deg, rgb(90, 57, 33) 0%, rgb(139, 90, 43) 100%);
   color: white;
   border: none;
   padding: 0.75rem;
@@ -634,7 +635,7 @@
 /* Dark Mode Support */
 @media (prefers-color-scheme: dark) {
   .product-categories-section {
-    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    background: linear-gradient(135deg, #ffffff 0%, #ffffff 100%);
   }
   
   .section-title {
@@ -642,12 +643,12 @@
   }
   
   .product-category-card {
-    background: #2a2a2a;
-    border-color: rgba(200, 169, 126, 0.15);
+    background: #ffffff;
+    border-color: rgb(255, 255, 255);
   }
   
   .product-category-name {
-    color: white;
+    color: rgb(0, 0, 0);
   }
   
   .product-category-description {
@@ -655,6 +656,6 @@
   }
   
   .category-stats {
-    background: rgba(200, 169, 126, 0.1);
+    background: rgb(255, 255, 255);
   }
 }

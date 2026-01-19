@@ -22,7 +22,7 @@
 }
 
 .heading-accent {
-  background: linear-gradient(135deg, #c8a97e 0%, #b8941f 100%);
+  background: linear-gradient(135deg, #5a3921 0%, #b8941f 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -410,7 +410,7 @@
 /* Dark Mode Support */
 @media (prefers-color-scheme: dark) {
   .best-seller-section {
-    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    background: linear-gradient(135deg, #ffffff 0%, #ffffff 100%);
   }
   
   .best-seller-heading {
@@ -422,12 +422,12 @@
   }
   
   .custom-navigation {
-    background: rgba(40, 40, 40, 0.95);
+    background: rgba(255, 254, 254, 0.95);
     border-color: #c8a97e;
   }
   
   .custom-pagination-wrapper {
-    background: rgba(40, 40, 40, 0.9);
+    background: rgba(255, 255, 255, 0.9);
     border-color: rgba(200, 169, 126, 0.3);
   }
 }
