@@ -44,28 +44,6 @@ const MaterialsSection = () => {
   // Duplicate for infinite scroll
   const duplicatedMaterials = [...allMaterials, ...allMaterials, ...allMaterials];
 
-  useEffect(() => {
-    const scrollContainer = scrollContainerRef.current;
-    if (!scrollContainer) return;
-
-    const scroll = () => {
-      if (scrollContainer) {
-        scrollContainer.scrollLeft += 1;
-
-        if (scrollContainer.scrollLeft >= scrollContainer.scrollWidth / 3) {
-          scrollContainer.scrollLeft = 0;
-        }
-      }
-      requestAnimationFrame(scroll);
-    };
-
-    const animationId = requestAnimationFrame(scroll);
-
-    return () => {
-      cancelAnimationFrame(animationId);
-    };
-  }, []);
-
   return (
     <section className="materials-showcase">
       <div className="showcase-container">

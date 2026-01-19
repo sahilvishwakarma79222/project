@@ -874,7 +874,6 @@ body.no-scroll {
 /* Logo left side */
 .nav-logo {
   margin-right: auto; /* Logo को left में और बाकी को right में push करेगा */
-  padding-left: 40px;
 }
 
 /* Navigation center */

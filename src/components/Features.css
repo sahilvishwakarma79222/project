@@ -432,6 +432,10 @@ body {
 
 .stat-content {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .stat-number-wrapper {
@@ -834,7 +838,7 @@ body {
   }
   
   .features-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
     max-width: 320px;
     gap: var(--space-sm);
   }
