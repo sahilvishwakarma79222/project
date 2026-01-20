@@ -59,12 +59,12 @@ const ProductImage = React.memo(({ images, alt, productNumber, priority = false 
   
   return (
     <div style={{ width: '100%', height: '100%', position: 'relative' }}>
-      {!imgLoaded && (
+      {/* {!imgLoaded && (
         <div className="wood-image-placeholder" style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}>
           <div className="wood-icon">📷</div>
           <p className="wood-image-text">Loading...</p>
         </div>
-      )}
+      )} */}
       <Image
         src={imageSrc}
         alt={alt}
@@ -140,16 +140,16 @@ const ProductCard = React.memo(({ product, activeCategory, currentPage }) => {
         <div className="wood-product-info">
           <h3 className="wood-product-title">{product.name}</h3>
           
-          <div style={{ margin: '8px 0', fontSize: '13px', color: '#565959' }}>
-            <div style={{ marginBottom: '4px' }}>
+          <div className='wood-product-dimention' style={{ margin: '4px 0', fontSize: '13px', color: '#565959' }}>
+            <div style={{ marginBottom: '2px' }}>
               <span style={{ fontWeight: '500' }}>Wood:</span> {product.woodtype}
             </div>
-            <div style={{ marginBottom: '4px' }}>
+            <div style={{ marginBottom: '2px' }}>
               <span style={{ fontWeight: '500' }}>Size:</span> {product.size}
             </div>
             {product.sales > 0 && (
               <div style={{ 
-                marginTop: '6px', 
+                marginTop: '3px', 
                 fontSize: '12px', 
                 color: '#ffa41c',
                 fontWeight: '500',
@@ -172,7 +172,7 @@ const ProductCard = React.memo(({ product, activeCategory, currentPage }) => {
               <div style={{ 
                 fontSize: '12px', 
                 color: '#565959', 
-                margin: '8px 0',
+                margin: '4px 0',
                 lineHeight: '1.4',
                 maxHeight: '36px',
                 overflow: 'hidden',
@@ -192,7 +192,7 @@ const ProductCard = React.memo(({ product, activeCategory, currentPage }) => {
               className="wood-buy-button"
               onClick={(e) => e.stopPropagation()}
             >
-              <span>Buy on WhatsApp</span>
+              <span>Buy Now</span>
             </a>
           </div>
         </div>
@@ -540,6 +540,8 @@ export default function ProductsPage() {
     [categories, activeCategory, countsLoading, categoryCounts, loading, handleCategoryChange]
   );
 
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
   useEffect(()=>{
     handleCategoryChange(category)
     prefetchCategoryProducts(category)
@@ -616,7 +618,7 @@ export default function ProductsPage() {
         <div className="wood-container wood-main-container">
           <div className="wood-layout-wrapper">
             {/* Sidebar */}
-            <div className="wood-sidebar">
+            <div className="wood-sidebar desktop-only">
               <div className="wood-sidebar-card">
                 <h2 className="wood-sidebar-title">All Categories</h2>
                 <div className="wood-categories-list">
@@ -665,6 +667,21 @@ export default function ProductsPage() {
                   </button>
                 </div>
               </div>
+            </div>
+
+            {/* Mobile Navigation Only */}
+            <div className="mobile-nav-btn">
+              <button
+                className="mobile-nav-fab"
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                aria-label="Open navigation"
+              >
+                {isMobileMenuOpen ? '✕' : '☰'}
+              </button>
+
+              <nav className={`mobile-nav-menu ${isMobileMenuOpen ? 'open' : ''}`}>
+                {categoryButtons}
+              </nav>
             </div>
 
             {/* Main Products Area */}

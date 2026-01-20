@@ -63,13 +63,13 @@ export default function Navbar() {
 const menuData = {
   categories: [
     { name: 'Wooden Doors', href: '/products/wooden-doors?category=woodenDoor', icon: '🚪' },
-    { name: 'Wooden Frames', href: '/products/wooden-doors?category=woodenFrames', icon: '🖼️' },
-    { name: 'Safety Doors', href: '/products/wooden-doors?category=safetyDoor', icon: '🔒' },
-    { name: 'Wooden Beds', href: '/products/wooden-doors?category=woodenBeds', icon: '🛏️' },
-    { name: 'Wooden Mandir', href: '/products/wooden-doors?category=woodenTemples', icon: '🛕' },
-    { name: 'Wooden Windows', href: '/products/wooden-doors?category=woodenWindows', icon: '🪟' },
+    { name: 'Wooden Frames', href: '/products/wooden-doors?category=woodenFrame', icon: '🖼️' },
+    { name: 'Safety Doors', href: '/products/wooden-doors?category=safetyDoors', icon: '🔒' },
+    { name: 'Wooden Beds', href: '/products/wooden-doors?category=woodenBed', icon: '🛏️' },
+    { name: 'Wooden Mandir', href: '/products/wooden-doors?category=woodenMandir', icon: '🛕' },
+    { name: 'Wooden Windows', href: '/products/wooden-doors?category=woodenWindow', icon: '🪟' },
     { name: 'Wooden Art', href: '/products/wooden-doors?category=woodenArt', icon: '🎨' },
-    { name: 'Sofa Chair', href: '/products/wooden-doors?category=sofaChairs', icon: '🛋️' }
+    { name: 'Sofa Chair', href: '/products/wooden-doors?category=sofaChair', icon: '🛋️' }
  
   ]
 };
