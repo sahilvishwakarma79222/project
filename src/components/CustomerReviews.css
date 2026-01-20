@@ -81,10 +81,10 @@
 .stat-card {
   background: white;
   padding: 2rem 1.5rem;
-  border-radius: 12px;
+  border-radius: 1px 35px 1px 35px;
   text-align: center;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  border: 1px solid #f3f4f6;
+  border: 1px solid #d97706;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -94,7 +94,7 @@
 }
 
 .stat-number {
-  font-size: 2rem;
+  font-size: 1.4rem;
   font-weight: 700;
   color: #d97706;
   margin-bottom: 0.5rem;

@@ -29,13 +29,6 @@ const featuresData = [
   }
 ]
 
-const statsData = [
-  { number: 50, label: 'Door Categories', suffix: '+' },
-  { number: 1000, label: 'Happy Customers', suffix: '+' },
-  { number: 28, label: 'Years Experience', suffix: '' },
-  { number: 28, label: 'States Covered', suffix: '' }
-]
-
 export default function Features() {
   const [currentStats, setCurrentStats] = useState({
     categories: 0,
@@ -124,19 +117,6 @@ export default function Features() {
       {/* Background Elements */}
       <div className="features-background">
         <div className="bg-pattern"></div>
-        <div className="floating-elements">
-          {[...Array(8)].map((_, i) => (
-            <div
-              key={i}
-              className="floating-element"
-              style={{
-                '--delay': `${i * 0.5}s`,
-                '--x': `${Math.random() * 100}%`,
-                '--y': `${Math.random() * 100}%`
-              }}
-            />
-          ))}
-        </div>
       </div>
 
       <div className="features-container">
@@ -156,7 +136,7 @@ export default function Features() {
           </p>
         </div>
 
-        {/* Features Grid */}
+        {/* Features Grid - Mobile: 2 per row, Desktop: 4 per row */}
         <div className="features-grid">
           {featuresData.map((feature, index) => (
             <div
@@ -171,7 +151,6 @@ export default function Features() {
               <div className="icon-container">
                 <div className="icon-bg"></div>
                 <span className="icon">{feature.icon}</span>
-                <div className="icon-shine"></div>
               </div>
 
               {/* Feature Content */}
@@ -180,67 +159,10 @@ export default function Features() {
                 <p className="feature-description">{feature.description}</p>
               </div>
 
-              {/* Card Corner */}
-              <div className="card-corner">
-                <div className="corner-line"></div>
-                <div className="corner-dot"></div>
-              </div>
-
               {/* Hover Effect */}
               <div className="hover-effect"></div>
             </div>
           ))}
-        </div>
-
-        {/* Stats Section */}
-        <div className="stats-section">
-          <div className="stats-background">
-            <div className="stats-glow"></div>
-          </div>
-
-          <div className="stats-grid">
-            {statsData.map((stat, index) => (
-              <div
-                key={index}
-                className={`stat-item ${isVisible ? 'visible' : ''}`}
-                style={{ '--stat-index': index }}
-              >
-                <div className="stat-content">
-                  {/* Number with Animation */}
-                  <div className="stat-number-wrapper">
-                    <span className="stat-number">
-                      {stat.number === 28 ? currentStats.states :
-                        stat.number === 50 ? currentStats.categories :
-                          stat.number === 1000 ? currentStats.customers :
-                            currentStats.experience}
-                    </span>
-                    <span className="stat-suffix">{stat.suffix}</span>
-                  </div>
-
-                  {/* Label */}
-                  <span className="stat-label">{stat.label}</span>
-
-                  {/* Progress Bar */}
-                  <div className="stat-progress">
-                    <div
-                      className="progress-bar"
-                      style={{
-                        width: isVisible ? '100%' : '0%',
-                        transitionDelay: `${index * 0.2}s`
-                      }}
-                    ></div>
-                  </div>
-
-                  {/* Stat Icon */}
-                  <div className="stat-icon">
-                    {index === 0 ? '🚪' :
-                      index === 1 ? '😊' :
-                        index === 2 ? '📅' : '📍'}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
       </div>
     </section>
