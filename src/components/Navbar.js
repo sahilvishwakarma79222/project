@@ -357,12 +357,12 @@ const menuData = {
                     </div>
                   </Link>
                 ))}
-                
+{/*                 
                 <Link href="/all-categories" onClick={handleLinkClick} className="mobile-view-all">
                   <i className="fas fa-eye"></i>
                   <span>View All Products</span>
                   <i className="fas fa-arrow-right"></i>
-                </Link>
+                </Link> */}
               </div>
             )}
           </div>

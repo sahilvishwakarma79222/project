@@ -319,14 +319,7 @@ export default async function ProductDetailPage({ params, searchParams }) {
                     </div>
                     
                     {/* WhatsApp Button - Always visible */}
-                    <a
-                      href={`https://wa.me/919876543210?text=${whatsappMessage}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="sticky-whatsapp-btn"
-                    >
-                      <span style={{ fontSize: '18px' }}>💬</span> WhatsApp Now
-                    </a>
+                   
                   </div>
                 </div>
                 
