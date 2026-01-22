@@ -64,6 +64,7 @@
   padding: 20px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.05);
   margin-left: 0;
+  height: 900px;
 }
 
 .wood-sidebar-card {
@@ -83,75 +84,85 @@
 }
 
 .wood-sidebar-title::before {
-  content: "📁";
+  content: "";
   font-size: 16px;
 }
 
 .wood-categories-list {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 15px;
 }
 
 .wood-category-btn {
   width: 100%;
-  padding: 12px 16px;
+  padding: 14px 18px;
   border: none;
-  background: transparent;
-  color: #0f1111;
+  background: linear-gradient(135deg, #fff, #fff7f0);
+  color: #1a1a1a;
   text-align: left;
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-size: 14px;
-  font-weight: 400;
+  font-weight: 500;
   cursor: pointer;
-  transition: all 0.2s ease;
-  border-radius: 3px;
+  border-radius: 6px;
   position: relative;
+  transition: all 0.3s ease;
 }
 
+/* Hover Effect */
 .wood-category-btn:hover {
-  background-color: #f7f7f7;
+  background: linear-gradient(135deg, #fff3e6, #ffe2c6);
   color: #c7511f;
-  padding-left: 20px;
+  transform: translateX(4px);
+  box-shadow: 0 4px 10px rgba(255, 164, 28, 0.2);
 }
 
+/* Active State */
 .wood-category-btn.active {
-  background-color: #fff8f6;
+  background: linear-gradient(135deg, #ffeddc, #ffd4a3);
   color: #c7511f;
   font-weight: 600;
-  border-left: 3px solid #ffa41c;
-  padding-left: 17px;
+  padding-left: 22px;
+  box-shadow: inset 4px 0 0 #ffa41c, 0 4px 12px rgba(255, 164, 28, 0.25);
 }
 
+/* Left Accent Bar */
 .wood-category-btn.active::before {
   content: "";
   position: absolute;
   left: 0;
   top: 0;
   height: 100%;
-  width: 3px;
-  background: #ffa41c;
+  width: 4px;
+  background: linear-gradient(to bottom, #ff8f00, #ffa41c);
+  border-radius: 6px 0 0 6px;
 }
 
+/* Count Badge */
 .wood-category-count {
-  background: #f0f2f2;
+  background: #f3f4f4;
   color: #565959;
   font-size: 12px;
-  font-weight: 400;
-  padding: 2px 8px;
-  border-radius: 10px;
-  min-width: 36px;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 20px;
+  min-width: 38px;
   text-align: center;
   border: 1px solid #d5d9d9;
+  transition: all 0.3s ease;
 }
 
+/* Active Count Badge */
 .wood-category-btn.active .wood-category-count {
-  background: #ffa41c;
-  color: white;
+  background: linear-gradient(135deg, #ff8f00, #ffa41c);
+  color: #fff;
   border-color: #ff8f00;
+  box-shadow: 0 2px 6px rgba(255, 164, 28, 0.4);
 }
+
 
 /* Mobile Navigation UI */
 .mobile-nav-btn {
@@ -412,7 +423,7 @@
   font-size: 16px;
   font-weight: 400;
   color: #0f1111;
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */
   line-height: 1.4;
   height: 44px;
   overflow: hidden;
@@ -435,7 +446,7 @@
   font-size: 22px;
   font-weight: 700;
   color: #0f1111;
-  margin-bottom: 12px;
+  /* margin-bottom: 12px; */
   letter-spacing: 0.5px;
 }
 
@@ -447,8 +458,8 @@
 
 /* WhatsApp Button */
 .wood-buy-button {
-  background: #ffa41c;
-  color: #0f1111;
+  background: linear-gradient(to right, #ff7f32, #ffa500);
+  color: white;
   padding: 10px 16px;
   border-radius: 4px;
   font-weight: 600;
@@ -466,8 +477,8 @@
 }
 
 .wood-buy-button:hover {
-  background: #ff8f00;
-  transform: translateY(-1px);
+  background: linear-gradient(to right, #ff6600, #ff8c00, #ffb84d);
+    transform: translateY(-1px);
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
@@ -476,7 +487,7 @@
 }
 
 .wood-buy-button::before {
-  content: "🛒";
+  /* content: "🛒"; */
   font-size: 16px;
 }
 

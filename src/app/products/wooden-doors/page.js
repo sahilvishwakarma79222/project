@@ -140,7 +140,7 @@ const ProductCard = React.memo(({ product, activeCategory, currentPage }) => {
         <div className="wood-product-info">
           <h3 className="wood-product-title">{product.name}</h3>
           
-          <div className='wood-product-dimention' style={{ margin: '4px 0', fontSize: '13px', color: '#565959' }}>
+          <div className='wood-product-dimention' style={{ margin: '0', fontSize: '13px', color: '#565959' }}>
             <div style={{ marginBottom: '2px' }}>
               <span style={{ fontWeight: '500' }}>Wood:</span> {product.woodtype}
             </div>
@@ -157,7 +157,7 @@ const ProductCard = React.memo(({ product, activeCategory, currentPage }) => {
                 alignItems: 'center',
                 gap: '4px'
               }}>
-                <span>🔥</span> {product.sales}+ Sold
+              {product.sales}+ Sold
               </div>
             )}
           </div>
@@ -625,51 +625,12 @@ export default function ProductsPage() {
                   {categoryButtons}
                 </div>
                 
-                <div className="wood-whatsapp-help">
-                  <h3>Need Assistance?</h3>
-                  <p>Our experts are available 10AM - 7PM to help you choose the perfect product</p>
-                  <a
-                    href="https://wa.me/919876543210?text=Hello, I need help choosing wooden products"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="wood-whatsapp-btn"
-                    aria-label="Chat on WhatsApp"
-                  >
-                    <span>💬 Chat on WhatsApp</span>
-                  </a>
-                  
-                  {/* Refresh Button */}
-                  <button
-                    onClick={handleRefreshCounts}
-                    disabled={loading || countsLoading}
-                    className="wood-refresh-btn"
-                    aria-label="Refresh product data"
-                    style={{
-                      marginTop: '12px',
-                      background: '#f0f2f2',
-                      color: '#0f1111',
-                      border: '1px solid #d5d9d9',
-                      padding: '8px 12px',
-                      borderRadius: '4px',
-                      width: '100%',
-                      cursor: loading || countsLoading ? 'not-allowed' : 'pointer',
-                      fontSize: '12px',
-                      fontWeight: '500',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      gap: '6px',
-                      transition: 'all 0.2s ease',
-                      opacity: (loading || countsLoading) ? 0.6 : 1
-                    }}
-                  >
-                    {(loading || countsLoading) ? '⏳ Loading...' : '🔄 Refresh Data'}
-                  </button>
-                </div>
+                
+
+                
               </div>
             </div>
 
-            {/* Mobile Navigation Only */}
             <div className="mobile-nav-btn">
               <button
                 className="mobile-nav-fab"
@@ -684,7 +645,6 @@ export default function ProductsPage() {
               </nav>
             </div>
 
-            {/* Main Products Area */}
             <div className="wood-main-content-area">
               <div className="wood-category-header">
                 <div className="wood-header-content">
@@ -704,7 +664,6 @@ export default function ProductsPage() {
                 </div>
               </div>
 
-              {/* Products Grid */}
               {loading ? (
                 <div className="wood-products-grid">
                   {Array.from({ length: Math.min(12, categoryCounts[activeCategory] || 12) }).map((_, i) => (
@@ -724,7 +683,6 @@ export default function ProductsPage() {
                     ))}
                   </div>
 
-                  {/* Pagination */}
                   {totalPages > 1 && (
                     <div className="wood-pagination" role="navigation" aria-label="Product pagination">
                       <button
@@ -778,6 +736,7 @@ export default function ProductsPage() {
                 </div>
               ) : null}
             </div>
+            
           </div>
         </div>
       </div>

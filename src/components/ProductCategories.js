@@ -10,9 +10,8 @@ const productCategories = [
     name: 'Wooden Doors',
     href: '/products/wooden-doors?category=woodenDoor',
     image: '/images/products/wooden-doors.jpg',
-    description: 'Premium handcrafted doors',
+    description: 'Premium handcrafted doors with exquisite finishes',
     badge: 'Bestseller',
-    stats: '200+ Designs',
     icon: '🚪'
   },
   {
@@ -20,9 +19,8 @@ const productCategories = [
     name: 'Safety Doors',
     href: '/products/wooden-doors?category=safetyDoors',
     image: '/images/products/safety-doors.jpg',
-    description: 'Advanced security doors',
+    description: 'Advanced security meets elegant design',
     badge: 'Secure',
-    stats: '100+ Models',
     icon: '🔒'
   },
   {
@@ -30,9 +28,8 @@ const productCategories = [
     name: 'Wooden Frames',
     href: '/products/wooden-doors?category=woodenFrame',
     image: '/images/products/wooden-frames.jpg',
-    description: 'Elegant door frames',
+    description: 'Custom frames for timeless elegance',
     badge: 'Essential',
-    stats: '50+ Styles',
     icon: '🖼️'
   },
   {
@@ -40,9 +37,8 @@ const productCategories = [
     name: 'Wooden Windows',
     href: '/products/wooden-doors?category=woodenWindow',
     image: '/images/products/wooden-windows.jpg',
-    description: 'Beautiful wooden windows',
+    description: 'Crafted windows for natural beauty',
     badge: 'Premium',
-    stats: '50+ Designs',
     icon: '🪟'
   },
   {
@@ -50,9 +46,8 @@ const productCategories = [
     name: 'Wooden Beds',
     href: '/products/wooden-doors?category=woodenBed',
     image: '/images/products/wooden-beds.jpg',
-    description: 'Handcrafted wooden beds',
+    description: 'Luxurious sleep sanctuaries',
     badge: 'Luxury',
-    stats: '50+ Designs',
     icon: '🛏️'
   },
   {
@@ -60,9 +55,8 @@ const productCategories = [
     name: 'Sofa & Chairs',
     href: '/products/wooden-doors?category=sofaChair',
     image: '/images/products/sofa-chairs.jpg',
-    description: 'Comfortable seating',
+    description: 'Comfort redefined in wood and fabric',
     badge: 'Comfort',
-    stats: '100+ Designs',
     icon: '🛋️'
   },
   {
@@ -70,9 +64,8 @@ const productCategories = [
     name: 'Wooden Mandir',
     href: '/products/wooden-doors?category=woodenMandir',
     image: '/images/products/wooden-mandir.jpg',
-    description: 'Sacred home temples',
+    description: 'Sacred spaces for spiritual harmony',
     badge: 'Spiritual',
-    stats: '50+ Designs',
     icon: '🛕'
   },
   {
@@ -80,113 +73,122 @@ const productCategories = [
     name: 'Wooden Art',
     href: '/products/wooden-doors?category=woodenArt',
     image: '/images/products/wooden-art.jpg',
-    description: 'Exquisite sculptures',
+    description: 'Sculptures that tell stories',
     badge: 'Artistic',
-    stats: '100+ Pieces',
     icon: '🎨'
   }
 ]
 
 export default function ProductCategories() {
-  const [hoveredCard, setHoveredCard] = useState(null)
+  const [showAll, setShowAll] = useState(false);
+
+  const toggleShowAll = () => {
+    setShowAll(!showAll);
+  };
 
   return (
     <section id="product-categories" className="product-categories-section">
-      {/* Background Elements */}
-      <div className="bg-wood-texture"></div>
-      <div className="floating-wood-chips">
-        {[...Array(12)].map((_, i) => (
-          <div key={i} className="wood-chip" style={{
-            '--delay': `${i * 0.2}s`,
-            '--x': `${Math.random() * 100}%`,
-            '--y': `${Math.random() * 100}%`,
-            '--rotation': `${Math.random() * 360}deg`
-          }} />
-        ))}
-      </div>
-
       <div className="product-categories-container">
-        {/* Header Section - Minimal */}
+        {/* Premium Header */}
         <div className="categories-header">
-          <div className="title-wrapper">
-            <span className="section-tag">OUR PRODUCT RANGE</span>
-            <h2 className="section-title">
-              Explore Our <span className="highlight-text">Premium Collection</span>
-            </h2>
-            <div className="title-decoration">
-              <div className="deco-line"></div>
-              <div className="deco-dot"></div>
-              <div className="deco-line"></div>
-            </div>
-          </div>
+          <span className="section-label">COLLECTIONS</span>
+          <h2 className="section-title">
+            Crafted with <span className="highlight">Precision</span>,<br />
+            Designed for <span className="highlight">Perfection</span>
+          </h2>
+          <p className="section-description">
+            Each piece is a testament to our commitment to excellence in wood craftsmanship
+          </p>
         </div>
 
-        {/* Product Categories Grid */}
-        <div className="product-categories-grid">
+        {/* Premium Grid */}
+        <div className={`product-categories-grid ${showAll ? 'show-all' : ''}`}>
           {productCategories.map((category, index) => (
-            <Link 
-              key={category.id} 
-              href={category.href} 
-              className="product-category-card"
-              onMouseEnter={() => setHoveredCard(category.id)}
-              onMouseLeave={() => setHoveredCard(null)}
-              data-index={index}
-              style={{ '--card-index': index }}
-            >
-              {/* Card Glow Effect */}
-              <div className="card-glow"></div>
-              
-              {/* Category Badge */}
-              {category.badge && (
-                <div className="category-badge">
-                  <span className="badge-icon">{category.icon}</span>
-                  <span className="badge-text">{category.badge}</span>
-                </div>
-              )}
-
-              {/* Card Image - BIG SIZE */}
-              <div className="category-image-container">
-                <div className="image-wrapper">
+            <div key={category.id} className="category-card-wrapper">
+              <div className="category-card">
+                {/* Image with Overlay */}
+                <div className="image-container">
                   <Image
                     src={category.image}
                     alt={category.name}
-                    width={600}
-                    height={400}
+                    width={500}
+                    height={600}
                     className="product-image"
-                    priority={index < 2}
+                    priority={index < 4}
                   />
                   <div className="image-overlay"></div>
+                  
+                  {/* Badge */}
+                  <div className="premium-badge">
+                    <span className="badge-icon">{category.icon}</span>
+                    <span className="badge-text">{category.badge}</span>
+                  </div>
+                  
+                  {/* Hover Content - Mobile पर CSS automatically visible कर देगा */}
+                  <div className="hover-content">
+                    <div className="hover-inner">
+                      <span className="hover-number">0{index + 1}</span>
+                      <h3 className="hover-title">{category.name}</h3>
+                      {/* Description hide on mobile via CSS */}
+                      <p className="hover-description">{category.description}</p>
+                      
+                      {/* Premium Button - Mobile friendly छोटा */}
+                      <Link href={category.href} className="premium-button">
+                        <span className="button-text">Explore</span>
+                        <div className="button-icon">
+                          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                            <path d="M13.75 6.75L19.25 12L13.75 17.25" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                            <path d="M19 12H4.75" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                          </svg>
+                        </div>
+                      </Link>
+                    </div>
+                  </div>
                 </div>
-                <div className="image-shine"></div>
-              </div>
 
-              {/* Card Content - MINIMAL */}
-              <div className="card-content">
-                <div className="card-header">
-                  {/* <div className="category-stats">
-                    <span className="stats-icon">📊</span>
-                    <span className="stats-text">{category.stats}</span>
-                  </div> */}
-                  {/* <div className="product-number">
-                    <span className="number-text">#{String(index + 1).padStart(2, '0')}</span>
-                  </div> */}
-                </div>
-                
-                <h3 className="product-category-name">{category.name}</h3>
-                <p className="product-category-description">{category.description}</p>
-                
-                <div className="card-footer">
-                  <button className="explore-products-btn">
-                    View Collection
-                    <span className="btn-arrow">→</span>
-                  </button>
+                {/* Static Content - Mobile पर CSS hide कर देगा */}
+                <div className="static-content">
+                  <h3 className="category-name">{category.name}</h3>
+                  <div className="category-line"></div>
+                  <p className="category-description">{category.description}</p>
                 </div>
               </div>
-
-              {/* Card Hover Effect */}
-              <div className="card-hover-effect"></div>
-            </Link>
+            </div>
           ))}
+        </div>
+
+        {/* Show More Button - Mobile Only */}
+        <div className="show-more-container">
+          <button 
+            className={`show-more-button ${showAll ? 'active' : ''}`}
+            onClick={toggleShowAll}
+          >
+            <span className="button-text">Show {showAll ? 'Less' : 'More'}</span>
+            <div className="show-more-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                <path 
+                  d="M19 9L12 16L5 9" 
+                  stroke="white" 
+                  strokeWidth="2" 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </div>
+          </button>
+        </div>
+
+        {/* View All Button */}
+        <div className="view-all-wrapper">
+          <Link href="/collections" className="view-all-button">
+            <span>View All Collections</span>
+            <div className="arrow-circle">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <path d="M12 5V19" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                <path d="M19 12L5 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+              </svg>
+            </div>
+          </Link>
         </div>
       </div>
     </section>

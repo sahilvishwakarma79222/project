@@ -9,6 +9,7 @@ import ProductImages from './ProductImages';
 import ShareProduct from './ShareProduct';
 import RelatedProducts from './RelatedProducts';
 import Navbar from '@/components/Navbar';
+import { FiShoppingCart } from "react-icons/fi";
 
 // Category folders mapping
 const categoryFolders = {
@@ -243,8 +244,8 @@ export default async function ProductDetailPage({ params, searchParams }) {
         <div className="product-detail-container">
           <div className="product-detail-layout">
             {/* Left Column - Image Gallery */}
-            <div>
-              <div className="image-gallery-section">
+            <div className="leftsideImgPart">
+              <div >
                 <ProductImages 
                   images={product.images} 
                   productName={product.name}
@@ -258,34 +259,12 @@ export default async function ProductDetailPage({ params, searchParams }) {
                     rel="noopener noreferrer"
                     className="image-action-btn btn-primary"
                   >
-                    <span style={{ fontSize: '18px' }}>🛒</span> Buy Now on WhatsApp
+                    <span style={{ fontSize: '18px',marginTop:"8px" }}><FiShoppingCart size={26}></FiShoppingCart></span> Buy Now 
                   </a>
-                  
-                  <Link
-                    href={`/products/wooden-doors?category=${category}&pageNumber=${pageNumber}`}
-                    className="image-action-btn btn-secondary"
-                  >
-                    <span style={{ fontSize: '18px' }}>←</span> Back to Products
-                  </Link>
+        
                 </div>
                 
-                {/* Image Details */}
-                <div className="image-details">
-                  <div className="details-row">
-                    <div style={{ flex: 1 }}>
-                      <p style={{ fontWeight: '500', color: '#333', marginBottom: '8px' }}>
-                        📸 Image Gallery Features:
-                      </p>
-                      <div style={{ fontSize: '13px', color: '#555', lineHeight: '1.5' }}>
-                        • <strong>Zoom:</strong> Hover image for zoom preview<br/>
-                       
-                      </div>
-                    </div>
-                    <div className="image-count-badge">
-                      {product.images?.length || 0}/4 images
-                    </div>
-                  </div>
-                </div>
+           
               </div>
             </div>
 
@@ -309,18 +288,7 @@ export default async function ProductDetailPage({ params, searchParams }) {
                     </div>
                   </div>
                   
-                  {/* Sticky Price Section */}
-                  <div className="sticky-price-section">
-                    <div className="price-amount">
-                      <span className="price-symbol">₹</span>
-                      <span className="price-value">
-                        {typeof product.price === 'number' ? product.price.toLocaleString() : product.price}
-                      </span>
-                    </div>
-                    
-                    {/* WhatsApp Button - Always visible */}
-                   
-                  </div>
+                  
                 </div>
                 
                 {/* Rating & Sales - ONLY if exists in JSON */}
@@ -337,6 +305,20 @@ export default async function ProductDetailPage({ params, searchParams }) {
                     )}
                   </div>
                 )}
+               <div className='bluecart'>
+
+                   {/* Sticky Price Section */}
+                <div className="sticky-price-section">
+                    <div className="price-amount">
+                      <span className="price-symbol">₹</span>
+                      <span className="price-value">
+                        {typeof product.price === 'number' ? product.price.toLocaleString() : product.price}
+                      </span>
+                    </div>
+                    
+                    {/* WhatsApp Button - Always visible */}
+                   
+                  </div>
                 
                 {/* Original Price and Discount - ONLY if exists in JSON */}
                 {product.originalPrice && product.discount && (
@@ -349,6 +331,7 @@ export default async function ProductDetailPage({ params, searchParams }) {
                     </span>
                   </div>
                 )}
+               </div>
                 
                 {/* Price Note - ONLY if exists in JSON */}
                 {product.priceNote && (
