@@ -96,9 +96,7 @@ export default function ProductCategories() {
             Crafted with <span className="highlight">Precision</span>,<br />
             Designed for <span className="highlight">Perfection</span>
           </h2>
-          <p className="section-description">
-            Each piece is a testament to our commitment to excellence in wood craftsmanship
-          </p>
+        
         </div>
 
         {/* Premium Grid */}
@@ -178,18 +176,6 @@ export default function ProductCategories() {
           </button>
         </div>
 
-        {/* View All Button */}
-        <div className="view-all-wrapper">
-          <Link href="/collections" className="view-all-button">
-            <span>View All Collections</span>
-            <div className="arrow-circle">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                <path d="M12 5V19" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-                <path d="M19 12L5 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-              </svg>
-            </div>
-          </Link>
-        </div>
       </div>
     </section>
   )

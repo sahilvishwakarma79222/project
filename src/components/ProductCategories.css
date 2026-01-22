@@ -74,7 +74,7 @@
 
 .section-title .highlight {
   font-weight: 400;
-  color: #b8860b;
+  color: #d4b483;
   position: relative;
   display: inline-block;
 }
@@ -86,7 +86,7 @@
   left: 0;
   width: 100%;
   height: 2px;
-  background: #b8860b;
+  background: #d4b483;
   opacity: 0.2;
 }
 
@@ -104,15 +104,15 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1.25rem; /* Gap कम किया */
-  margin-bottom: 3rem;
-  width: 100%;
+  margin: 0 auto 3rem auto;
+  width: 92%;
 }
 
 /* Card Wrapper - Compact height */
 .category-card-wrapper {
   perspective: 1000px;
   width: 100%;
-  height: 400px;
+  height: 370px;
 }
 
 .category-card {
@@ -150,6 +150,7 @@
   object-fit: cover;
   transition: transform 1.2s cubic-bezier(0.19, 1, 0.22, 1);
   display: block;
+  border-radius: 1px;
 }
 
 .category-card:hover .product-image {
@@ -176,10 +177,11 @@
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
   padding: 6px 12px;
-  border-radius: 30px;
+  border-radius: 5px;
   display: flex;
   align-items: center;
   gap: 6px;
+  height: 2.7rem;
   z-index: 2;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -192,7 +194,7 @@
 .badge-text {
   font-size: 0.7rem;
   font-weight: 600;
-  color: #b8860b;
+  color: #d4b483;
   letter-spacing: 0.5px;
   text-transform: uppercase;
 }
@@ -260,7 +262,8 @@
   letter-spacing: 0.5px;
   transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
   border: 1px solid rgba(212, 180, 131, 0.3);
-  width: fit-content;
+  width: 100%;
+  height: 2.7rem;
 }
 
 .premium-button:hover {
@@ -359,7 +362,7 @@
 }
 
 .view-all-button:hover {
-  color: #b8860b;
+  color: #d4b483;
 }
 
 .arrow-circle {
@@ -374,8 +377,8 @@
 }
 
 .view-all-button:hover .arrow-circle {
-  background: #b8860b;
-  border-color: #b8860b;
+  background: #d4b483;
+  border-color: #d4b483;
   transform: rotate(45deg);
 }
 
@@ -410,7 +413,7 @@
 }
 
 .show-more-button:hover {
-  background: #b8860b;
+  background: #d4b483;
   transform: translateY(-2px);
   box-shadow: 0 6px 16px rgba(184, 134, 11, 0.3);
 }
