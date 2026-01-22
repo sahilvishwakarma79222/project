@@ -387,6 +387,7 @@
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import '../../wooden-doors/product-view-flipkart.css';
+import { MdOutlineArrowBackIosNew, MdOutlineArrowForwardIos } from 'react-icons/md';
 
 export default function ProductImages({ images, productName }) {
   const [selectedImage, setSelectedImage] = useState(0);
@@ -745,7 +746,7 @@ export default function ProductImages({ images, productName }) {
                   aria-label="Previous image"
                   style={{ zIndex: 20 }}
                 >
-                  ←
+                  <MdOutlineArrowBackIosNew></MdOutlineArrowBackIosNew>
                 </button>
                 <button
                   onClick={(e) => {
@@ -756,7 +757,7 @@ export default function ProductImages({ images, productName }) {
                   aria-label="Next image"
                   style={{ zIndex: 20 }}
                 >
-                  →
+                  <MdOutlineArrowForwardIos />
                 </button>
               </>
             )}

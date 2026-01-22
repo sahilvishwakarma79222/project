@@ -638,7 +638,6 @@ export default function ProductsPage() {
                     <span>💬 Chat on WhatsApp</span>
                   </a>
                   
-                  {/* Refresh Button */}
                   <button
                     onClick={handleRefreshCounts}
                     disabled={loading || countsLoading}
@@ -666,10 +665,11 @@ export default function ProductsPage() {
                     {(loading || countsLoading) ? '⏳ Loading...' : '🔄 Refresh Data'}
                   </button>
                 </div>
+
+                
               </div>
             </div>
 
-            {/* Mobile Navigation Only */}
             <div className="mobile-nav-btn">
               <button
                 className="mobile-nav-fab"
@@ -684,7 +684,6 @@ export default function ProductsPage() {
               </nav>
             </div>
 
-            {/* Main Products Area */}
             <div className="wood-main-content-area">
               <div className="wood-category-header">
                 <div className="wood-header-content">
@@ -704,7 +703,6 @@ export default function ProductsPage() {
                 </div>
               </div>
 
-              {/* Products Grid */}
               {loading ? (
                 <div className="wood-products-grid">
                   {Array.from({ length: Math.min(12, categoryCounts[activeCategory] || 12) }).map((_, i) => (
@@ -724,7 +722,6 @@ export default function ProductsPage() {
                     ))}
                   </div>
 
-                  {/* Pagination */}
                   {totalPages > 1 && (
                     <div className="wood-pagination" role="navigation" aria-label="Product pagination">
                       <button
@@ -778,6 +775,7 @@ export default function ProductsPage() {
                 </div>
               ) : null}
             </div>
+            
           </div>
         </div>
       </div>
