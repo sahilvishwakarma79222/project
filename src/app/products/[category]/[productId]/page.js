@@ -269,23 +269,7 @@ export default async function ProductDetailPage({ params, searchParams }) {
                   </Link>
                 </div>
                 
-                {/* Image Details */}
-                <div className="image-details">
-                  <div className="details-row">
-                    <div style={{ flex: 1 }}>
-                      <p style={{ fontWeight: '500', color: '#333', marginBottom: '8px' }}>
-                        📸 Image Gallery Features:
-                      </p>
-                      <div style={{ fontSize: '13px', color: '#555', lineHeight: '1.5' }}>
-                        • <strong>Zoom:</strong> Hover image for zoom preview<br/>
-                       
-                      </div>
-                    </div>
-                    <div className="image-count-badge">
-                      {product.images?.length || 0}/4 images
-                    </div>
-                  </div>
-                </div>
+           
               </div>
             </div>
 
