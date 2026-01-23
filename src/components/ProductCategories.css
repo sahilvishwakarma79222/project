@@ -1,14 +1,13 @@
-/* ProductCategories.css */
+/* ProductCategories.css - Clean & Optimized */
 
-/* Main Section - Premium Feel */
+/* Main Section */
 .product-categories-section {
-  padding: 3rem 0.5rem; /* Side padding कम किया */
+  padding: 3rem 0.5rem;
   background: #fefefe;
   position: relative;
   overflow: hidden;
   width: 100%;
   box-sizing: border-box;
-  min-height: auto;
 }
 
 .product-categories-section::before {
@@ -23,15 +22,15 @@
 }
 
 .product-categories-container {
-  max-width: 1320px; /* 1400px से बढ़ाया */
+  max-width: 1320px;
   margin: 0 auto;
   position: relative;
   width: 100%;
   box-sizing: border-box;
-  padding: 0 0.5rem; /* Side padding कम किया */
+  padding: 0 0.5rem;
 }
 
-/* Premium Header - Compact */
+/* Premium Header */
 .categories-header {
   text-align: center;
   margin-bottom: 3rem;
@@ -90,25 +89,16 @@
   opacity: 0.2;
 }
 
-.section-description {
-  font-size: 1.125rem;
-  color: #666;
-  line-height: 1.5;
-  max-width: 500px;
-  margin: 0 auto;
-  font-weight: 300;
-}
-
-/* Premium Grid - Single row में 4 cards, gap कम किया */
+/* Premium Grid */
 .product-categories-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 1.25rem; /* Gap कम किया */
+  gap: 1.25rem;
   margin: 0 auto 3rem auto;
   width: 92%;
 }
 
-/* Card Wrapper - Compact height */
+/* Card Wrapper */
 .category-card-wrapper {
   perspective: 1000px;
   width: 100%;
@@ -135,7 +125,7 @@
   border-color: rgba(212, 180, 131, 0.2);
 }
 
-/* Image Container - Smaller */
+/* Image Container */
 .image-container {
   position: relative;
   height: 250px;
@@ -199,7 +189,7 @@
   text-transform: uppercase;
 }
 
-/* Hover Content - Compact */
+/* Hover Content - Desktop */
 .hover-content {
   position: absolute;
   inset: 0;
@@ -247,17 +237,17 @@
   font-weight: 300;
 }
 
-/* Premium Button - Updated (Smaller and New Colors) */
+/* Premium Button */
 .premium-button {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: #ffdba5; /* नया color - wooden gold */
+  background: #ffdba5;
   color: #1a1a1a;
   text-decoration: none;
-  padding: 8px 16px; /* छोटा किया */
+  padding: 8px 16px;
   border-radius: 2px;
-  font-size: 0.75rem; /* छोटा किया */
+  font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.5px;
   transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
@@ -267,7 +257,7 @@
 }
 
 .premium-button:hover {
-  background: #ffe196; /* Darker gold on hover */
+  background: #ffe196;
   color: white;
   transform: translateY(-2px);
   box-shadow: 0 6px 16px rgba(184, 134, 11, 0.4);
@@ -283,11 +273,11 @@
 }
 
 .button-icon svg {
-  width: 14px; /* Icon छोटा किया */
+  width: 14px;
   height: 14px;
 }
 
-/* Static Content - Compact */
+/* Static Content */
 .static-content {
   padding: 16px;
   flex-grow: 1;
@@ -320,73 +310,7 @@
   flex-grow: 1;
 }
 
-/* View All Button - Smaller */
-.view-all-wrapper {
-  text-align: center;
-  padding-top: 2rem;
-  border-top: 1px solid rgba(212, 180, 131, 0.1);
-  width: 100%;
-}
-
-.view-all-button {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  background: transparent;
-  color: #1a1a1a;
-  text-decoration: none;
-  padding: 12px 24px;
-  font-size: 0.9rem;
-  font-weight: 500;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  transition: all 0.4s ease;
-  position: relative;
-}
-
-.view-all-button::before {
-  content: '';
-  position: absolute;
-  bottom: 10px;
-  left: 24px;
-  right: 24px;
-  height: 1px;
-  background: #d4b483;
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.4s ease;
-}
-
-.view-all-button:hover::before {
-  transform: scaleX(1);
-}
-
-.view-all-button:hover {
-  color: #d4b483;
-}
-
-.arrow-circle {
-  width: 32px;
-  height: 32px;
-  border: 1px solid #e0e0e0;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.4s ease;
-}
-
-.view-all-button:hover .arrow-circle {
-  background: #d4b483;
-  border-color: #d4b483;
-  transform: rotate(45deg);
-}
-
-.view-all-button:hover .arrow-circle svg {
-  color: white;
-}
-
-/* Show More Button Container - Mobile Only */
+/* Show More Button Container */
 .show-more-container {
   display: none;
   text-align: center;
@@ -427,69 +351,9 @@
 }
 
 /* Responsive Design */
-@media (max-width: 1800px) {
-  .product-categories-container {
-    max-width: 1500px;
-  }
-}
 
-@media (max-width: 1600px) {
-  .product-categories-container {
-    max-width: 1400px;
-  }
-  
-  .product-categories-grid {
-    gap: 3.2rem;
-  }
-}
-
-@media (max-width: 1400px) {
-  .product-categories-container {
-    max-width: 1300px;
-  }
-  
-  .product-categories-grid {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.25rem;
-  }
-  
-  .category-card-wrapper {
-    height: 380px;
-  }
-  
-  .image-container {
-    height: 230px;
-  }
-}
-
-@media (max-width: 1200px) {
-  .product-categories-container {
-    max-width: 1100px;
-  }
-  
-  .product-categories-grid {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
-  }
-  
-  .category-card-wrapper {
-    height: 360px;
-  }
-  
-  .image-container {
-    height: 220px;
-  }
-  
-  .section-title {
-    font-size: 2.25rem;
-  }
-}
-
+/* Tablet View */
 @media (max-width: 1100px) {
-  .product-categories-container {
-    max-width: 1000px;
-  }
-  
   .product-categories-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 1.25rem;
@@ -503,12 +367,9 @@
   .section-title {
     font-size: 2rem;
   }
-  
-  .categories-header {
-    margin-bottom: 2.5rem;
-  }
 }
 
+/* Mobile View */
 @media (max-width: 768px) {
   .product-categories-section {
     padding: 2rem 0.5rem;
@@ -521,10 +382,6 @@
   
   .section-title {
     font-size: 1.75rem;
-  }
-  
-  .section-description {
-    font-size: 1rem;
   }
   
   .product-categories-grid {
@@ -545,17 +402,37 @@
     height: 200px;
   }
   
+  /* Mobile: Always show hover content (button) */
   .hover-content {
-    padding: 15px;
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent 60%);
+    padding: 12px;
+  }
+  
+  .hover-inner {
+    padding-bottom: 8px;
   }
   
   .hover-title {
-    font-size: 1.1rem;
+    font-size: 1rem;
+    margin-bottom: 4px;
+  }
+  
+  .hover-description {
+    display: none;
   }
   
   .premium-button {
-    padding: 7px 14px;
-    font-size: 0.7rem;
+    padding: 6px 12px !important;
+    font-size: 0.65rem !important;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(212, 180, 131, 0.4);
+  }
+  
+  .button-icon svg {
+    width: 12px !important;
+    height: 12px !important;
   }
   
   .static-content {
@@ -573,6 +450,7 @@
   }
 }
 
+/* Small Mobile */
 @media (max-width: 640px) {
   .product-categories-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -590,17 +468,9 @@
   .section-title {
     font-size: 1.5rem;
   }
-  
-  .section-description {
-    font-size: 0.95rem;
-  }
-  
-  .view-all-button {
-    padding: 10px 20px;
-    font-size: 0.85rem;
-  }
 }
 
+/* Extra Small Mobile */
 @media (max-width: 480px) {
   .product-categories-section {
     padding: 1.5rem 0.5rem;
@@ -638,101 +508,8 @@
   }
   
   .hover-content {
-    padding: 12px;
-  }
-  
-  .view-all-button {
-    padding: 8px 16px;
-    font-size: 0.8rem;
-  }
-  
-  .arrow-circle {
-    width: 28px;
-    height: 28px;
-  }
-  
-  .show-more-button {
-    padding: 8px 20px;
-    font-size: 0.8rem;
-  }
-}
-
-@media (max-width: 380px) {
-  .premium-button {
-    padding: 6px 12px;
-    font-size: 0.65rem;
-  }
-  
-  .button-icon svg {
-    width: 12px;
-    height: 12px;
-  }
-}
-
-
-/* ProductCategories.css में ये additions करें */
-
-/* ... existing code ... */
-
-/* Hover Content - Compact */
-.hover-content {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent 50%);
-  display: flex;
-  align-items: flex-end;
-  padding: 18px;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-  z-index: 1;
-}
-
-.category-card:hover .hover-content {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* MOBILE VIEW: Always show button without hover */
-@media (max-width: 768px) {
-  .hover-content {
-    opacity: 1 !important; /* Always visible on mobile */
-    transform: translateY(0) !important; /* Remove animation */
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent 60%); /* Lighter gradient */
-    padding: 12px; /* Smaller padding */
-  }
-  
-  .hover-inner {
-    padding-bottom: 8px; /* Reduced padding */
-  }
-  
-  .hover-title {
-    font-size: 1rem; /* Smaller title */
-    margin-bottom: 4px; /* Reduced margin */
-  }
-  
-  .hover-description {
-    display: none; /* Hide description on mobile to save space */
-  }
-  
-  .premium-button {
-    padding: 6px 12px !important; /* Smaller button */
-    font-size: 0.65rem !important; /* Smaller font */
-    background: rgba(255, 255, 255, 0.95); /* Solid background */
-    border: 1px solid rgba(212, 180, 131, 0.4);
-  }
-  
-  .button-icon svg {
-    width: 12px !important;
-    height: 12px !important;
-  }
-}
-
-/* For very small screens */
-@media (max-width: 480px) {
-  .hover-content {
-    padding: 10px; /* Even smaller padding */
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent 70%); /* Even lighter */
+    padding: 10px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent 70%);
   }
   
   .premium-button {
@@ -749,6 +526,22 @@
     font-size: 0.65rem;
     margin-bottom: 2px;
   }
+  
+  .show-more-button {
+    padding: 8px 20px;
+    font-size: 0.8rem;
+  }
 }
 
-/* ... rest of existing code ... */
+/* Super Small Screens */
+@media (max-width: 380px) {
+  .premium-button {
+    padding: 6px 12px;
+    font-size: 0.65rem;
+  }
+  
+  .button-icon svg {
+    width: 12px;
+    height: 12px;
+  }
+}

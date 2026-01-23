@@ -548,13 +548,13 @@
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, #25d366, #128c7e);
+  background: linear-gradient(135deg, #ff9f00, #ff8c00);
   color: white;
   height: 55px;
 }
 
 .btn-primary:hover, .btn-primary:active {
-  background: linear-gradient(135deg, #25d366, #128c7e);
+  background: linear-gradient(135deg, #ff9f00, #ff8c00);
   box-shadow: 0 2px 8px rgba(255, 159, 0, 0.3);
   transform: translateY(-1px);
 }
