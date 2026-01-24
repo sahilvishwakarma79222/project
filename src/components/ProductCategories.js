@@ -93,10 +93,10 @@ export default function ProductCategories() {
         <div className="categories-header">
           <span className="section-label">COLLECTIONS</span>
           <h2 className="section-title">
-            Crafted with <span className="highlight">Precision</span>,<br />
+            Crafted with <span className="highlight">Precision</span>,
             Designed for <span className="highlight">Perfection</span>
           </h2>
-        
+
         </div>
 
         {/* Premium Grid */}
@@ -115,13 +115,13 @@ export default function ProductCategories() {
                     priority={index < 4}
                   />
                   <div className="image-overlay"></div>
-                  
+
                   {/* Badge */}
                   <div className="premium-badge">
                     <span className="badge-icon">{category.icon}</span>
                     <span className="badge-text">{category.badge}</span>
                   </div>
-                  
+
                   {/* Hover Content - Mobile पर CSS automatically visible कर देगा */}
                   <div className="hover-content">
                     <div className="hover-inner">
@@ -129,14 +129,14 @@ export default function ProductCategories() {
                       <h3 className="hover-title">{category.name}</h3>
                       {/* Description hide on mobile via CSS */}
                       <p className="hover-description">{category.description}</p>
-                      
+
                       {/* Premium Button - Mobile friendly छोटा */}
                       <Link href={category.href} className="premium-button">
                         <span className="button-text">Explore</span>
                         <div className="button-icon">
                           <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                            <path d="M13.75 6.75L19.25 12L13.75 17.25" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                            <path d="M19 12H4.75" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                            <path d="M13.75 6.75L19.25 12L13.75 17.25" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                            <path d="M19 12H4.75" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                           </svg>
                         </div>
                       </Link>
@@ -157,18 +157,18 @@ export default function ProductCategories() {
 
         {/* Show More Button - Mobile Only */}
         <div className="show-more-container">
-          <button 
+          <button
             className={`show-more-button ${showAll ? 'active' : ''}`}
             onClick={toggleShowAll}
           >
             <span className="button-text">Show {showAll ? 'Less' : 'More'}</span>
             <div className="show-more-icon">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                <path 
-                  d="M19 9L12 16L5 9" 
-                  stroke="white" 
-                  strokeWidth="2" 
-                  strokeLinecap="round" 
+                <path
+                  d="M19 9L12 16L5 9"
+                  stroke="white"
+                  strokeWidth="2"
+                  strokeLinecap="round"
                   strokeLinejoin="round"
                 />
               </svg>

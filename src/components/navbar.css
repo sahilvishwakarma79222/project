@@ -8,7 +8,6 @@
   z-index: 1000;
   box-shadow: 0 1px 8px rgba(0, 0, 0, 0.07);
   border-bottom: 1px solid #f0f0f0;
-  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
 }
 
 .nav-container {
@@ -176,7 +175,6 @@
   justify-content: center;
   gap: 0.5rem;
   cursor: pointer;
-  font-family: inherit;
 }
 
 .nav-cta:hover {

@@ -29,7 +29,7 @@ const categoryFolders = {
 async function getProductData(category, productId) {
   try {
     console.log('🔍 Getting product:', { category, productId });
-    
+
     // Extract product number
     let productNumber = 1;
     if (productId) {
@@ -51,33 +51,33 @@ async function getProductData(category, productId) {
 
     // Construct path to info.json in public folder
     const infoPath = path.join(
-      process.cwd(), 
-      'public', 
-      'images', 
-      'category', 
-      folderName, 
-      `product${productNumber}`, 
+      process.cwd(),
+      'public',
+      'images',
+      'category',
+      folderName,
+      `product${productNumber}`,
       'info.json'
     );
-    
+
     console.log('📁 Reading from:', infoPath);
-    
+
     // Check if file exists
     if (!fs.existsSync(infoPath)) {
       console.log('❌ File does not exist:', infoPath);
       return null;
     }
-    
+
     // Read and parse JSON file
     const fileContent = fs.readFileSync(infoPath, 'utf-8');
     const infoData = JSON.parse(fileContent);
-    
+
     console.log('✅ Product data loaded');
-    
+
     // Check which images exist
     const basePath = `/images/category/${folderName}/product${productNumber}/`;
     const images = [];
-    
+
     // Check for images 1.webp to 4.webp
     for (let i = 1; i <= 4; i++) {
       const imagePath = path.join(
@@ -89,13 +89,13 @@ async function getProductData(category, productId) {
         `product${productNumber}`,
         `${i}.webp`
       );
-      
+
       if (fs.existsSync(imagePath)) {
         images.push(`${basePath}${i}.webp`);
         console.log(`🖼️ Found image ${i}: ${basePath}${i}.webp`);
       }
     }
-    
+
     return {
       ...infoData,
       images,
@@ -103,7 +103,7 @@ async function getProductData(category, productId) {
       productNumber,
       categoryFolder: folderName
     };
-    
+
   } catch (error) {
     console.error('💥 Error loading product:', error);
     return null;
@@ -115,7 +115,7 @@ async function getRelatedProducts(category, currentProductNumber) {
   try {
     const folderName = categoryFolders[category];
     if (!folderName) return [];
-    
+
     const categoryPath = path.join(
       process.cwd(),
       'public',
@@ -123,48 +123,48 @@ async function getRelatedProducts(category, currentProductNumber) {
       'category',
       folderName
     );
-    
+
     // Check if category folder exists
     if (!fs.existsSync(categoryPath)) {
       console.log('❌ Category folder not found:', categoryPath);
       return [];
     }
-    
+
     // Get all product folders
     const items = fs.readdirSync(categoryPath);
-    const productFolders = items.filter(item => 
+    const productFolders = items.filter(item =>
       item.startsWith('product') && fs.statSync(path.join(categoryPath, item)).isDirectory()
     );
-    
+
     // Filter out current product
     const otherProducts = productFolders.filter(folder => {
       const productNum = parseInt(folder.replace('product', ''), 10);
       return productNum !== currentProductNumber;
     });
-    
+
     // Shuffle array randomly
     const shuffled = [...otherProducts].sort(() => Math.random() - 0.5);
-    
+
     // Take first 4 products
     const selectedProducts = shuffled.slice(0, 4);
-    
+
     // Read info for each selected product
     const relatedProducts = [];
-    
+
     for (const productFolder of selectedProducts) {
       const productNum = parseInt(productFolder.replace('product', ''), 10);
       const infoPath = path.join(categoryPath, productFolder, 'info.json');
-      
+
       if (fs.existsSync(infoPath)) {
         const fileContent = fs.readFileSync(infoPath, 'utf-8');
         const infoData = JSON.parse(fileContent);
-        
+
         // Check for first image
         const imagePath = path.join(categoryPath, productFolder, '1.webp');
-        const imageUrl = fs.existsSync(imagePath) 
+        const imageUrl = fs.existsSync(imagePath)
           ? `/images/category/${folderName}/${productFolder}/1.webp`
           : null;
-        
+
         relatedProducts.push({
           ...infoData,
           id: `${category}-${productNum}`,
@@ -174,10 +174,10 @@ async function getRelatedProducts(category, currentProductNumber) {
         });
       }
     }
-    
+
     console.log(`✅ Found ${relatedProducts.length} related products`);
     return relatedProducts;
-    
+
   } catch (error) {
     console.error('💥 Error loading related products:', error);
     return [];
@@ -187,11 +187,11 @@ async function getRelatedProducts(category, currentProductNumber) {
 export default async function ProductDetailPage({ params, searchParams }) {
   const { category, productId } = await params;
   const { pageNumber } = await searchParams;
-  
+
   console.log('📌 URL Params:', { category, productId });
 
   const product = await getProductData(category, productId);
-  
+
   if (!product) {
     console.log('❌ Product not found, showing 404');
     notFound();
@@ -199,18 +199,18 @@ export default async function ProductDetailPage({ params, searchParams }) {
 
   const categoryData = categories.find(cat => cat.name === category);
   const relatedProducts = await getRelatedProducts(category, product.productNumber);
-  
+
   // WhatsApp message using ONLY info.json data
   const whatsappMessage = `Hello, I'm interested in this product:%0A%0A📦 *${product.name}*%0A💰 Price: ₹${product.price}%0A${product.woodtype ? `🌳 Wood: ${product.woodtype}%0A` : ''}${product.size ? `📏 Size: ${product.size}%0A` : ''}${product.desc ? `📝 ${product.desc.substring(0, 100)}...%0A` : ''}%0APlease provide more details.`;
 
   return (
     <>
       <Navbar />
-      
+
       <div className="product-detail-page">
         {/* Debug Banner */}
         <div className="debug-banner">
-          <strong>Images Found:</strong> {product.images?.length || 0} images | 
+          <strong>Images Found:</strong> {product.images?.length || 0} images |
           <strong> Product:</strong> {product.name}
         </div>
 
@@ -230,10 +230,10 @@ export default async function ProductDetailPage({ params, searchParams }) {
             <span className="breadcrumb-current" style={{ fontWeight: '600' }}>
               {product.name}
             </span>
-            
+
             {/* Share Button in Breadcrumb */}
             <div className="breadcrumb-share">
-              <ShareProduct 
+              <ShareProduct
                 product={product}
                 category={category}
                 productId={productId}
@@ -248,11 +248,11 @@ export default async function ProductDetailPage({ params, searchParams }) {
             {/* Left Column - Image Gallery */}
             <div className="leftsideImgPart">
               <div >
-                <ProductImages 
-                  images={product.images} 
+                <ProductImages
+                  images={product.images}
                   productName={product.name}
                 />
-                
+
                 {/* Action Buttons below image */}
                 <div className="image-actions-container">
                   <a
@@ -261,9 +261,9 @@ export default async function ProductDetailPage({ params, searchParams }) {
                     rel="noopener noreferrer"
                     className="image-action-btn btn-primary"
                   >
-                    <span style={{ fontSize: '18px',marginTop:"8px" }}><FiShoppingCart size={26}></FiShoppingCart></span> Buy Now 
+                    <span style={{ fontSize: '18px', marginTop: "8px" }}><FiShoppingCart size={26}></FiShoppingCart></span> Buy Now
                   </a>
-        
+
                 </div>
                 {/* Back button */}
                 {/* <div className="image-actions-container2">
@@ -277,8 +277,8 @@ export default async function ProductDetailPage({ params, searchParams }) {
                   </a>
         
                 </div> */}
-                
-           
+
+
               </div>
             </div>
 
@@ -293,7 +293,7 @@ export default async function ProductDetailPage({ params, searchParams }) {
                     </h1>
                     {/* Share Button Mobile */}
                     <div className="mobile-share-btn">
-                      <ShareProduct 
+                      <ShareProduct
                         product={product}
                         category={category}
                         productId={productId}
@@ -301,10 +301,10 @@ export default async function ProductDetailPage({ params, searchParams }) {
                       />
                     </div>
                   </div>
-                  
-                  
+
+
                 </div>
-                
+
                 {/* Rating & Sales - ONLY if exists in JSON */}
                 {product.rating && (
                   <div className="rating-section">
@@ -319,41 +319,41 @@ export default async function ProductDetailPage({ params, searchParams }) {
                     )}
                   </div>
                 )}
-               <div className='bluecart'>
+                <div className='bluecart'>
 
-                   {/* Sticky Price Section */}
-                <div className="sticky-price-section">
+                  {/* Sticky Price Section */}
+                  <div className="sticky-price-section">
                     <div className="price-amount">
                       <span className="price-symbol">₹</span>
                       <span className="price-value">
                         {typeof product.price === 'number' ? product.price.toLocaleString() : product.price}
                       </span>
                     </div>
-                    
+
                     {/* WhatsApp Button - Always visible */}
-                   
+
                   </div>
-                
-                {/* Original Price and Discount - ONLY if exists in JSON */}
-                {product.originalPrice && product.discount && (
-                  <div className="price-discount" style={{ marginBottom: '12px' }}>
-                    <span className="original-price">
-                      ₹{typeof product.originalPrice === 'number' ? product.originalPrice.toLocaleString() : product.originalPrice}
-                    </span>
-                    <span className="discount-badge">
-                      {product.discount} OFF
-                    </span>
-                  </div>
-                )}
-               </div>
-                
+
+                  {/* Original Price and Discount - ONLY if exists in JSON */}
+                  {product.originalPrice && product.discount && (
+                    <div className="price-discount" style={{ marginBottom: '12px' }}>
+                      <span className="original-price">
+                        ₹{typeof product.originalPrice === 'number' ? product.originalPrice.toLocaleString() : product.originalPrice}
+                      </span>
+                      <span className="discount-badge">
+                        {product.discount} OFF
+                      </span>
+                    </div>
+                  )}
+                </div>
+
                 {/* Price Note - ONLY if exists in JSON */}
                 {product.priceNote && (
                   <div className="price-note" style={{ marginBottom: '15px' }}>
                     <span className="price-note-circle">•</span> {product.priceNote}
                   </div>
                 )}
-                
+
                 {/* COMPACT Specifications - 3 columns on desktop */}
                 {(product.woodtype || product.size || product.color || product.material || product.finish || product.weight || product.dimensions) && (
                   <div className="compact-specifications">
@@ -404,7 +404,7 @@ export default async function ProductDetailPage({ params, searchParams }) {
                     </div>
                   </div>
                 )}
-                
+
                 {/* COMPACT Description with Read More */}
                 {product.desc && (
                   <div className="compact-description">
@@ -417,7 +417,7 @@ export default async function ProductDetailPage({ params, searchParams }) {
                     </button>
                   </div>
                 )}
-                
+
                 {/* COMPACT Features - Show only first 3 */}
                 {product.features && Array.isArray(product.features) && product.features.length > 0 && (
                   <div className="compact-features">
@@ -436,7 +436,7 @@ export default async function ProductDetailPage({ params, searchParams }) {
                     </div>
                   </div>
                 )}
-                
+
                 {/* COMPACT Delivery Info */}
                 {(product.deliveryTime || product.deliveryInfo || product.warranty || product.installation) && (
                   <div className="compact-delivery-info">
@@ -451,13 +451,13 @@ export default async function ProductDetailPage({ params, searchParams }) {
                     </div>
                   </div>
                 )}
-                
+
                 {/* Additional Notes - ONLY if exists in JSON */}
                 {product.notes && (
                   <div className="additional-info" style={{ marginTop: '15px', marginBottom: '15px' }}>
-                    <p className="info-item" style={{ 
-                      background: '#fff8e1', 
-                      padding: '10px', 
+                    <p className="info-item" style={{
+                      background: '#fff8e1',
+                      padding: '10px',
                       borderRadius: '6px',
                       fontSize: '13px',
                       border: '1px solid #ffd54f'
@@ -466,7 +466,7 @@ export default async function ProductDetailPage({ params, searchParams }) {
                     </p>
                   </div>
                 )}
-                
+
                 {/* Main WhatsApp Section */}
                 <div className="main-whatsapp-section">
                   <a
@@ -495,7 +495,7 @@ export default async function ProductDetailPage({ params, searchParams }) {
 // Generate static paths
 export async function generateStaticParams() {
   console.log('🔧 Generating static params');
-  
+
   const categories = [
     'woodenDoor',
     'woodenFrame',
@@ -506,9 +506,9 @@ export async function generateStaticParams() {
     'woodenArt',
     'sofaChair'
   ];
-  
+
   const params = [];
-  
+
   // Generate first 5 products for each category
   for (const category of categories) {
     for (let i = 1; i <= 5; i++) {
@@ -518,7 +518,7 @@ export async function generateStaticParams() {
       });
     }
   }
-  
+
   console.log(`Generated ${params.length} static paths`);
   return params;
 }

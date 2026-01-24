@@ -27,14 +27,14 @@ export default function Hero() {
     const checkMobile = () => {
       setIsMobile(window.innerWidth <= 768)
     }
-    
+
     checkMobile()
     window.addEventListener('resize', checkMobile)
-    
+
     // Start animations
     startTypewriter()
     setupIntersectionObserver()
-    
+
     return () => {
       window.removeEventListener('resize', checkMobile)
       if (typewriterTimerRef.current) {
@@ -206,18 +206,82 @@ export default function Hero() {
               <div className="heading-glow"></div>
             </div>
 
+            {/* Slider at Bottom */}
+            <div className="hero-slider premium-slider moblie-premium-slider">
+              <div className="slider-frame"></div>
+              <Swiper
+                modules={[Autoplay, EffectFade, Navigation, Parallax]}
+                spaceBetween={0}
+                slidesPerView={1}
+                effect="fade"
+                speed={1500}
+                autoplay={{
+                  delay: 4000,
+                  disableOnInteraction: false,
+                }}
+                navigation={{
+                  nextEl: '.swiper-button-next',
+                  prevEl: '.swiper-button-prev',
+                }}
+                parallax={true}
+                loop={true}
+                className="door-swiper premium-swiper"
+              >
+                {doorImages.map((door) => (
+                  <SwiperSlide key={door.id}>
+                    <div
+                      className="slide-image premium-slide"
+                      data-swiper-parallax="-100"
+                    >
+                      <img
+                        src={door.src}
+                        alt={door.alt}
+                        loading="eager"
+                        className="premium-door-image"
+                      />
+                      <div className="slide-overlay">
+                        <div className="slide-content">
+                          <h3 className="slide-title" data-swiper-parallax="-200">
+                            {door.title}
+                          </h3>
+                          <p className="slide-subtitle" data-swiper-parallax="-300">
+                            {door.subtitle}
+                          </p>
+                          <div className="slide-badge" data-swiper-parallax="-400">
+                            Premium
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </SwiperSlide>
+                ))}
+
+                {/* Navigation Buttons */}
+                <div className="swiper-button-prev premium-nav">
+                  <i className="fas fa-chevron-left"></i>
+                  <div className="nav-glow"></div>
+                </div>
+                <div className="swiper-button-next premium-nav">
+                  <i className="fas fa-chevron-right"></i>
+                  <div className="nav-glow"></div>
+                </div>
+
+                {/* Swiper Pagination */}
+                <div className="swiper-pagination premium-pagination"></div>
+              </Swiper>
+            </div>
+
             {/* Premium Description */}
             <p className="fade-in-text premium-description">
               Crafting <span className="highlight-text">timeless elegance</span> with India's finest wooden doors.
-              Experience unparalleled craftsmanship with <span className="highlight-text">50+ specialized categories</span>
-              of premium doors and windows.
+              Experience unparalleled craftsmanship with <span className="highlight-text">50+ specialized categories</span> of premium doors and windows.
             </p>
 
             {/* Premium CTA Button */}
             <div className="cta-container">
               <button
                 className="cta-button premium-cta pulse-animation"
-                onClick={()=>{router.push('products/wooden-doors?category=woodenDoor')}}
+                onClick={() => { router.push('products/wooden-doors?category=woodenDoor') }}
               >
                 <span className="cta-text">Explore Collection <i className="fas fa-arrow-right"></i></span>
                 <div className="cta-icon"></div>
@@ -274,7 +338,7 @@ export default function Hero() {
           </div>
 
           {/* Slider at Bottom */}
-          <div className="hero-slider premium-slider">
+          <div className="hero-slider premium-slider desktop-premium-slider">
             <div className="slider-frame"></div>
             <Swiper
               modules={[Autoplay, EffectFade, Navigation, Parallax]}
