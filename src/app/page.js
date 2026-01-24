@@ -11,7 +11,7 @@ import BestSeller from '@/components/BestSeller'
 import FindTheRightFit from '@/components/FindTheRightFit'
 import MaterialsSection from '@/components/MaterialsSection'
 import { useState, useEffect, useRef } from 'react'
-import { FaWhatsapp, FaPhone, FaComment, FaTimes, FaChevronRight, FaEnvelope, FaInstagram } from 'react-icons/fa'
+import { FaWhatsapp, FaPhone, FaComment, FaTimes, FaChevronRight, FaEnvelope, FaInstagram, FaFacebook } from 'react-icons/fa'
 import { MdLocationOn } from 'react-icons/md'
 import './Home.css'
 import CustomerReviews from '@/components/CustomerReviews'
@@ -152,7 +152,20 @@ export default function Home() {
             {!isExpanded ? (
               <div className="collapsed-view">
                 <button
-                  className="main-contact-btn-pink"
+                  className="main-contact-btn facebook-logo-color"
+                  // onClick={handleMainButtonClick}
+                  onClick={() => {
+                    const message = encodeURIComponent('Namaste! 🙏\nMaa Kripa Wood Art se connect karna chahta/chahati hoon.')
+                    window.open(`https://www.facebook.com/`, '_blank')
+                  }}
+                  aria-label="Contact Maa Kripa Wood Art"
+                >
+                  <FaFacebook className="main-icon" />
+                  {/* {showNotification && <span className="notification-badge">!</span>} */}
+                  <div className="pulse-ring"></div>
+                </button>
+                <button
+                  className="main-contact-btn insta-logo-color"
                   // onClick={handleMainButtonClick}
                   onClick={() => {
                     const message = encodeURIComponent('Namaste! 🙏\nMaa Kripa Wood Art se connect karna chahta/chahati hoon.')
@@ -165,7 +178,7 @@ export default function Home() {
                   <div className="pulse-ring"></div>
                 </button>
                 <button
-                  className="main-contact-btn"
+                  className="main-contact-btn whatsapp-logo-color"
                   // onClick={handleMainButtonClick}
                   onClick={() => {
                     const message = encodeURIComponent('Namaste! 🙏\nMaa Kripa Wood Art se connect karna chahta/chahati hoon.')
@@ -174,7 +187,7 @@ export default function Home() {
                   aria-label="Contact Maa Kripa Wood Art"
                 >
                   <FaWhatsapp className="main-icon" />
-                  {showNotification && <span className="notification-badge">!</span>}
+                  {/* {showNotification && <span className="notification-badge">!</span>} */}
                   <div className="pulse-ring"></div>
                 </button>
               </div>
