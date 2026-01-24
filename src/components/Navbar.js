@@ -14,52 +14,6 @@ export default function Navbar() {
   const mobileToggleRef = useRef(null)
   const router = useRouter()
 
-// Navbar.js में menuData update करें:
-// Navbar.js में menuData को ऐसे update करें:
-// const menuData = {
-//   categories: [
-//     { 
-//       name: 'Wooden Doors', 
-//       href: '/products/wooden-doors?category=wooden-doors',  // Change to products route
-//       icon: '🚪' 
-//     },
-//     { 
-//       name: 'Wooden Frames', 
-//       href: '/products/wooden-doors?category=wooden-frames', 
-//       icon: '🖼️' 
-//     },
-//     { 
-//       name: 'Safety Doors', 
-//       href: '/products/wooden-doors?category=safety-doors', 
-//       icon: '🔒' 
-//     },
-//     { 
-//       name: 'Wooden Beds', 
-//       href: '/products/wooden-doors?category=wooden-beds', 
-//       icon: '🛏️' 
-//     },
-//     { 
-//       name: 'Wooden Mandir', 
-//       href: '/products/wooden-doors?category=wooden-mandir', 
-//       icon: '🛕' 
-//     },
-//     { 
-//       name: 'Wooden Windows', 
-//       href: '/products/wooden-doors?category=wooden-windows', 
-//       icon: '🪟' 
-//     },
-//     { 
-//       name: 'Wooden Art', 
-//       href: '/products/wooden-doors?category=wooden-art', 
-//       icon: '🎨' 
-//     },
-//     { 
-//       name: 'Sofa Chair', 
-//       href: '/products/wooden-doors?category=sofa-chair', 
-//       icon: '🛋️' 
-//     }
-//   ]
-// }
 const menuData = {
   categories: [
     { name: 'Wooden Doors', href: '/products/wooden-doors?category=woodenDoor', icon: '🚪' },
@@ -244,13 +198,6 @@ const menuData = {
                         </Link>
                       ))}
                     </div>
-{/* 
-                    <div className="mega-menu-footer">
-                      <Link href="/all-categories" className="view-all-btn" onClick={handleLinkClick}>
-                        <span>View All Products</span>
-                        <i className="fas fa-arrow-right"></i>
-                      </Link>
-                    </div> */}
                   </div>
                 </div>
               </li>
@@ -357,12 +304,7 @@ const menuData = {
                     </div>
                   </Link>
                 ))}
-{/*                 
-                <Link href="/all-categories" onClick={handleLinkClick} className="mobile-view-all">
-                  <i className="fas fa-eye"></i>
-                  <span>View All Products</span>
-                  <i className="fas fa-arrow-right"></i>
-                </Link> */}
+
               </div>
             )}
           </div>
