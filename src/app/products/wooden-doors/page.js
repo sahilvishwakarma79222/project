@@ -1300,36 +1300,51 @@ export default function ProductsPage() {
 
   // Memoize category buttons
   const categoryButtons = useMemo(() => 
-    categories.map((category) => (
-      <button
-        key={category.id}
-        onClick={() => {
-          URLParams.set("category", category.name);
-          router.push(`?${URLParams.toString()}`);
-        }}
-        onMouseEnter={() => setHoveredCategory(category.name)}
-        onMouseLeave={() => setHoveredCategory(null)}
-        onFocus={() => setHoveredCategory(category.name)}
-        onBlur={() => setHoveredCategory(null)}
-        className={`wood-category-btn ${activeCategory === category.name ? 'active' : ''}`}
-        disabled={loading}
-        aria-label={`View ${category.displayName} products`}
-        aria-disabled={loading}
-      >
-        <span>{category.displayName}</span>
-        <span className="wood-category-count">
-          {countsLoading ? (
-            <span style={{ fontSize: '10px' }}>...</span>
-          ) : (
-            categoryCounts[category.name] || 0
-          )}
-        </span>
-      </button>
-    )),
-    [categories, activeCategory, countsLoading, categoryCounts, loading, handleCategoryChange]
-  );
+  categories.map((category) => (
+    <button
+      key={category.id}
+      onClick={() => {
+        URLParams.set("category", category.name);
+        router.push(`?${URLParams.toString()}`);
+
+        // Close mobile menu after selecting a category
+        setIsMobileMenuOpen(false);
+      }}
+      onMouseEnter={() => setHoveredCategory(category.name)}
+      onMouseLeave={() => setHoveredCategory(null)}
+      onFocus={() => setHoveredCategory(category.name)}
+      onBlur={() => setHoveredCategory(null)}
+      className={`wood-category-btn ${activeCategory === category.name ? 'active' : ''}`}
+      disabled={loading}
+      aria-label={`View ${category.displayName} products`}
+      aria-disabled={loading}
+    >
+      <span>{category.displayName}</span>
+      <span className="wood-category-count">
+        {countsLoading ? (
+          <span style={{ fontSize: '10px' }}>...</span>
+        ) : (
+          categoryCounts[category.name] || 0
+        )}
+      </span>
+    </button>
+  )),
+  [categories, activeCategory, countsLoading, categoryCounts, loading, router]
+);
+
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  useEffect(() => {
+    // Always enable scroll when page loads
+    document.body.style.overflow = "auto";
+    document.documentElement.style.overflow = "auto";
+  
+    return () => {
+      document.body.style.overflow = "auto";
+      document.documentElement.style.overflow = "auto";
+    };
+  }, []);
+  
 
   useEffect(()=>{
     handleCategoryChange(category)

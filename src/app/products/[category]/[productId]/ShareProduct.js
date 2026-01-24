@@ -78,7 +78,7 @@ export default function ShareProduct({ product, category, productId, mobile = fa
           onClick={handleShare}
           aria-label="Share product"
         >
-          <span className="share-icon">📤</span>
+          <span className="share-icon"></span>
         </button>
         
         {isOpen && (

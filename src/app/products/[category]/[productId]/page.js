@@ -10,6 +10,8 @@ import ShareProduct from './ShareProduct';
 import RelatedProducts from './RelatedProducts';
 import Navbar from '@/components/Navbar';
 import { FiShoppingCart } from "react-icons/fi";
+import { FaArrowLeft } from "react-icons/fa";
+import { IoIosArrowRoundBack } from "react-icons/io";
 
 // Category folders mapping
 const categoryFolders = {
@@ -260,6 +262,18 @@ export default async function ProductDetailPage({ params, searchParams }) {
                     className="image-action-btn btn-primary"
                   >
                     <span style={{ fontSize: '18px',marginTop:"8px" }}><FiShoppingCart size={26}></FiShoppingCart></span> Buy Now 
+                  </a>
+        
+                </div>
+                {/* Back button */}
+                <div className="image-actions-container2">
+                  <a
+                    href={`products/wooden-doors`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="image-action-btn btn-primary2"
+                  >
+                    <span style={{ fontSize: '18px',marginTop:"8px" }}><IoIosArrowRoundBack size={26}></IoIosArrowRoundBack></span> Back
                   </a>
         
                 </div>
