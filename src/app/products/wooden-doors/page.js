@@ -13,17 +13,17 @@
 // // Create a debounce hook
 // const useDebounce = (value, delay) => {
 //   const [debouncedValue, setDebouncedValue] = useState(value);
-  
+
 //   useEffect(() => {
 //     const handler = setTimeout(() => {
 //       setDebouncedValue(value);
 //     }, delay);
-    
+
 //     return () => {
 //       clearTimeout(handler);
 //     };
 //   }, [value, delay]);
-  
+
 //   return debouncedValue;
 // };
 
@@ -40,14 +40,14 @@
 // const ProductImage = React.memo(({ images, alt, productNumber, priority = false }) => {
 //   const [imgError, setImgError] = useState(false);
 //   const [imgLoaded, setImgLoaded] = useState(true);
-  
+
 //   const imageSrc = images && images.length > 0 ? images[0] : null;
-  
+
 //   useEffect(() => {
 //     setImgLoaded(false);
 //     setImgError(false);
 //   }, [imageSrc]);
-  
+
 //   if (!imageSrc || imgError) {
 //     return (
 //       <div className="wood-image-placeholder">
@@ -56,10 +56,10 @@
 //       </div>
 //     );
 //   }
-  
+
 //   return (
 //     <div style={{ width: '100%', height: '100%', position: 'relative' }}>
-  
+
 //       <Image
 //         src={imageSrc}
 //         alt={alt}
@@ -87,7 +87,7 @@
 //     const stars = [];
 //     const fullStars = Math.floor(rating);
 //     const hasHalfStar = rating % 1 >= 0.5;
-    
+
 //     for (let i = 0; i < 5; i++) {
 //       if (i < fullStars) {
 //         stars.push(<StarIcon key={i} filled={true} />);
@@ -97,7 +97,7 @@
 //         stars.push(<StarIcon key={i} filled={false} />);
 //       }
 //     }
-    
+
 //     return (
 //       <div className="wood-rating-badge">
 //         <div className="wood-rating-stars">{stars}</div>
@@ -131,10 +131,10 @@
 //           />
 //           {renderStars(parseFloat(product.rating))}
 //         </div>
-        
+
 //         <div className="wood-product-info">
 //           <h3 className="wood-product-title">{product.name}</h3>
-          
+
 //           <div className='wood-product-dimention' style={{ margin: '0', fontSize: '13px', color: '#565959' }}>
 //             <div style={{ marginBottom: '2px' }}>
 //               <span style={{ fontWeight: '500' }}>Wood:</span> {product.woodtype}
@@ -156,13 +156,13 @@
 //               </div>
 //             )}
 //           </div>
-          
+
 //           <div className="wood-price-section">
 //             <div className="wood-product-price">
 //               <span className="wood-price-superscript">₹</span>
 //               {product.price.toString().replace('₹', '')}
 //             </div>
-            
+
 //             {product.description && product.description.trim() !== '' && (
 //               <div style={{ 
 //                 fontSize: '12px', 
@@ -179,7 +179,7 @@
 //                 {product.description}
 //               </div>
 //             )}
-            
+
 //             <a
 //               href={`https://wa.me/919876543210?text=${whatsappMessage}`}
 //               target="_blank"
@@ -230,27 +230,27 @@
 //   const [loading, setLoading] = useState(true); // Keep true initially
 //   const [categoryCounts, setCategoryCounts] = useState({});
 //   const [countsLoading, setCountsLoading] = useState(true); // Keep true initially
-  
+
 //   // Cache states
 //   const [productsCache, setProductsCache] = useState({});
 //   const [hoveredCategory, setHoveredCategory] = useState(null);
 //   const [initialLoadComplete, setInitialLoadComplete] = useState(false);
-  
+
 //   // Refs
 //   const loadingRef = useRef(false);
 //   const abortControllerRef = useRef(null);
-  
+
 //   // Constants
 //   const productsPerPage = 12;
 //   const debouncedHoveredCategory = useDebounce(hoveredCategory, 200);
-  
+
 //   // Calculate pagination with useMemo
 //   const { indexOfLastProduct, indexOfFirstProduct, currentProducts, totalPages } = useMemo(() => {
 //     const indexOfLastProduct = currentPage * productsPerPage;
 //     const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
 //     const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
 //     const totalPages = Math.ceil(products.length / productsPerPage);
-    
+
 //     return { indexOfLastProduct, indexOfFirstProduct, currentProducts, totalPages };
 //   }, [products, currentPage, productsPerPage]);
 
@@ -270,7 +270,7 @@
 
 //       // Execute all promises in parallel
 //       const results = await Promise.allSettled(countPromises);
-      
+
 //       const counts = {};
 //       results.forEach(result => {
 //         if (result.status === 'fulfilled' && result.value) {
@@ -278,7 +278,7 @@
 //           counts[category] = count;
 //         }
 //       });
-      
+
 //       setCategoryCounts(counts);
 //     } catch (error) {
 //       console.error('Error loading category counts:', error);
@@ -295,7 +295,7 @@
 
 //     try {
 //       const loadedProducts = await getProductsByCategory(categoryName);
-      
+
 //       setProductsCache(prev => ({
 //         ...prev,
 //         [categoryName]: loadedProducts
@@ -308,23 +308,23 @@
 //   // Handle category change
 //   const handleCategoryChange = useCallback(async (categoryName) => {
 //     if (categoryName === activeCategory || loadingRef.current) return;
-    
+
 //     // Reset loading states
 //     loadingRef.current = true;
 //     setLoading(true);
-    
+
 //     // Cancel any ongoing requests
 //     if (abortControllerRef.current) {
 //       abortControllerRef.current.abort();
 //     }
-    
+
 //     // Create new abort controller
 //     abortControllerRef.current = new AbortController();
-    
+
 //     // Update UI immediately
 //     setActiveCategory(categoryName);
 //     setCurrentPage(1);
-    
+
 //     // Check cache first
 //     if (productsCache[categoryName]) {
 //       setProducts(productsCache[categoryName]);
@@ -332,22 +332,22 @@
 //       loadingRef.current = false;
 //       return;
 //     }
-    
+
 //     try {
 //       const loadedProducts = await getProductsByCategory(categoryName);
-      
+
 //       if (abortControllerRef.current.signal.aborted) {
 //         return;
 //       }
-      
+
 //       // Update cache and state
 //       setProductsCache(prev => ({
 //         ...prev,
 //         [categoryName]: loadedProducts
 //       }));
-      
+
 //       setProducts(loadedProducts);
-      
+
 //     } catch (error) {
 //       if (error.name !== 'AbortError') {
 //         console.error('Error loading products:', error);
@@ -376,7 +376,7 @@
 //       loadingRef.current = true;
 //       setLoading(true);
 //       setCountsLoading(true);
-      
+
 //       try {
 //         // Load counts and initial products in parallel
 //         await Promise.allSettled([
@@ -406,7 +406,7 @@
 //     };
 
 //     initialLoad();
-    
+
 //     // Cleanup function
 //     return () => {
 //       if (abortControllerRef.current) {
@@ -427,19 +427,19 @@
 //   // Refresh counts function
 //   const handleRefreshCounts = useCallback(async () => {
 //     if (loadingRef.current) return;
-    
+
 //     loadingRef.current = true;
-    
+
 //     // Clear caches
 //     clearProductCountCache();
 //     clearProductInfoCache();
 //     setProductsCache({});
 //     setCategoryCounts({});
-    
+
 //     // Reload counts and products in parallel
 //     setLoading(true);
 //     setCountsLoading(true);
-    
+
 //     try {
 //       await Promise.allSettled([
 //         loadAllCategoryCounts(),
@@ -464,13 +464,13 @@
 //   // Render pagination buttons
 //   const renderPaginationButtons = useMemo(() => {
 //     if (totalPages <= 1) return null;
-    
+
 //     const buttons = [];
 //     const maxButtons = 5;
-    
+
 //     let startPage = 1;
 //     let endPage = totalPages;
-    
+
 //     if (totalPages > maxButtons) {
 //       if (currentPage <= 3) {
 //         endPage = maxButtons;
@@ -481,7 +481,7 @@
 //         endPage = currentPage + 2;
 //       }
 //     }
-    
+
 //     for (let i = startPage; i <= Math.min(endPage, totalPages); i++) {
 //       buttons.push(
 //         <button
@@ -494,7 +494,7 @@
 //         </button>
 //       );
 //     }
-    
+
 //     return buttons;
 //   }, [currentPage, totalPages, handlePageChange]);
 
@@ -619,10 +619,10 @@
 //                 <div className="wood-categories-list">
 //                   {categoryButtons}
 //                 </div>
-                
-                
 
-                
+
+
+
 //               </div>
 //             </div>
 
@@ -731,7 +731,7 @@
 //                 </div>
 //               ) : null}
 //             </div>
-            
+
 //           </div>
 //         </div>
 //       </div>
@@ -752,24 +752,24 @@ import { useSearchParams, useRouter } from 'next/navigation';
 // Create a debounce hook
 const useDebounce = (value, delay) => {
   const [debouncedValue, setDebouncedValue] = useState(value);
-  
+
   useEffect(() => {
     const handler = setTimeout(() => {
       setDebouncedValue(value);
     }, delay);
-    
+
     return () => {
       clearTimeout(handler);
     };
   }, [value, delay]);
-  
+
   return debouncedValue;
 };
 
 // Memoized StarIcon component
 const StarIcon = React.memo(({ filled }) => (
   <svg width="14" height="14" viewBox="0 0 24 24" fill={filled ? "#ffa41c" : "none"} stroke="#ffa41c" strokeWidth="2">
-    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
   </svg>
 ));
 
@@ -779,14 +779,14 @@ StarIcon.displayName = 'StarIcon';
 const ProductImage = React.memo(({ images, alt, productNumber, priority = false }) => {
   const [imgError, setImgError] = useState(false);
   const [imgLoaded, setImgLoaded] = useState(true);
-  
+
   const imageSrc = images && images.length > 0 ? images[0] : null;
-  
+
   useEffect(() => {
     setImgLoaded(false);
     setImgError(false);
   }, [imageSrc]);
-  
+
   if (!imageSrc || imgError) {
     return (
       <div className="wood-image-placeholder">
@@ -795,16 +795,15 @@ const ProductImage = React.memo(({ images, alt, productNumber, priority = false 
       </div>
     );
   }
-  
+
   return (
     <div style={{ width: '100%', height: '100%', position: 'relative' }}>
       <Image
         src={imageSrc}
         alt={alt}
         fill
-        style={{ 
+        style={{
           objectFit: 'contain',
-          opacity: imgLoaded ? 1 : 0,
           transition: 'opacity 0.3s ease'
         }}
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -825,7 +824,7 @@ const RatingDisplay = React.memo(({ rating, sales }) => {
     const stars = [];
     const fullStars = Math.floor(rating);
     const hasHalfStar = rating % 1 >= 0.5;
-    
+
     for (let i = 0; i < 5; i++) {
       if (i < fullStars) {
         stars.push(<StarIcon key={i} filled={true} />);
@@ -835,7 +834,7 @@ const RatingDisplay = React.memo(({ rating, sales }) => {
         stars.push(<StarIcon key={i} filled={false} />);
       }
     }
-    
+
     return stars;
   }, []);
 
@@ -854,7 +853,7 @@ RatingDisplay.displayName = 'RatingDisplay';
 
 // Product Image Hover Overlay Component (Desktop only)
 const ProductHoverOverlay = React.memo(({ product, activeCategory, currentPage }) => {
-  const whatsappMessage = useMemo(() => 
+  const whatsappMessage = useMemo(() =>
     `Hello, I want to buy: ${encodeURIComponent(product.name)}%0A%0AWood Type: ${encodeURIComponent(product.woodtype)}%0ASize: ${encodeURIComponent(product.size)}%0APrice: ${encodeURIComponent(product.price)}%0A${product.description ? `Description: ${encodeURIComponent(product.description)}%0A` : ''}%0APlease provide more details.`,
     [product]
   );
@@ -873,7 +872,7 @@ const ProductHoverOverlay = React.memo(({ product, activeCategory, currentPage }
           </div>
         </div>
       </div>
-      
+
       {/* Bottom Section - Price & Actions */}
       <div className="overlay-bottom">
         <div className="overlay-price-section">
@@ -883,7 +882,7 @@ const ProductHoverOverlay = React.memo(({ product, activeCategory, currentPage }
           </div>
         </div>
         <div className="overlay-actions">
-          <Link 
+          <Link
             href={`/products/${activeCategory}/product${product.productNumber}?pageNumber=${currentPage}`}
             className="overlay-view-btn"
             prefetch={false}
@@ -910,17 +909,17 @@ ProductHoverOverlay.displayName = 'ProductHoverOverlay';
 // Memoized Product Card Component
 const ProductCard = React.memo(({ product, activeCategory, currentPage }) => {
   const [isHovered, setIsHovered] = useState(false);
-  
-  const whatsappMessage = useMemo(() => 
+
+  const whatsappMessage = useMemo(() =>
     `Hello, I want to buy: ${encodeURIComponent(product.name)}%0A%0AWood Type: ${encodeURIComponent(product.woodtype)}%0ASize: ${encodeURIComponent(product.size)}%0APrice: ${encodeURIComponent(product.price)}%0A${product.description ? `Description: ${encodeURIComponent(product.description)}%0A` : ''}%0APlease provide more details.`,
     [product]
   );
 
   return (
-    <Link 
+    <Link
       href={`/products/${activeCategory}/product${product.productNumber}?pageNumber=${currentPage}`}
-      style={{ 
-        textDecoration: 'none', 
+      style={{
+        textDecoration: 'none',
         color: 'inherit',
         display: 'block'
       }}
@@ -932,28 +931,28 @@ const ProductCard = React.memo(({ product, activeCategory, currentPage }) => {
     >
       <div className="wood-product-card">
         <div className="wood-product-image" style={{ position: 'relative' }}>
-          <ProductImage 
-            images={product.images} 
+          <ProductImage
+            images={product.images}
             alt={product.name}
             productNumber={product.productNumber}
             priority={false}
           />
-          
+
           {/* Rating - Always visible on desktop */}
           <RatingDisplay rating={parseFloat(product.rating)} sales={product.sales} />
-          
+
           {/* Desktop Hover Overlay */}
-          <ProductHoverOverlay 
-            product={product} 
-            activeCategory={activeCategory} 
-            currentPage={currentPage} 
+          <ProductHoverOverlay
+            product={product}
+            activeCategory={activeCategory}
+            currentPage={currentPage}
           />
         </div>
-        
+
         {/* Desktop: Hide this section, Mobile: Show this section */}
         <div className="wood-product-info desktop-hide">
           <h3 className="wood-product-title">{product.name}</h3>
-          
+
           <div className='wood-product-dimention' style={{ margin: '0', fontSize: '13px', color: '#565959' }}>
             <div style={{ marginBottom: '2px' }}>
               <span style={{ fontWeight: '500' }}>Wood:</span> {product.woodtype}
@@ -962,17 +961,17 @@ const ProductCard = React.memo(({ product, activeCategory, currentPage }) => {
               <span style={{ fontWeight: '500' }}>Size:</span> {product.size}
             </div>
           </div>
-          
+
           <div className="wood-price-section">
             <div className="wood-product-price">
               <span className="wood-price-superscript">₹</span>
               {product.price.toString().replace('₹', '')}
             </div>
-            
+
             {product.description && product.description.trim() !== '' && (
-              <div style={{ 
-                fontSize: '12px', 
-                color: '#565959', 
+              <div style={{
+                fontSize: '12px',
+                color: '#565959',
                 margin: '4px 0',
                 lineHeight: '1.4',
                 maxHeight: '36px',
@@ -985,7 +984,7 @@ const ProductCard = React.memo(({ product, activeCategory, currentPage }) => {
                 {product.description}
               </div>
             )}
-            
+
             <a
               href={`https://wa.me/919876543210?text=${whatsappMessage}`}
               target="_blank"
@@ -1036,27 +1035,27 @@ export default function ProductsPage() {
   const [loading, setLoading] = useState(true);
   const [categoryCounts, setCategoryCounts] = useState({});
   const [countsLoading, setCountsLoading] = useState(true);
-  
+
   // Cache states
   const [productsCache, setProductsCache] = useState({});
   const [hoveredCategory, setHoveredCategory] = useState(null);
   const [initialLoadComplete, setInitialLoadComplete] = useState(false);
-  
+
   // Refs
   const loadingRef = useRef(false);
   const abortControllerRef = useRef(null);
-  
+
   // Constants
   const productsPerPage = 12;
   const debouncedHoveredCategory = useDebounce(hoveredCategory, 200);
-  
+
   // Calculate pagination with useMemo
   const { indexOfLastProduct, indexOfFirstProduct, currentProducts, totalPages } = useMemo(() => {
     const indexOfLastProduct = currentPage * productsPerPage;
     const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
     const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
     const totalPages = Math.ceil(products.length / productsPerPage);
-    
+
     return { indexOfLastProduct, indexOfFirstProduct, currentProducts, totalPages };
   }, [products, currentPage, productsPerPage]);
 
@@ -1074,7 +1073,7 @@ export default function ProductsPage() {
       });
 
       const results = await Promise.allSettled(countPromises);
-      
+
       const counts = {};
       results.forEach(result => {
         if (result.status === 'fulfilled' && result.value) {
@@ -1082,7 +1081,7 @@ export default function ProductsPage() {
           counts[category] = count;
         }
       });
-      
+
       setCategoryCounts(counts);
     } catch (error) {
       console.error('Error loading category counts:', error);
@@ -1099,7 +1098,7 @@ export default function ProductsPage() {
 
     try {
       const loadedProducts = await getProductsByCategory(categoryName);
-      
+
       setProductsCache(prev => ({
         ...prev,
         [categoryName]: loadedProducts
@@ -1112,40 +1111,40 @@ export default function ProductsPage() {
   // Handle category change
   const handleCategoryChange = useCallback(async (categoryName) => {
     if (categoryName === activeCategory || loadingRef.current) return;
-    
+
     loadingRef.current = true;
     setLoading(true);
-    
+
     if (abortControllerRef.current) {
       abortControllerRef.current.abort();
     }
-    
+
     abortControllerRef.current = new AbortController();
-    
+
     setActiveCategory(categoryName);
     setCurrentPage(1);
-    
+
     if (productsCache[categoryName]) {
       setProducts(productsCache[categoryName]);
       setLoading(false);
       loadingRef.current = false;
       return;
     }
-    
+
     try {
       const loadedProducts = await getProductsByCategory(categoryName);
-      
+
       if (abortControllerRef.current.signal.aborted) {
         return;
       }
-      
+
       setProductsCache(prev => ({
         ...prev,
         [categoryName]: loadedProducts
       }));
-      
+
       setProducts(loadedProducts);
-      
+
     } catch (error) {
       if (error.name !== 'AbortError') {
         console.error('Error loading products:', error);
@@ -1161,9 +1160,9 @@ export default function ProductsPage() {
 
   // Handle prefetch on hover
   useEffect(() => {
-    if (debouncedHoveredCategory && 
-        debouncedHoveredCategory !== activeCategory && 
-        !productsCache[debouncedHoveredCategory]) {
+    if (debouncedHoveredCategory &&
+      debouncedHoveredCategory !== activeCategory &&
+      !productsCache[debouncedHoveredCategory]) {
       prefetchCategoryProducts(debouncedHoveredCategory);
     }
   }, [debouncedHoveredCategory, activeCategory, productsCache, prefetchCategoryProducts]);
@@ -1174,7 +1173,7 @@ export default function ProductsPage() {
       loadingRef.current = true;
       setLoading(true);
       setCountsLoading(true);
-      
+
       try {
         await Promise.allSettled([
           loadAllCategoryCounts(),
@@ -1182,9 +1181,9 @@ export default function ProductsPage() {
             try {
               const initialProducts = await getProductsByCategory(activeCategory);
               setProducts(initialProducts);
-              setProductsCache(prev => ({ 
-                ...prev, 
-                [activeCategory]: initialProducts 
+              setProductsCache(prev => ({
+                ...prev,
+                [activeCategory]: initialProducts
               }));
             } catch (error) {
               console.error('Error loading initial products:', error);
@@ -1203,7 +1202,7 @@ export default function ProductsPage() {
     };
 
     initialLoad();
-    
+
     return () => {
       if (abortControllerRef.current) {
         abortControllerRef.current.abort();
@@ -1223,26 +1222,26 @@ export default function ProductsPage() {
   // Refresh counts function
   const handleRefreshCounts = useCallback(async () => {
     if (loadingRef.current) return;
-    
+
     loadingRef.current = true;
-    
+
     clearProductCountCache();
     clearProductInfoCache();
     setProductsCache({});
     setCategoryCounts({});
-    
+
     setLoading(true);
     setCountsLoading(true);
-    
+
     try {
       await Promise.allSettled([
         loadAllCategoryCounts(),
         (async () => {
           const loadedProducts = await getProductsByCategory(activeCategory);
           setProducts(loadedProducts);
-          setProductsCache(prev => ({ 
-            ...prev, 
-            [activeCategory]: loadedProducts 
+          setProductsCache(prev => ({
+            ...prev,
+            [activeCategory]: loadedProducts
           }));
         })()
       ]);
@@ -1258,13 +1257,13 @@ export default function ProductsPage() {
   // Render pagination buttons
   const renderPaginationButtons = useMemo(() => {
     if (totalPages <= 1) return null;
-    
+
     const buttons = [];
     const maxButtons = 5;
-    
+
     let startPage = 1;
     let endPage = totalPages;
-    
+
     if (totalPages > maxButtons) {
       if (currentPage <= 3) {
         endPage = maxButtons;
@@ -1275,7 +1274,7 @@ export default function ProductsPage() {
         endPage = currentPage + 2;
       }
     }
-    
+
     for (let i = startPage; i <= Math.min(endPage, totalPages); i++) {
       buttons.push(
         <button
@@ -1288,49 +1287,49 @@ export default function ProductsPage() {
         </button>
       );
     }
-    
+
     return buttons;
   }, [currentPage, totalPages, handlePageChange]);
 
   // Memoize active category data
-  const activeCategoryData = useMemo(() => 
+  const activeCategoryData = useMemo(() =>
     categories.find(cat => cat.name === activeCategory),
     [activeCategory]
   );
 
   // Memoize category buttons
-  const categoryButtons = useMemo(() => 
-  categories.map((category) => (
-    <button
-      key={category.id}
-      onClick={() => {
-        URLParams.set("category", category.name);
-        router.push(`?${URLParams.toString()}`);
+  const categoryButtons = useMemo(() =>
+    categories.map((category) => (
+      <button
+        key={category.id}
+        onClick={() => {
+          URLParams.set("category", category.name);
+          router.push(`?${URLParams.toString()}`);
 
-        // Close mobile menu after selecting a category
-        setIsMobileMenuOpen(false);
-      }}
-      onMouseEnter={() => setHoveredCategory(category.name)}
-      onMouseLeave={() => setHoveredCategory(null)}
-      onFocus={() => setHoveredCategory(category.name)}
-      onBlur={() => setHoveredCategory(null)}
-      className={`wood-category-btn ${activeCategory === category.name ? 'active' : ''}`}
-      disabled={loading}
-      aria-label={`View ${category.displayName} products`}
-      aria-disabled={loading}
-    >
-      <span>{category.displayName}</span>
-      <span className="wood-category-count">
-        {countsLoading ? (
-          <span style={{ fontSize: '10px' }}>...</span>
-        ) : (
-          categoryCounts[category.name] || 0
-        )}
-      </span>
-    </button>
-  )),
-  [categories, activeCategory, countsLoading, categoryCounts, loading, router]
-);
+          // Close mobile menu after selecting a category
+          setIsMobileMenuOpen(false);
+        }}
+        onMouseEnter={() => setHoveredCategory(category.name)}
+        onMouseLeave={() => setHoveredCategory(null)}
+        onFocus={() => setHoveredCategory(category.name)}
+        onBlur={() => setHoveredCategory(null)}
+        className={`wood-category-btn ${activeCategory === category.name ? 'active' : ''}`}
+        disabled={loading}
+        aria-label={`View ${category.displayName} products`}
+        aria-disabled={loading}
+      >
+        <span>{category.displayName}</span>
+        <span className="wood-category-count">
+          {countsLoading ? (
+            <span style={{ fontSize: '10px' }}>...</span>
+          ) : (
+            categoryCounts[category.name] || 0
+          )}
+        </span>
+      </button>
+    )),
+    [categories, activeCategory, countsLoading, categoryCounts, loading, router]
+  );
 
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -1338,15 +1337,15 @@ export default function ProductsPage() {
     // Always enable scroll when page loads
     document.body.style.overflow = "auto";
     document.documentElement.style.overflow = "auto";
-  
+
     return () => {
       document.body.style.overflow = "auto";
       document.documentElement.style.overflow = "auto";
     };
   }, []);
-  
 
-  useEffect(()=>{
+
+  useEffect(() => {
     handleCategoryChange(category)
     prefetchCategoryProducts(category)
   }, [category])
@@ -1506,8 +1505,8 @@ export default function ProductsPage() {
                   <div className="wood-empty-icon">🚪</div>
                   <h3>No products available</h3>
                   <p>
-                    {categoryCounts[activeCategory] === 0 
-                      ? `No product folders found in ${activeCategoryData?.displayName} category.` 
+                    {categoryCounts[activeCategory] === 0
+                      ? `No product folders found in ${activeCategoryData?.displayName} category.`
                       : 'Check if info.json files exist in product folders'}
                   </p>
                   <button
