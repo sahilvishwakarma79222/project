@@ -266,7 +266,7 @@ export default async function ProductDetailPage({ params, searchParams }) {
         
                 </div>
                 {/* Back button */}
-                <div className="image-actions-container2">
+                {/* <div className="image-actions-container2">
                   <a
                     href={`products/wooden-doors`}
                     target="_blank"
@@ -276,7 +276,7 @@ export default async function ProductDetailPage({ params, searchParams }) {
                     <span style={{ fontSize: '18px',marginTop:"8px" }}><IoIosArrowRoundBack size={26}></IoIosArrowRoundBack></span> Back
                   </a>
         
-                </div>
+                </div> */}
                 
            
               </div>
