@@ -202,7 +202,7 @@ const menuData = {
                 </div>
               </li>
               
-              <li><Link href="/gallery" onClick={handleLinkClick}>Gallery</Link></li>
+              {/* <li><Link href="/gallery" onClick={handleLinkClick}>Gallery</Link></li> */}
               <li><Link href="/about" onClick={handleLinkClick}>About</Link></li>
             </ul>
           </div>
@@ -309,10 +309,10 @@ const menuData = {
             )}
           </div>
 
-          <Link href="/gallery" onClick={handleLinkClick} className="mobile-nav-item">
+          {/* <Link href="/gallery" onClick={handleLinkClick} className="mobile-nav-item">
             <i className="fas fa-images"></i>
             <span>Gallery</span>
-          </Link>
+          </Link> */}
 
           <Link href="/about" onClick={handleLinkClick} className="mobile-nav-item">
             <i className="fas fa-info-circle"></i>

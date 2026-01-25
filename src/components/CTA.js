@@ -16,7 +16,7 @@ export default function CTA() {
             Get Free Consultation
           </Link>
           <button className="cta-button secondary" onClick={handleCall}>
-            Call Now: +91 98765 43210
+            Call Now: +91 80077 47733
           </button>
         </div>
       </div>

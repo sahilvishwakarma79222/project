@@ -68,7 +68,7 @@ export default function CategorySidebar({ activeCategory }) {
               Our experts are ready to assist you with custom designs
             </p>
             <a
-              href="https://wa.me/919876543210?text=Hello%2C%20I'm%20interested%20in%20your%20wooden%20products"
+              href="https://wa.me/918007747733?text=Hello%2C%20I'm%20interested%20in%20your%20wooden%20products"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center justify-center gap-2 bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition-colors"

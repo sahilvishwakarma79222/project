@@ -2,6 +2,7 @@
 import Footer from '@/components/Footer'
 import Navbar from '@/components/Navbar'
 import { useEffect, useState } from 'react'
+import { Phone, Mail, Clock, Award, Users, CheckCircle } from 'lucide-react'
 
 export default function AboutPage() {
   const [isMobile, setIsMobile] = useState(false)
@@ -58,7 +59,7 @@ export default function AboutPage() {
       id: 1,
       name: 'Bablu Pal',
       title: 'Founder & Master Craftsman',
-      phone: '+91 98765 43210',
+      phone: '+91 90267 89724',
       email: 'bablu@maakripawoodart.com',
       experience: '25+ Years Experience',
       specialties: ['Traditional Wood Carving', 'Fine Furniture Making', 'Antique Restoration'],
@@ -81,10 +82,10 @@ export default function AboutPage() {
   ]
   
   const achievements = [
-    { number: '25+', label: 'Years of Excellence' },
-    { number: '1000+', label: 'Projects Completed' },
-    { number: '98%', label: 'Client Satisfaction' },
-    { number: '500+', label: 'Happy Families' }
+    { number: '28+', label: 'Years of Excellence', icon: <Clock size={24} /> },
+    { number: '1000+', label: 'Projects Completed', icon: <CheckCircle size={24} /> },
+    { number: '98%', label: 'Client Satisfaction', icon: <Award size={24} /> },
+    { number: '1000+', label: 'Happy Families', icon: <Users size={24} /> }
   ]
   
   const processSteps = [
@@ -201,8 +202,13 @@ export default function AboutPage() {
                 color: '#8B4513',
                 marginBottom: '8px',
                 fontFamily: "'Playfair Display', serif",
-                letterSpacing: '-0.5px'
+                letterSpacing: '-0.5px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '8px'
               }}>
+                <span style={{ opacity: 0.7 }}>{stat.icon}</span>
                 {stat.number}
               </div>
               <div style={{
@@ -273,8 +279,7 @@ export default function AboutPage() {
                   transform: 'translateY(30px)',
                   display: 'flex',
                   flexDirection: isMobile ? 'column' : (index % 2 === 0 ? 'row' : 'row-reverse'),
-                  alignItems: 'center',
-                  minHeight: isMobile ? 'auto' : '400px',
+                  alignItems: isMobile ? 'center' : 'stretch',
                   backgroundColor: '#FFFFFF',
                   borderRadius: '12px',
                   overflow: 'hidden',
@@ -282,16 +287,19 @@ export default function AboutPage() {
                   boxShadow: '0 4px 20px rgba(0, 0, 0, 0.05)'
                 }}
               >
-                {/* Portrait Image Container - SIMPLE FIX */}
+                {/* Portrait Image Container - FIXED for mobile */}
                 <div style={{
-                  flex: isMobile ? '0 0 250px' : '0 0 35%',
+                  flex: isMobile ? '0 0 300px' : '0 0 40%',
                   position: 'relative',
                   overflow: 'hidden',
                   backgroundColor: '#F8F5F1',
-                  minHeight: isMobile ? '250px' : '400px',
-                  width: '100%'
+                  width: '100%',
+                  minHeight: isMobile ? '300px' : 'auto',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
                 }}>
-                  {/* Simple img tag - Works everytime */}
+                  {/* Image with better mobile handling */}
                   <img 
                     src={founder.imageSrc}
                     alt={founder.name}
@@ -299,30 +307,44 @@ export default function AboutPage() {
                       width: '100%',
                       height: '100%',
                       objectFit: 'cover',
-                      objectPosition: 'center',
+                      objectPosition: 'center top',
                       display: 'block'
                     }}
                     onError={(e) => {
-                      // Simple fallback - just hide and show background color
-                      e.target.style.display = 'none'
-                      e.target.parentElement.style.background = 'linear-gradient(135deg, #8B4513 0%, #A0522D 100%)'
-                      e.target.parentElement.style.display = 'flex'
-                      e.target.parentElement.style.alignItems = 'center'
-                      e.target.parentElement.style.justifyContent = 'center'
-                      
-                      const fallbackText = document.createElement('div')
-                      fallbackText.textContent = founder.name.charAt(0)
-                      fallbackText.style.cssText = `
-                        color: white;
-                        font-size: ${isMobile ? '48px' : '64px'};
-                        font-family: 'Playfair Display', serif;
-                        font-weight: 300;
+                      const parent = e.target.parentElement
+                      parent.innerHTML = `
+                        <div style="
+                          width: 100%;
+                          height: 100%;
+                          display: flex;
+                          flex-direction: column;
+                          align-items: center;
+                          justify-content: center;
+                          background: linear-gradient(135deg, #8B4513 0%, #A0522D 100%);
+                          color: white;
+                          text-align: center;
+                          padding: 20px;
+                        ">
+                          <div style="
+                            font-size: ${isMobile ? '48px' : '64px'};
+                            font-family: 'Playfair Display', serif;
+                            font-weight: 300;
+                            margin-bottom: 12px;
+                          ">
+                            ${founder.name.split(' ').map(n => n[0]).join('')}
+                          </div>
+                          <div style="
+                            font-size: ${isMobile ? '1.25rem' : '1.5rem'};
+                            font-weight: 600;
+                          ">
+                            ${founder.name}
+                          </div>
+                        </div>
                       `
-                      e.target.parentElement.appendChild(fallbackText)
                     }}
                   />
                   
-                  {/* Experience Badge - Professional Version */}
+                  {/* Experience Badge */}
                   <div style={{
                     position: 'absolute',
                     bottom: isMobile ? '16px' : '24px',
@@ -358,7 +380,7 @@ export default function AboutPage() {
                 
                 {/* Founder Info */}
                 <div style={{
-                  flex: isMobile ? '0 0 auto' : '0 0 65%',
+                  flex: '1',
                   padding: isMobile ? '32px 20px' : '48px 40px',
                   backgroundColor: '#FFFFFF'
                 }}>
@@ -420,7 +442,7 @@ export default function AboutPage() {
                     {founder.bio}
                   </p>
                   
-                  {/* Contact Info - Professional */}
+                  {/* Contact Info - With Lucide Icons */}
                   <div style={{
                     backgroundColor: '#FAF7F3',
                     borderRadius: '8px',
@@ -443,14 +465,13 @@ export default function AboutPage() {
                         alignItems: 'center',
                         justifyContent: 'center',
                         color: '#8B4513',
-                        fontSize: isMobile ? '16px' : '18px',
                         flexShrink: 0
                       }}>
-                        📞
+                        <Phone size={isMobile ? 18 : 20} />
                       </div>
-                      <div>
+                      <div style={{ flex: 1 }}>
                         <a 
-                          href={`tel:${founder.phone}`}
+                          href={`tel:${founder.phone.replace(/\s+/g, '')}`}
                           style={{
                             fontSize: isMobile ? '1rem' : '1.125rem',
                             color: '#1A1A1A',
@@ -485,10 +506,9 @@ export default function AboutPage() {
                         alignItems: 'center',
                         justifyContent: 'center',
                         color: '#8B4513',
-                        fontSize: isMobile ? '16px' : '18px',
                         flexShrink: 0
                       }}>
-                        ✉️
+                        <Mail size={isMobile ? 18 : 20} />
                       </div>
                       <a 
                         href={`mailto:${founder.email}`}
@@ -496,7 +516,8 @@ export default function AboutPage() {
                           fontSize: isMobile ? '0.9375rem' : '1.0625rem',
                           color: '#1A1A1A',
                           textDecoration: 'none',
-                          fontWeight: '500'
+                          fontWeight: '500',
+                          wordBreak: 'break-word'
                         }}
                         onMouseEnter={(e) => e.target.style.color = '#8B4513'}
                         onMouseLeave={(e) => e.target.style.color = '#1A1A1A'}
@@ -506,7 +527,7 @@ export default function AboutPage() {
                     </div>
                   </div>
                   
-                  {/* Specialties - Professional */}
+                  {/* Specialties */}
                   <div>
                     <div style={{
                       fontSize: isMobile ? '13px' : '14px',
@@ -654,8 +675,9 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-  
-          
+      
+      <Footer />
+      
       {/* Global Styles */}
       <style jsx global>{`
         @keyframes fadeInUp {
@@ -738,6 +760,14 @@ export default function AboutPage() {
                       border-color 0.3s ease, 
                       transform 0.3s ease,
                       box-shadow 0.3s ease;
+        }
+        
+        /* Better image rendering on mobile */
+        @media (max-width: 767px) {
+          img {
+            max-height: 400px;
+            object-fit: cover;
+          }
         }
       `}</style>
     </div>

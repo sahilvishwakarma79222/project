@@ -2685,7 +2685,7 @@ export default function ContactPage() {
               <div className="detail-icon">📍</div>
               <div className="detail-content">
                 <h3>Visit Our Showroom</h3>
-                <p>Plot 45, Industrial Estate<br />Mumbai, Maharashtra</p>
+                <p>Kalyan - Badlapur Rd, Ladinaka, Deepak Nagar, Ambernath, Maharashtra 421505</p>
               </div>
             </div>
             
@@ -2693,7 +2693,7 @@ export default function ContactPage() {
               <div className="detail-icon">📞</div>
               <div className="detail-content">
                 <h3>Call for Consultation</h3>
-                <p>+91 98765 43210<br />Available 9AM - 7PM</p>
+                <p>+91 80077 47733<br />Available 9AM - 7PM</p>
               </div>
             </div>
             
@@ -2767,7 +2767,7 @@ export default function ContactPage() {
                   value={formData.phone}
                   onChange={handleChange}
                   className="form-input"
-                  placeholder="+91 98765 43210"
+                  placeholder="+91 80077 47733"
                   required
                 />
               </div>

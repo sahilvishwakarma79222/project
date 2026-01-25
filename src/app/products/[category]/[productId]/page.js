@@ -256,7 +256,7 @@ export default async function ProductDetailPage({ params, searchParams }) {
                 {/* Action Buttons below image */}
                 <div className="image-actions-container">
                   <a
-                    href={`https://wa.me/919876543210?text=${whatsappMessage}`}
+                    href={`https://wa.me/918007747733?text=${whatsappMessage}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="image-action-btn btn-primary"
@@ -265,19 +265,6 @@ export default async function ProductDetailPage({ params, searchParams }) {
                   </a>
 
                 </div>
-                {/* Back button */}
-                {/* <div className="image-actions-container2">
-                  <a
-                    href={`products/wooden-doors`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="image-action-btn btn-primary2"
-                  >
-                    <span style={{ fontSize: '18px',marginTop:"8px" }}><IoIosArrowRoundBack size={26}></IoIosArrowRoundBack></span> Back
-                  </a>
-        
-                </div> */}
-
 
               </div>
             </div>
@@ -379,18 +366,18 @@ export default async function ProductDetailPage({ params, searchParams }) {
                       )}
                       {product.material && (
                         <div className="compact-spec-item">
-                          <div className="spec-label">Material</div>
+                          <div className="spec-label">Frame Thickness</div>
                           <div className="spec-value">{product.material}</div>
                         </div>
                       )}
                       {product.finish && (
                         <div className="compact-spec-item">
-                          <div className="spec-label">Finish</div>
+                          <div className="spec-label">Side Panel</div>
                           <div className="spec-value">{product.finish}</div>
                         </div>
                       )}
                       <div className="compact-spec-item">
-                        <div className="spec-label">Category</div>
+                        <div className="spec-label">Door Thickness</div>
                         <div className="spec-value">
                           {categoryData?.displayName || category}
                         </div>
@@ -412,9 +399,9 @@ export default async function ProductDetailPage({ params, searchParams }) {
                     <div className="description-content-truncate">
                       {product.desc}
                     </div>
-                    <button className="read-more-btn" data-expanded="false">
-                      Read More
-                    </button>
+                    {/* <button className="read-more-btn" data-expanded="false">
+                      Read sahil
+                    </button> */}
                   </div>
                 )}
 
@@ -428,11 +415,7 @@ export default async function ProductDetailPage({ params, searchParams }) {
                           <span>✓</span> {feature}
                         </div>
                       ))}
-                      {product.features.length > 3 && (
-                        <div className="feature-badge more-features">
-                          +{product.features.length - 3} more
-                        </div>
-                      )}
+                      
                     </div>
                   </div>
                 )}
@@ -470,7 +453,7 @@ export default async function ProductDetailPage({ params, searchParams }) {
                 {/* Main WhatsApp Section */}
                 <div className="main-whatsapp-section">
                   <a
-                    href={`https://wa.me/919876543210?text=${whatsappMessage}`}
+                    href={`https://wa.me/918007747733?text=${whatsappMessage}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="main-whatsapp-btn"

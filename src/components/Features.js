@@ -377,7 +377,7 @@ const featuresData = [
 ]
 
 const statsData = [
-  { value: 26, label: 'Years Experience', suffix: '+' },
+  { value: 28, label: 'Years Experience', suffix: '+' },
   { value: 1000, label: 'Happy Customers', suffix: '+' },
   { value: 1, label: 'Premium Wood Type', suffix: '' },
   { value: 28, label: 'States Covered', suffix: '' }

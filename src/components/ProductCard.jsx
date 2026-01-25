@@ -67,7 +67,7 @@ export default function ProductCard({ product, category }) {
             <p className="text-2xl font-bold text-amber-700">{product.price}</p>
           </div>
           <a
-            href={`https://wa.me/919876543210?text=${encodeURIComponent(whatsappMessage)}`}
+            href={`https://wa.me/918007747733?text=${encodeURIComponent(whatsappMessage)}`}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 bg-amber-600 text-white px-4 py-2 rounded-lg hover:bg-amber-700 transition-colors group/btn"

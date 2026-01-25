@@ -16,7 +16,7 @@ export default function ProductModal({ product, onClose }) {
   }, [onClose])
 
   const handleWhatsApp = () => {
-    const phoneNumber = '+919876543210'
+    const phoneNumber = '+918007747733'
     const message = `Hello Shree Doors! I'm interested in ${product.name}. Please share more details.`
     const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
     window.open(whatsappURL, '_blank')

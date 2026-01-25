@@ -63,7 +63,7 @@ export default function Home() {
       color: '#25D366',
       action: () => {
         const message = encodeURIComponent('Namaste! 🙏\nMaa Kripa Wood Art se connect karna chahta/chahati hoon.')
-        window.open(`https://wa.me/917028426042?text=${message}`, '_blank')
+        window.open(`https://wa.me/918007747733?text=${message}`, '_blank')
       }
     },
     {
@@ -82,7 +82,7 @@ export default function Home() {
       color: '#2196F3',
       action: () => {
         const message = encodeURIComponent('🌟 Maa Kripa Wood Art - Query\n\nProduct: ________\nBudget: ₹ ______\nNeed: □ Catalog □ Quote □ Visit □ Custom\n\nPlease contact.')
-        window.open(`https://wa.me/917028426042?text=${message}`, '_blank')
+        window.open(`https://wa.me/918007747733?text=${message}`, '_blank')
       }
     },
     {
@@ -102,7 +102,7 @@ export default function Home() {
     } else {
       // If already expanded, open WhatsApp
       const message = encodeURIComponent('Hello Maa Kripa Wood Art!')
-      window.open(`https://wa.me/917028426042?text=${message}`, '_blank')
+      window.open(`https://wa.me/918007747733?text=${message}`, '_blank')
     }
   }
 
@@ -126,7 +126,7 @@ export default function Home() {
         message = 'Maa Kripa Wood Art ke products ke bare mein janna hai.'
     }
 
-    window.open(`https://wa.me/917028426042?text=${encodeURIComponent(message)}`, '_blank')
+    window.open(`https://wa.me/918007747733?text=${encodeURIComponent(message)}`, '_blank')
   }
 
   return (
@@ -151,9 +151,11 @@ export default function Home() {
             {/* Collapsed State - Just Icon */}
             {!isExpanded ? (
               <div className="collapsed-view">
-                <button
+
+
+
+                {/* <button
                   className="main-contact-btn facebook-logo-color"
-                  // onClick={handleMainButtonClick}
                   onClick={() => {
                     const message = encodeURIComponent('Namaste! 🙏\nMaa Kripa Wood Art se connect karna chahta/chahati hoon.')
                     window.open(`https://www.facebook.com/`, '_blank')
@@ -161,9 +163,13 @@ export default function Home() {
                   aria-label="Contact Maa Kripa Wood Art"
                 >
                   <FaFacebook className="main-icon" />
-                  {/* {showNotification && <span className="notification-badge">!</span>} */}
                   <div className="pulse-ring"></div>
-                </button>
+                </button> */}
+
+
+
+
+                
                 <button
                   className="main-contact-btn insta-logo-color"
                   // onClick={handleMainButtonClick}
@@ -182,7 +188,7 @@ export default function Home() {
                   // onClick={handleMainButtonClick}
                   onClick={() => {
                     const message = encodeURIComponent('Namaste! 🙏\nMaa Kripa Wood Art se connect karna chahta/chahati hoon.')
-                    window.open(`https://wa.me/917028426042?text=${message}`, '_blank')
+                    window.open(`https://wa.me/918007747733?text=${message}`, '_blank')
                   }}
                   aria-label="Contact Maa Kripa Wood Art"
                 >

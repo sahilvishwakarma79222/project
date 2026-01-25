@@ -890,7 +890,7 @@ const ProductHoverOverlay = React.memo(({ product, activeCategory, currentPage }
             View
           </Link>
           <a
-            href={`https://wa.me/919876543210?text=${whatsappMessage}`}
+            href={`https://wa.me/918007747733?text=${whatsappMessage}`}
             target="_blank"
             rel="noopener noreferrer"
             className="overlay-whatsapp-btn"
@@ -986,7 +986,7 @@ const ProductCard = React.memo(({ product, activeCategory, currentPage }) => {
             )}
 
             <a
-              href={`https://wa.me/919876543210?text=${whatsappMessage}`}
+              href={`https://wa.me/918007747733?text=${whatsappMessage}`}
               target="_blank"
               rel="noopener noreferrer"
               className="wood-buy-button"
