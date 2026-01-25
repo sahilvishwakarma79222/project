@@ -1,6 +1,7 @@
 "use client";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectCoverflow, Autoplay, Pagination, Navigation } from "swiper/modules";
+import { useRouter } from 'next/navigation';
 
 import "swiper/css";
 import "swiper/css/effect-coverflow";
@@ -10,15 +11,17 @@ import "swiper/css/navigation";
 import "./BestSeller.css";
 
 export default function BestSeller() {
+  const router = useRouter();
+
   const images = [
-    { src: '/images/heroDoor/heroDoor/1.png' },
-    { src: '/images/heroDoor/heroDoor/2.png' },
-    { src: '/images/heroDoor/heroDoor/3.png' },
-    { src: '/images/heroDoor/heroDoor/4.png' },
-    { src: '/images/heroDoor/heroDoor/5.png' },
-    { src: '/images/heroDoor/heroDoor/6.png' },
-    { src: '/images/heroDoor/heroDoor/7.png' },
-    { src: '/images/heroDoor/heroDoor/8.png' }
+    { src: '/images/heroDoor/heroDoor/1.png', link: "/products/woodenDoor/product13" },
+    { src: '/images/heroDoor/heroDoor/2.png', link: "/products/woodenDoor/product14" },
+    { src: '/images/heroDoor/heroDoor/3.png', link: "/products/woodenDoor/product15" },
+    { src: '/images/heroDoor/heroDoor/4.png', link: "/products/woodenDoor/product16" },
+    { src: '/images/heroDoor/heroDoor/5.png', link: "/products/woodenDoor/product17" },
+    { src: '/images/heroDoor/heroDoor/6.png', link: "/products/woodenDoor/product18" },
+    { src: '/images/heroDoor/heroDoor/7.png', link: "/products/woodenDoor/product19" },
+    { src: '/images/heroDoor/heroDoor/8.png', link: "/products/woodenDoor/product20" }
   ];
 
   return (
@@ -54,7 +57,7 @@ export default function BestSeller() {
             modifier: 2.5, // Increased modifier
             slideShadows: false,
           }}
-          pagination={{ 
+          pagination={{
             clickable: true,
             dynamicBullets: true,
           }}
@@ -94,8 +97,8 @@ export default function BestSeller() {
           {images.map((item, i) => (
             <SwiperSlide key={i} className="coverflow-slide">
               <div className="coverflow-image-box">
-                <img src={item.src} alt={`Door ${i + 1}`} className="coverflow-image" />
-                
+                <img src={item.src} alt={`Door ${i + 1}`} className="coverflow-image" onClick={()=>{router.push(item.link)}} />
+
                 {/* Best Seller Label - Only for active slide */}
                 {/* <div className="best-seller-label">BEST SELLER</div> */}
               </div>
@@ -106,12 +109,12 @@ export default function BestSeller() {
         {/* Custom Navigation Arrows */}
         <div className="swiper-button-prev-custom custom-navigation">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <path d="M15 18l-6-6 6-6"/>
+            <path d="M15 18l-6-6 6-6" />
           </svg>
         </div>
         <div className="swiper-button-next-custom custom-navigation">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <path d="M9 18l6-6-6-6"/>
+            <path d="M9 18l6-6-6-6" />
           </svg>
         </div>
 
