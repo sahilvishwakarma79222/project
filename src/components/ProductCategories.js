@@ -9,7 +9,7 @@ const productCategories = [
     id: 'wooden-doors',
     name: 'Wooden Doors',
     href: '/products/wooden-doors?category=woodenDoor',
-    image: '/images/products/wooden-doors.jpg',
+    image: '/images/category/1_woodenDoor/product1/1.webp',
     description: 'Premium handcrafted doors with exquisite finishes',
     badge: 'Bestseller',
     icon: '🚪'
@@ -18,7 +18,7 @@ const productCategories = [
     id: 'safety-doors',
     name: 'Safety Doors',
     href: '/products/wooden-doors?category=safetyDoors',
-    image: '/images/products/safety-doors.jpg',
+    image: '/images/category/3_safetyDoors/product1/1.webp',
     description: 'Advanced security meets elegant design',
     badge: 'Secure',
     icon: '🔒'
@@ -27,7 +27,7 @@ const productCategories = [
     id: 'wooden-frames',
     name: 'Wooden Frames',
     href: '/products/wooden-doors?category=woodenFrame',
-    image: '/images/products/wooden-frames.jpg',
+    image: '/images/category/2_WoodenFream/product1/1.webp',
     description: 'Custom frames for timeless elegance',
     badge: 'Essential',
     icon: '🖼️'
@@ -36,7 +36,7 @@ const productCategories = [
     id: 'wooden-windows',
     name: 'Wooden Windows',
     href: '/products/wooden-doors?category=woodenWindow',
-    image: '/images/products/wooden-windows.jpg',
+    image: '/images/category/6_woodenWindow/product1/1.webp',
     description: 'Crafted windows for natural beauty',
     badge: 'Premium',
     icon: '🪟'
@@ -45,7 +45,7 @@ const productCategories = [
     id: 'wooden-beds',
     name: 'Wooden Beds',
     href: '/products/wooden-doors?category=woodenBed',
-    image: '/images/products/wooden-beds.jpg',
+    image: '/images/category/4_woodenBed/product1/1.webp',
     description: 'Luxurious sleep sanctuaries',
     badge: 'Luxury',
     icon: '🛏️'
@@ -54,7 +54,7 @@ const productCategories = [
     id: 'sofa-chairs',
     name: 'Sofa & Chairs',
     href: '/products/wooden-doors?category=sofaChair',
-    image: '/images/products/sofa-chairs.jpg',
+    image: '/images/category/8_sofaChair/product1/1.webp',
     description: 'Comfort redefined in wood and fabric',
     badge: 'Comfort',
     icon: '🛋️'
