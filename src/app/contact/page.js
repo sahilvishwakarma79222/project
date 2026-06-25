@@ -2701,7 +2701,7 @@ export default function ContactPage() {
               <div className="detail-icon">📧</div>
               <div className="detail-content">
                 <h3>Email Us</h3>
-                <p>info@shreedoors.com<br />We reply within 24 hours</p>
+                <p>maakripawoodarts@gmail.com<br />We reply within 24 hours</p>
               </div>
             </div>
           </div>
@@ -2709,8 +2709,8 @@ export default function ContactPage() {
           <div className="working-hours">
             <div className="hours-title">Working Hours</div>
             <div className="hours-details">
-              Monday - Saturday: 9:00 AM to 7:00 PM<br />
-              Sunday: Closed
+              Monday - Saturday: 11:00 AM to 7:00 PM<br />
+              Friday: Closed
             </div>
           </div>
         </div>
