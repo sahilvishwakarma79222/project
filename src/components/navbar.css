@@ -889,3 +889,45 @@ body.no-scroll {
   gap: 1rem;
   padding-right: 20px;
 }
+
+/* Loading state for navbar categories */
+.mega-menu-item.loading {
+  opacity: 0.6;
+  pointer-events: none;
+  cursor: wait;
+}
+
+.mega-menu-item .nav-loading-spinner {
+  display: inline-block;
+  animation: spin 1s linear infinite;
+  font-size: 14px;
+  margin-left: 4px;
+}
+
+.mobile-category-item.loading {
+  opacity: 0.6;
+  pointer-events: none;
+  cursor: wait;
+}
+
+.mobile-category-item .nav-loading-spinner {
+  display: inline-block;
+  animation: spin 1s linear infinite;
+  font-size: 12px;
+  margin-left: 4px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Optional: Global loading overlay */
+body.loading {
+  cursor: wait;
+}
+
+body.loading a, 
+body.loading button {
+  pointer-events: none;
+}

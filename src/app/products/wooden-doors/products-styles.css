@@ -1383,3 +1383,46 @@ html {
     display: none !important;
   }
 }
+
+
+/* Category loading state */
+.wood-category-btn.loading {
+  opacity: 0.7;
+  cursor: wait;
+  background: #f5f5f5 !important;
+  pointer-events: none;
+}
+
+.wood-category-btn .category-loading-spinner {
+  display: inline-block;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Category click animation */
+.wood-category-btn:active:not(.loading):not(.active) {
+  transform: scale(0.95);
+  transition: transform 0.1s ease;
+}
+
+/* Products grid loading state */
+.wood-products-grid.loading {
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+}
+
+/* Mobile category loading */
+.mobile-category-item.loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* Header loading indicator */
+.category-loading-spinner {
+  display: inline-block;
+  animation: spin 1s linear infinite;
+}
