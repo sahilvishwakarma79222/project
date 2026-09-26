@@ -9,7 +9,7 @@ const productCategories = [
     id: 'wooden-doors',
     name: 'Wooden Doors',
     href: '/products/wooden-doors?category=woodenDoor',
-    image: '/images/category/1_woodenDoor/product1/1.webp',
+    image: '/images/products/wooden-doors.webp',
     description: 'Premium handcrafted doors with exquisite finishes',
     badge: 'Bestseller',
     icon: '🚪'
@@ -36,7 +36,7 @@ const productCategories = [
     id: 'wooden-windows',
     name: 'Wooden Windows',
     href: '/products/wooden-doors?category=woodenWindow',
-    image: '/images/category/6_woodenWindow/product1/1.webp',
+    image: '/images/products/wooden-windows.png',
     description: 'Crafted windows for natural beauty',
     badge: 'Premium',
     icon: '🪟'
@@ -63,7 +63,7 @@ const productCategories = [
     id: 'wooden-mandir',
     name: 'Wooden Mandir',
     href: '/products/wooden-doors?category=woodenMandir',
-    image: '/images/products/wooden-mandir.jpg',
+    image: '/images/products/wooden-mandir.webp',
     description: 'Sacred spaces for spiritual harmony',
     badge: 'Spiritual',
     icon: '🛕'
@@ -72,7 +72,7 @@ const productCategories = [
     id: 'wooden-art',
     name: 'Wooden Art',
     href: '/products/wooden-doors?category=woodenArt',
-    image: '/images/products/wooden-art.jpg',
+    image: '/images/products/wooden-art.png',
     description: 'Sculptures that tell stories',
     badge: 'Artistic',
     icon: '🎨'
