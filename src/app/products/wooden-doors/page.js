@@ -577,12 +577,19 @@ export default function ProductsPage() {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Handle page change
-  const handlePageChange = useCallback((pageNumber) => {
-    setCurrentPage(pageNumber);
-    requestAnimationFrame(() => {
-      window.scrollTo({ top: 380, behavior: 'smooth' });
-    });
-  }, []);
+ // Handle page change
+const handlePageChange = useCallback((pageNumber) => {
+  setCurrentPage(pageNumber);
+
+  // URL update karo taaki back/forward kaam kare
+  const newParams = new URLSearchParams(searchParams);
+  newParams.set('pageNumber', pageNumber);
+  router.push(`?${newParams.toString()}`, { scroll: false });
+
+  requestAnimationFrame(() => {
+    window.scrollTo({ top: 380, behavior: 'smooth' });
+  });
+}, [searchParams, router]);
 
   // Refresh counts function
   const handleRefreshCounts = useCallback(async () => {
@@ -671,11 +678,13 @@ export default function ProductsPage() {
       return (
         <button
           key={category.id}
-          onClick={() => {
-            URLParams.set("category", category.name);
-            router.push(`?${URLParams.toString()}`);
-            setIsMobileMenuOpen(false);
-          }}
+         onClick={() => {
+          const newParams = new URLSearchParams(searchParams);
+          newParams.set("category", category.name);
+          newParams.delete("pageNumber"); // ✅ page reset
+          router.push(`?${newParams.toString()}`);
+          setIsMobileMenuOpen(false);
+        }}
           onMouseEnter={() => setHoveredCategory(category.name)}
           onMouseLeave={() => setHoveredCategory(null)}
           onFocus={() => setHoveredCategory(category.name)}
@@ -719,7 +728,16 @@ export default function ProductsPage() {
       loadCategory(category);
     }
   }, [category]);
-
+// Watch for pageNumber changes from URL (back/forward navigation)
+useEffect(() => {
+  const pageFromUrl = Number(URLParams.get('pageNumber')) || 1;
+  if (pageFromUrl !== currentPage && initialLoadComplete) {
+    setCurrentPage(pageFromUrl);
+    requestAnimationFrame(() => {
+      window.scrollTo({ top: 380, behavior: 'smooth' });
+    });
+  }
+}, [searchParams, initialLoadComplete]); // eslint-disable-line react-hooks/exhaustive-deps
   // Show loading until initial load is complete
   if (loading && !initialLoadComplete) {
     return (

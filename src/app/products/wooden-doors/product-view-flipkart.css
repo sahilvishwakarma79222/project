@@ -21,6 +21,192 @@
  
 }
 
+.trust-info-card {
+  background: #f7faf8;
+  border: 1px solid #d6e8dc;
+  border-radius: 12px;
+  margin-top: 16px;
+  overflow: visible;        /* ✅ hidden ki jagah visible */
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 8px rgba(20, 80, 50, 0.04);
+  /* Border radius corners ko preserve karne ke liye */
+  isolation: isolate;
+}
+
+.trust-info-card[open] {
+  box-shadow: 0 4px 16px rgba(20, 80, 50, 0.08);
+}
+
+/* Header */
+.trust-info-header {
+  list-style: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: linear-gradient(135deg, #eaf5ee 0%, #f7faf8 100%);
+  user-select: none;
+  border-radius: 11px 11px 0 0;   /* ✅ header ke corners */
+}
+
+.trust-info-card:not([open]) .trust-info-header {
+  border-radius: 11px;            /* ✅ closed state me pura rounded */
+}
+
+.trust-info-header::-webkit-details-marker { display: none; }
+.trust-info-header::marker { display: none; }
+
+.trust-info-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.trust-icon {
+  font-size: 22px;
+  background: #ffffff;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(20, 80, 50, 0.1);
+  flex-shrink: 0;
+}
+
+.trust-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1e4d38;
+  line-height: 1.2;
+}
+
+.trust-subtitle {
+  font-size: 12px;
+  color: #6b8a7a;
+  margin-top: 2px;
+}
+
+.trust-chevron {
+  font-size: 20px;
+  color: #4a7a63;
+  transition: transform 0.25s ease;
+  font-weight: 700;
+}
+
+.trust-info-card[open] .trust-chevron {
+  transform: rotate(90deg);
+}
+
+/* Body */
+/* Body */
+.trust-info-body {
+  padding: 4px 16px 16px;
+  animation: trustFade 0.25s ease;
+  max-height: 340px;         /* ✅ andar hi scroll hoga */
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;   /* iOS smooth scroll */
+  scrollbar-width: thin;
+  scrollbar-color: #b8d9c5 transparent;
+}
+
+/* Clean scrollbar (green theme) */
+.trust-info-body::-webkit-scrollbar {
+  width: 5px;
+}
+.trust-info-body::-webkit-scrollbar-thumb {
+  background: #b8d9c5;
+  border-radius: 6px;
+}
+.trust-info-body::-webkit-scrollbar-thumb:hover {
+  background: #9cc4ab;
+}
+.trust-info-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+@keyframes trustFade {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* List */
+.trust-list {
+  list-style: none;
+  padding: 0;
+  margin: 12px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.trust-list li {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: #2d3b34;
+  background: #ffffff;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border-left: 3px solid #b8d9c5;
+}
+
+.trust-list li.trust-list-thanks {
+  background: #eaf5ee;
+  border-left-color: #4a9d6e;
+  color: #1e4d38;
+}
+
+.trust-bullet {
+  font-size: 15px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* Footer */
+.trust-footer {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px dashed #c5ddd0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #1e4d38;
+}
+
+.trust-footer-tag {
+  margin-left: auto;
+  font-size: 11px;
+  background: #1e4d38;
+  color: #fff;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .trust-info-header { padding: 12px; }
+  .trust-title { font-size: 14px; }
+  .trust-subtitle { font-size: 11px; }
+  .trust-list li { font-size: 13px; padding: 9px 10px; }
+  .trust-icon { width: 36px; height: 36px; font-size: 20px; }
+
+  /* ✅ mobile pe body scroll thoda chhota */
+  .trust-info-body {
+    max-height: 260px;
+  }
+}
+
 /* Desktop Layout */
 @media (min-width: 1025px) {
   .product-detail-layout {
@@ -602,14 +788,30 @@
 
 
 /* Desktop sticky + scroll */
+/* Desktop sticky + scroll */
 @media (min-width: 1025px) {
   .product-info-section {
-    height: 38rem;
+    max-height: 38rem;        /* height ki jagah max-height */
+    height: auto;             /* ✅ auto height — content ke hisaab se badhega */
     overflow-y: auto;
     overflow-x: hidden;
     position: sticky;
     top: 20px;
     padding-right: 10px;
+    scrollbar-width: thin;
+    scrollbar-color: #b8d9c5 transparent;
+  }
+
+  /* Clean scrollbar */
+  .product-info-section::-webkit-scrollbar {
+    width: 5px;
+  }
+  .product-info-section::-webkit-scrollbar-thumb {
+    background: #b8d9c5;
+    border-radius: 6px;
+  }
+  .product-info-section::-webkit-scrollbar-track {
+    background: transparent;
   }
 }
 

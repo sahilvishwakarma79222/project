@@ -232,19 +232,50 @@ export default async function Page({ params, searchParams }) {
     </a>
 
     {/* Terms — clean card */}
-    <div className="terms-card">
-      <div className="terms-title">
-        <span>📌</span> महत्वपूर्ण सूचना
+    {/* Purchase Guidelines — trust friendly */}
+<details className="trust-info-card">
+  <summary className="trust-info-header">
+    <div className="trust-info-left">
+      <span className="trust-icon">🛡️</span>
+      <div>
+        <div className="trust-title">खरीदने से पहले जानें</div>
+        <div className="trust-subtitle">ज़रूरी जानकारी • 30 सेकंड में पढ़ें</div>
       </div>
-      <ul className="terms-list">
-        <li>रिपेयरिंग, पॉलिश, फिटिंग, ट्रांसपोर्ट एवं अन्य मजदूरी शुल्क अलग से लिया जाएगा।</li>
-        <li>कृपया डिलीवरी से पहले पूरा भुगतान करें।</li>
-        <li>लकड़ी नैसर्गिक है, मौसम के कारण दरार या बदलाव हो सकता है - इसके लिए हमारी जिम्मेदारी नहीं।</li>
-        <li>एक बार बिक्री किया हुआ माल वापस या बदलकर नहीं दिया जाएगा।</li>
-        <li>"सहयोग अपेक्षित।"</li>
-      </ul>
-      <div className="terms-footer">🙏 MAA KRIPA WOOD ART</div>
     </div>
+    <span className="trust-chevron">›</span>
+  </summary>
+
+  <div className="trust-info-body">
+    <ul className="trust-list">
+      <li>
+        <span className="trust-bullet">🔧</span>
+        <span>रिपेयरिंग, पॉलिश, फिटिंग, ट्रांसपोर्ट एवं अन्य मजदूरी शुल्क अलग से लिया जाएगा।</span>
+      </li>
+      <li>
+        <span className="trust-bullet">💳</span>
+        <span>कृपया डिलीवरी से पहले पूरा भुगतान करें।</span>
+      </li>
+      <li>
+        <span className="trust-bullet">🌳</span>
+        <span>लकड़ी नैसर्गिक है, मौसम के कारण दरार या बदलाव हो सकता है — इसके लिए हमारी जिम्मेदारी नहीं।</span>
+      </li>
+      <li>
+        <span className="trust-bullet">🔄</span>
+        <span>एक बार बिक्री किया हुआ माल वापस या बदलकर नहीं दिया जाएगा।</span>
+      </li>
+      <li className="trust-list-thanks">
+        <span className="trust-bullet">🙏</span>
+        <span><strong>सहयोग अपेक्षित।</strong></span>
+      </li>
+    </ul>
+
+    <div className="trust-footer">
+      <span>🙏</span>
+      <span><strong>MAA KRIPA WOOD ART</strong></span>
+      <span className="trust-footer-tag">Trusted Since Years</span>
+    </div>
+  </div>
+</details>
 
     {/* Footer note */}
     <p className="info-footer-note">
