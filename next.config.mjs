@@ -1,38 +1,26 @@
-// /** @type {import('next').NextConfig} */
-// const nextConfig = {
-//   /* config options here */
-//   reactCompiler: true,
-// };
-
-// export default nextConfig;
-
-
-// /** @type {import('next').NextConfig} */
-// const nextConfig = {
-//   images: {
-//     domains: [],
-//     unoptimized: true, // For static sites
-//   },
-//   // Enable static export
-//   output: 'export',
-//   // Optional: Add trailing slash for static hosting
-//   trailingSlash: true,
-// }
-
-// export default nextConfig
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // ❌ REMOVE या COMMENT OUT ये line:
-  // output: 'export',
-  
   images: {
     unoptimized: true,
   },
-  
-  // Optional: Add other configs if needed
-  // trailingSlash: true,
-  // reactStrictMode: true,
+
+  // ✅ Gzip compression
+  compress: true,
+
+  // ✅ Cache headers for images (1 year browser cache)
+  async headers() {
+    return [
+      {
+        source: '/images/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+    ];
+  },
 };
 
 export default nextConfig;
