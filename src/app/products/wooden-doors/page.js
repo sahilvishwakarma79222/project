@@ -74,13 +74,11 @@ const ProductImage = ({ images, alt, productNumber, priority = false, renderKey 
 
   const imageSrc = images && images.length > 0 ? images[0] : null;
 
-  // Reset state when renderKey changes
+  // ✅ FIX: Reset only when actual image source changes (not on renderKey)
   useEffect(() => {
     setImgLoaded(false);
     setImgError(false);
-  }, [renderKey]);
-
-  // console.log(imgLoaded)
+  }, [imageSrc]);
 
   if (!imageSrc || imgError) {
     return (
@@ -91,12 +89,17 @@ const ProductImage = ({ images, alt, productNumber, priority = false, renderKey 
     );
   }
 
-  // Use img tag for reliability - NO Next.js Image optimization
   return (
     <div style={{ width: '100%', height: '100%', position: 'relative' }}>
       <img
         src={imageSrc}
         alt={alt}
+        ref={(el) => {
+          // ✅ FIX: Agar browser cache se already loaded hai to turant dikhao
+          if (el && el.complete && el.naturalWidth > 0) {
+            setImgLoaded(true);
+          }
+        }}
         style={{
           width: '100%',
           height: '100%',
@@ -112,7 +115,8 @@ const ProductImage = ({ images, alt, productNumber, priority = false, renderKey 
           setImgError(true);
           setImgLoaded(false);
         }}
-      // loading={priority ? "eager" : "lazy"}
+        loading={priority ? "eager" : "lazy"}
+        decoding="async"
       />
     </div>
   );
