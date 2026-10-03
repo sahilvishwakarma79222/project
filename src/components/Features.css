@@ -647,3 +647,180 @@ body {
     transform: translateY(0);
   }
 }
+
+/* ================================
+   ANIMATION ENHANCEMENTS
+   (existing CSS ke upar add karo)
+   ================================ */
+
+/* ---- 1. Section Header Entrance ---- */
+.section-tag,
+.section-title,
+.section-description {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: headerFadeIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.section-tag       { animation-delay: 0.1s; }
+.section-title     { animation-delay: 0.25s; }
+.section-description { animation-delay: 0.4s; }
+
+@keyframes headerFadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ---- 2. Card Entry — Smooth Reveal ---- */
+.feature-card {
+  opacity: 0;
+  transform: translateY(30px) scale(0.96);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.4s ease,
+    border-color 0.4s ease;
+}
+
+.feature-card.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transition-delay: calc(var(--card-index, 0) * 0.12s);
+}
+
+/* ---- 3. Card Hover — Lift + Border Glow ---- */
+.feature-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px -12px rgba(184, 148, 31, 0.25);
+  border-color: transparent;
+}
+
+/* ---- 4. Icon — Continuous Soft Pulse (very subtle) ---- */
+.icon-container {
+  animation: iconPulse 3s ease-in-out infinite;
+}
+
+.feature-card:nth-child(1) .icon-container { animation-delay: 0s; }
+.feature-card:nth-child(2) .icon-container { animation-delay: 0.4s; }
+.feature-card:nth-child(3) .icon-container { animation-delay: 0.8s; }
+.feature-card:nth-child(4) .icon-container { animation-delay: 1.2s; }
+
+@keyframes iconPulse {
+  0%, 100% { box-shadow: 0 4px 12px rgba(184, 148, 31, 0.15); }
+  50%      { box-shadow: 0 8px 24px rgba(184, 148, 31, 0.35); }
+}
+
+/* ---- 5. Icon Hover — Flip + Glow Ring ---- */
+.feature-card:hover .icon-container {
+  transform: rotateY(180deg) scale(1.1);
+  animation-play-state: paused;
+}
+
+/* ---- 6. Gold Shine Sweep on Card Hover ---- */
+.feature-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.5) 50%,
+    transparent 100%
+  );
+  transform: skewX(-20deg);
+  pointer-events: none;
+  z-index: 3;
+}
+
+.feature-card:hover::after {
+  animation: shineSweep 0.9s ease forwards;
+}
+
+@keyframes shineSweep {
+  from { left: -75%; }
+  to   { left: 125%; }
+}
+
+/* ---- 7. Title Underline Slide ---- */
+.feature-title {
+  position: relative;
+  display: inline-block;
+  transition: color 0.35s ease;
+}
+
+.feature-title::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--gold-gradient);
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  transform: translateX(-50%);
+}
+
+.feature-card:hover .feature-title::after {
+  width: 60%;
+}
+
+.feature-card:hover .feature-title {
+  color: var(--gold-dark);
+}
+
+/* ---- 8. Stats — Count + Fade Up ---- */
+.stat-item {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: statFadeUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.stat-item:nth-child(1) { animation-delay: 0.3s; }
+.stat-item:nth-child(2) { animation-delay: 0.45s; }
+.stat-item:nth-child(3) { animation-delay: 0.6s; }
+.stat-item:nth-child(4) { animation-delay: 0.75s; }
+
+@keyframes statFadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ---- 9. Stat Number Glow on Hover ---- */
+.stat-item {
+  transition: transform 0.35s ease;
+}
+
+.stat-item:hover {
+  transform: translateY(-4px);
+}
+
+.stat-item:hover .stat-number {
+  text-shadow: 0 0 20px rgba(200, 169, 126, 0.6);
+}
+
+.stat-number {
+  transition: text-shadow 0.35s ease;
+}
+
+/* ---- 10. Respect Reduced Motion ---- */
+@media (prefers-reduced-motion: reduce) {
+  .section-tag,
+  .section-title,
+  .section-description,
+  .feature-card,
+  .feature-card.visible,
+  .icon-container,
+  .stat-item {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .feature-card:hover,
+  .feature-card:hover .icon-container {
+    transform: none;
+  }
+}
